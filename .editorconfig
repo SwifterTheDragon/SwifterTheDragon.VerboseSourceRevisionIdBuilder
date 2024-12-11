@@ -30,8 +30,8 @@ root = true
 # Support for Spell Checking requires Visual Studio 2022 17.5 or later.
 # https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker
 
-# Set language to American English.
-spelling_languages = en-us
+# Set language to English (World).
+spelling_languages = en-001
 # Enable spell checking of all available types.
 spelling_checkable_types = strings,identifiers,comments
 # Please keep the severity of spelling errors above silent to actively avoid spelling errors.
