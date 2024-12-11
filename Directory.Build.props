@@ -1,12 +1,28 @@
+<!-- Copyright SwifterTheDragon, 2024. All Rights Reserved. -->
 <Project>
     <PropertyGroup>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-    </PropertyGroup>
-    <PropertyGroup>
+        <!-- Do not add <AssemblyTitle> here. Each assembly should receive a unique title. -->
+        <!-- Do not add <AssemblyVersion> here. Each assembly should receive a unique assembly version. -->
         <Company>SwifterTheDragon</Company>
         <Copyright>Copyright SwifterTheDragon, 2024. All Rights Reserved.</Copyright>
-        <Product>VerboseSourceRevisionIdBuilder</Product>
-        <InformationalVersion>0.1.0-alpha</InformationalVersion>
+        <!-- Do not add <Description> here. Each assembly should receive a unique description. -->
+        <!-- Do not add <FileVersion> here. Each assembly should receive a unique file version. -->
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+		<InformationalVersion>0.1.0-alpha</InformationalVersion>
+		<Product>VerboseSourceRevisionIdBuilder</Product>
     </PropertyGroup>
+    <ItemGroup>
+        <!-- Do not add System.Reflection.AssemblyDefaultAliasAttribute here. Each assembly should receive a unique default alias. -->
+        <AssemblyAttribute Include="System.CLSCompliantAttribute">
+            <_Parameter1>true</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Runtime.InteropServices.ComVisibleAttribute">
+            <_Parameter1>true</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Resources.NeutralResourcesLanguageAttribute">
+            <_Parameter1>en-001</_Parameter1>
+            <_Parameter2>Satellite</_Parameter2>
+            <_Parameter2_TypeName>System.Resources.UltimateResourceFallbackLocation</_Parameter2_TypeName>
+        </AssemblyAttribute>
+    </ItemGroup>
 </Project>
