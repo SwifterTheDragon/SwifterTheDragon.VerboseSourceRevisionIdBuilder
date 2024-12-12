@@ -1,7 +1,6 @@
 <!-- Copyright SwifterTheDragon, 2024. All Rights Reserved. -->
 <Project>
     <PropertyGroup>
-        <!-- Do not add <AssemblyTitle> here. Each assembly should receive a unique title. -->
         <!-- Do not add <AssemblyVersion> here. Each assembly should receive a unique assembly version. -->
         <Company>SwifterTheDragon</Company>
         <Copyright>Copyright SwifterTheDragon, 2024. All Rights Reserved.</Copyright>
