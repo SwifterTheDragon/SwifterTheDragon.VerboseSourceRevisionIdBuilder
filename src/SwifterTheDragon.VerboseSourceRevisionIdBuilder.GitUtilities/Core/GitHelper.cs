@@ -9,7 +9,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
     {
         #region Fields & Properties
         /// <summary>
-        /// A text value representing a detached <c>HEAD</c> state.
+        /// The default text value representing a detached <c>HEAD</c> state.
         /// </summary>
         private static string DefaultDetachedHeadLabel
         {
@@ -19,7 +19,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
             }
         }
         /// <summary>
-        /// A text value representing an invalid <c>HEAD</c> state.
+        /// The default text value representing an invalid <c>HEAD</c> state.
         /// </summary>
         private static string DefaultInvalidHeadLabel
         {
