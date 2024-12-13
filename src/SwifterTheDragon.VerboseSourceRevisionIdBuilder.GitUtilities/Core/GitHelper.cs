@@ -36,7 +36,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
         /// <returns>The output of <c>git describe --all --long --dirty=-dirty --broken=-broken</c> with trailing white space.
         /// If output is blank, then <c><see cref="GetGitDescribeFallback"/></c> is used instead.
         /// </returns>
-        private static string GetVerboseGitDescribe()
+        internal static string GetVerboseGitDescribe()
         {
             string verboseGitDescribe = CommandLineUtilities.ExecuteCommandLineCommand(
                 command: "git describe --all --long --dirty=-dirty --broken=-broken");
@@ -53,7 +53,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
         /// <returns>The output of <c>git describe --always</c> with trailing white space trimmed.
         /// If output is blank, then <c><see cref="DefaultInvalidHeadLabel"/></c> is used instead.
         /// </returns>
-        private static string GetGitDescribeFallback()
+        internal static string GetGitDescribeFallback()
         {
             string gitDescribeFallback = CommandLineUtilities.ExecuteCommandLineCommand(
                 command: "git describe --always");
@@ -71,7 +71,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
         /// The output of <c>git branch --show-current</c>.
         /// If output is blank, then <c><see cref="DefaultDetachedHeadLabel"/></c> is used instead.
         /// </returns>
-        private static string GetCurrentGitBranchName()
+        internal static string GetCurrentGitBranchName()
         {
             string currentBranchName = CommandLineUtilities.ExecuteCommandLineCommand(
                 command: "git branch --show-current");
