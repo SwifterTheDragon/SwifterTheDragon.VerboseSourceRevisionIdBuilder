@@ -12,6 +12,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     [Generator]
     internal class VerboseSourceRevisionIdGenerator : IIncrementalGenerator
     {
+        #region Fields & Properties
         /// <summary>
         /// The default name of the generated file containing the verbose source revision ID.
         /// </summary>
@@ -52,6 +53,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "VerboseSourceRevisionId";
             }
         }
+        #endregion Fields & Properties
+        #region Methods
         public void Initialize(
             IncrementalGeneratorInitializationContext context)
         {
@@ -80,5 +83,6 @@ namespace "
                         encoding: Encoding.UTF8));
             });
         }
+        #endregion
     }
 }
