@@ -1,5 +1,6 @@
 // Copyright SwifterTheDragon, 2024. All Rights Reserved.
 
+using System.Globalization;
 using System.Text;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
@@ -20,8 +21,42 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
                 return "main";
             }
         }
+        /// <summary>
+        /// The default patch version.
+        /// </summary>
+        private static int DefaultPatchVersion
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        /// <summary>
+        /// The default major version.
+        /// </summary>
+        private static int DefaultMajorVersion
+        {
+            get
+            {
+                return 0;
+            }
+        }
         #endregion Fields & Properties
         #region Methods
+        /// <summary>
+        /// Retrieves the default minor version relative to the major version.
+        /// </summary>
+        /// <param name="majorVersion">The major version in a semantic version.</param>
+        /// <returns><c>0</c>, unless the inputted major is 0, which instead results in <c>1</c>.</returns>
+        internal static int GetRelativeDefaultMinorVersion(
+            int majorVersion)
+        {
+            if (majorVersion == 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
         /// <summary>
         /// Retrieves the current product version.
         /// </summary>
@@ -44,7 +79,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.GitUtilities.Core
         internal static string GetProductVersion()
         {
             var productVersionBuilder = new StringBuilder();
-            string semanticVersionPlaceholder = "1.2.3";
+            int majorVersionPlaceholder = DefaultMajorVersion;
+            int minorVersionPlaceholder = GetRelativeDefaultMinorVersion(
+                majorVersion: majorVersionPlaceholder);
+            int patchVersionPlaceholder = DefaultPatchVersion;
+            string semanticVersionPlaceholder = majorVersionPlaceholder.ToString(
+                provider: CultureInfo.InvariantCulture)
+                + '.'
+                + minorVersionPlaceholder.ToString(
+                    provider: CultureInfo.InvariantCulture)
+                + '.'
+                + patchVersionPlaceholder.ToString(
+                    provider: CultureInfo.InvariantCulture);
             _ = productVersionBuilder.Append(
                 value: semanticVersionPlaceholder);
             string currentBranchName = GitHelper.GetCurrentGitBranchName();
