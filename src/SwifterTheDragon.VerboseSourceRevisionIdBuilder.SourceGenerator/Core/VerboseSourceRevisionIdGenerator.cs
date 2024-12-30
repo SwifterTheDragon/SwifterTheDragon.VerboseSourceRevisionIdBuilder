@@ -2,6 +2,10 @@
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
@@ -14,75 +18,271 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     {
         #region Fields & Properties
         /// <summary>
-        /// The default name of the generated file containing the verbose source revision ID.
+        /// The name of the configuration file for this source generator.
         /// </summary>
-        private string DefaultGeneratedFileName
+        internal static string ConfigurationFileName
         {
             get
             {
-                return "VerboseSourceRevisionIdBuilder.Generated.cs";
-            }
-        }
-        /// <summary>
-        /// The default name of the generated namespace containing the verbose source revision ID.
-        /// </summary>
-        private string DefaultGeneratedNamespace
-        {
-            get
-            {
-                return "SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core";
-            }
-        }
-        /// <summary>
-        /// The default name of the generated class containing the verbose source revision ID.
-        /// </summary>
-        private string DefaultGeneratedClassName
-        {
-            get
-            {
-                return "VerboseSourceRevisionIdBuilder";
-            }
-        }
-        /// <summary>
-        /// The default name of the generated field containing the verbose source revision ID.
-        /// </summary>
-        private string DefaultFieldName
-        {
-            get
-            {
-                return "VerboseSourceRevisionId";
+                return "VerboseSourceRevisionIdConfig.txt";
             }
         }
         #endregion Fields & Properties
         #region Methods
         public void Initialize(
-            IncrementalGeneratorInitializationContext context)
+            IncrementalGeneratorInitializationContext initializationContext)
         {
-            context.RegisterPostInitializationOutput(
-                callback: postInitializationContext =>
-            {
-                postInitializationContext.AddSource(
-                    hintName: DefaultGeneratedFileName,
-                    sourceText: SourceText.From(
-                        text: @"// Copyright SwifterTheDragon, 2024. All Rights Reserved.
+            IncrementalValuesProvider<AdditionalText> configurationFileProvider = initializationContext.AdditionalTextsProvider.Where(
+                predicate: (additionalText) =>
+                {
+                    return Path.GetFileName(
+                            path: additionalText.Path) == ConfigurationFileName;
+                });
+            IncrementalValuesProvider<(string semanticVersion, string generatedFileName, string generatedNamespace, string generatedTypeName, string generatedFieldName, string toolName, string toolVersion, string generatorClassName)> configurationProvider = configurationFileProvider.Select(
+                selector: (additionalText, cancellationToken) =>
+                {
+                    SourceText configurationSourceText = additionalText.GetText();
+                    Dictionary<string, string> dictionary = AdditionalTextOptionParser.ParseOptions(
+                        additionalText: additionalText);
+                    string semanticVersion = string.Empty;
+                    string semanticVersionPrefix = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.SemanticVersionPrefix,
+                        defaultValue: ConfigurationDefaults.DefaultSemanticVersionPrefix);
+                    semanticVersion += semanticVersionPrefix;
+                    string repositoryRootDirectoryRelativeToConfigurationFilePath = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.RepositoryRootDirectoryRelativeToConfigurationFilePath,
+                        defaultValue: ConfigurationDefaults.DefaultRepositoryRootDirectoryRelativeToConfigurationFilePath);
+                    string repositoryRootDirectoryPath = Path.GetFullPath(
+                        Path.Combine(
+                            additionalText.Path,
+                            repositoryRootDirectoryRelativeToConfigurationFilePath));
+                    int semanticVersionMajorVersion = ConfigurationDefaults.DefaultSemanticVersionMajorVersion;
+                    int semanticVersionMinorVersion = ConfigurationDefaults.DefaultSemanticVersionMinorVersion;
+                    int semanticVersionPatchVersion = ConfigurationDefaults.DefaultSemanticVersionPatchVersion;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.SemanticVersionMajorVersion,
+                        result: out int? parsedSemanticVersionMajorVersion)
+                        && parsedSemanticVersionMajorVersion.Value > -1)
+                    {
+                        semanticVersionMajorVersion = parsedSemanticVersionMajorVersion.Value;
+                        if (semanticVersionMajorVersion > 0)
+                        {
+                            semanticVersionMinorVersion = 0;
+                        }
+                    }
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.SemanticVersionMinorVersion,
+                        result: out int? parsedSemanticVersionMinorVersion)
+                        && parsedSemanticVersionMinorVersion.Value > -1)
+                    {
+                        semanticVersionMinorVersion = parsedSemanticVersionMinorVersion.Value;
+                    }
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.SemanticVersionPatchVersion,
+                        result: out int? parsedSemanticVersionPatchVersion)
+                        && parsedSemanticVersionPatchVersion.Value > -1)
+                    {
+                        semanticVersionPatchVersion = parsedSemanticVersionPatchVersion.Value;
+                    }
+                    semanticVersion += semanticVersionMajorVersion.ToString(
+                        provider: CultureInfo.InvariantCulture)
+                        + '.'
+                        + semanticVersionMinorVersion.ToString(
+                            provider: CultureInfo.InvariantCulture)
+                        + '.'
+                        + semanticVersionPatchVersion.ToString(
+                            provider: CultureInfo.InvariantCulture);
+                    string detachedHeadLabel = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.DetachedHeadLabel,
+                        defaultValue: ConfigurationDefaults.DefaultDetachedHeadLabel);
+                    string currentGitBranchName = GitHelper.GetCurrentGitBranchName(
+                        detachedHeadLabel: detachedHeadLabel,
+                        repositoryRootDirectoryPath: repositoryRootDirectoryPath);
+                    string defaultGitBranchName = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.DefaultGitBranchName,
+                        defaultValue: ConfigurationDefaults.DefaultDefaultGitBranchName);
+                    if (currentGitBranchName != defaultGitBranchName)
+                    {
+                        semanticVersion += '-'
+                            + currentGitBranchName;
+                    }
+                    string dirtyMark = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.DirtyMark,
+                        defaultValue: ConfigurationDefaults.DefaultDirtyMark);
+                    string brokenMark = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.BrokenMark,
+                        defaultValue: ConfigurationDefaults.DefaultBrokenMark);
+                    string invalidHeadLabel = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.InvalidHeadLabel,
+                        defaultValue: ConfigurationDefaults.DefaultInvalidHeadLabel);
+                    GitReferenceType gitReferenceType = ConfigurationDefaults.DefaultGitReferenceType;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.GitReferenceType,
+                        result: out GitReferenceType parsedGitReferenceType))
+                    {
+                        gitReferenceType = parsedGitReferenceType;
+                    }
+                    int candidateAmount = ConfigurationDefaults.DefaultCandidateAmount;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.CandidateAmount,
+                        result: out int? parsedCandidateAmount))
+                    {
+                        candidateAmount = parsedCandidateAmount.Value;
+                    }
+                    string abbrevLength = ConfigurationDefaults.DefaultAbbrevLength;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.AbbrevLength,
+                        result: out int? parsedAbbrevLength))
+                    {
+                        abbrevLength = parsedAbbrevLength.Value.ToString();
+                    }
+                    bool firstParentOnly = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.FirstParentOnly,
+                        defaultValue: ConfigurationDefaults.DefaultFirstParentOnly);
+                    List<string> matchPatterns = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.MatchPatterns,
+                        defaultValue: ConfigurationDefaults.DefaultMatchPatterns);
+                    List<string> excludePatterns = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.ExcludePatterns,
+                        defaultValue: ConfigurationDefaults.DefaultExcludePatterns);
+                    bool contains = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.Contains,
+                        defaultValue: ConfigurationDefaults.DefaultContains);
+                    string verboseGitDescribe = GitHelper.GetVerboseGitDescribe(
+                        dirtyMark: dirtyMark,
+                        brokenMark: brokenMark,
+                        invalidHeadLabel: invalidHeadLabel,
+                        gitReferenceType: gitReferenceType,
+                        candidateAmount: candidateAmount,
+                        abbrevLength: abbrevLength,
+                        firstParentOnly: firstParentOnly,
+                        matchPatterns: matchPatterns,
+                        excludePatterns: excludePatterns,
+                        contains: contains,
+                        gitRepositoryRootDirectoryPath: repositoryRootDirectoryPath)
+                        // Git check-ref-format & git rev-parse use forward slashes, but Semantic Versioning 2.0.0 does not.
+                        .Replace(
+                            oldChar: '/',
+                            newChar: '-');
+                    semanticVersion += '+'
+                        + verboseGitDescribe;
+                    string semanticVersionSuffix = AdditionalTextOptionParser.GetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.SemanticVersionSuffix,
+                        defaultValue: ConfigurationDefaults.DefaultSemanticVersionSuffix);
+                    semanticVersion += semanticVersionSuffix;
+                    // The semantic version will be used in a verbatim string literal, so double quotation marks must be escaped.
+                    semanticVersion = semanticVersion.Replace(
+                        oldValue: "\"",
+                        newValue: "\"\"");
+                    string generatedFileName = ConfigurationDefaults.DefaultGeneratedFileName;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.GeneratedFileName,
+                        result: out string parsedGeneratedFileName)
+                        && !string.IsNullOrWhiteSpace(
+                            value: parsedGeneratedFileName))
+                    {
+                        generatedFileName = parsedGeneratedFileName;
+                    }
+                    string generatedNamespace = ConfigurationDefaults.DefaultGeneratedNamespace;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.GeneratedNamespace,
+                        result: out string parsedGeneratedNamespace)
+                        && !string.IsNullOrWhiteSpace(
+                            value: parsedGeneratedNamespace))
+                    {
+                        generatedNamespace = parsedGeneratedNamespace;
+                    }
+                    string generatedTypeName = ConfigurationDefaults.DefaultGeneratedTypeName;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.GeneratedTypeName,
+                        result: out string parsedGeneratedTypeName)
+                        && !string.IsNullOrWhiteSpace(
+                            value: parsedGeneratedTypeName))
+                    {
+                        generatedTypeName = parsedGeneratedTypeName;
+                    }
+                    string generatedFieldName = ConfigurationDefaults.DefaultGeneratedFieldName;
+                    if (AdditionalTextOptionParser.TryGetValue(
+                        options: dictionary,
+                        key: ConfigurationKeys.GeneratedFieldName,
+                        result: out string parsedGeneratedFieldName)
+                        && !string.IsNullOrWhiteSpace(
+                            value: parsedGeneratedFieldName))
+                    {
+                        generatedFieldName = parsedGeneratedFieldName;
+                    }
+                    AssemblyName assemblyName = typeof(VerboseSourceRevisionIdGenerator).Assembly.GetName();
+                    string toolName = assemblyName.Name;
+                    string toolVersion = assemblyName.Version.ToString(
+                        fieldCount: 4);
+                    return (semanticVersion, generatedFileName, generatedNamespace, generatedTypeName, generatedFieldName, toolName, toolVersion, generatorClassName: nameof(VerboseSourceRevisionIdGenerator));
+                });
+            initializationContext.RegisterSourceOutput(
+                source: configurationProvider,
+                action: (sourceProductionContext, configuration) =>
+                {
+                    sourceProductionContext.AddSource(
+                        hintName: configuration.generatedFileName,
+                        sourceText: SourceText.From(
+                            text: GeneratorHelper.MakeAutoGeneratedCodeHeader(
+                                toolName: configuration.toolName,
+                                toolVersion: configuration.toolVersion)
+                                + @"
+// Copyright SwifterTheDragon, 2024. All Rights Reserved.
+
+using System.CodeDom.Compiler;
 
 namespace "
-                            + DefaultGeneratedNamespace
-                            + @"
+                                + configuration.generatedNamespace
+                                + @"
 {
+    [GeneratedCode(
+        tool: """
+                                + configuration.toolName
+                                + @""",
+        version: "
+                                + configuration.toolVersion
+                                + @")]
     internal static class "
-                            + DefaultGeneratedClassName
-                            + @"
+                                + configuration.generatedTypeName
+                                + @"
     {
         internal const string "
-                            + DefaultFieldName
-                            + @" = ""1.2.3"";
+                                + configuration.generatedFieldName
+                                + @" = @"""
+                                + configuration.semanticVersion
+                                + @""";
     }
 }
-",
-                        encoding: Encoding.UTF8));
-            });
+
+"
+                                + GeneratorHelper.MakeAutoGeneratedFooter(
+                                    toolName: configuration.toolName,
+                                    generatorClassName: configuration.generatorClassName),
+                            encoding: Encoding.UTF8));
+                });
         }
-        #endregion
+        #endregion Methods
     }
 }
