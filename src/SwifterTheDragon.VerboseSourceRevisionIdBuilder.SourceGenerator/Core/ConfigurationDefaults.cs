@@ -1,13 +1,13 @@
 // Copyright SwifterTheDragon, 2024. All Rights Reserved.
 
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
     /// <summary>
     /// The default values for configuration.
     /// </summary>
-    internal class ConfigurationDefaults
+    internal static class ConfigurationDefaults
     {
         #region Fields & Properties
         /// <summary>
@@ -222,21 +222,23 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default match patterns for filtering references with.
         /// </summary>
-        internal static List<string> DefaultMatchPatterns
+        internal static ReadOnlyCollection<string> DefaultMatchPatterns
         {
             get
             {
-                return new List<string>();
+                return new ReadOnlyCollection<string>(
+                    list: null);
             }
         }
         /// <summary>
         /// The default exclude patterns for filtering references with.
         /// </summary>
-        internal static List<string> DefaultExcludePatterns
+        internal static ReadOnlyCollection<string> DefaultExcludePatterns
         {
             get
             {
-                return new List<string>();
+                return new ReadOnlyCollection<string>(
+                    list: null);
             }
         }
         #endregion Fields & Properties

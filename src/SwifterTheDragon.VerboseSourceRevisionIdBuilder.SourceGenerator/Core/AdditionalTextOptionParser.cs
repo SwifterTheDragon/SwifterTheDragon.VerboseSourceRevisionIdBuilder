@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
@@ -13,6 +14,12 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     /// </summary>
     internal static class AdditionalTextOptionParser
     {
+        #region Fields & Properties
+        private static readonly string[] s_defaultSeparators = new string[]
+        {
+            ", "
+        };
+        #endregion Fields & Properties
         #region Methods
         /// <summary>
         /// Parses a collection of case-insensitive keys and
@@ -34,6 +41,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         internal static Dictionary<string, string> ParseOptions(
             AdditionalText additionalText)
         {
+            if (additionalText is null)
+            {
+                return null;
+            }
             var output = new Dictionary<string, string>();
             foreach (TextLine textLine in additionalText.GetText().Lines)
             {
@@ -44,12 +55,14 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     continue;
                 }
                 if (line.StartsWith(
-                    value: ";"))
+                    value: ";",
+                    comparisonType: StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;
                 }
                 if (line.StartsWith(
-                    value: "#"))
+                    value: "#",
+                    comparisonType: StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;
                 }
@@ -59,7 +72,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 {
                     continue;
                 }
-                string configurationKey = equalsSeparatedValues[0].TrimEnd().ToLowerInvariant();
+                string configurationKey = equalsSeparatedValues[0].TrimEnd().ToUpperInvariant();
                 if (string.IsNullOrWhiteSpace(
                     value: configurationKey))
                 {
@@ -108,19 +121,29 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// If no such value exists, <c><paramref name="defaultValue"/></c> is
         /// used instead.
         /// </returns>
-        internal static List<string> GetValue(
+        internal static ReadOnlyCollection<string> GetValue(
             Dictionary<string, string> options,
             string key,
-            List<string> defaultValue)
+            ReadOnlyCollection<string> defaultValue)
         {
+            if (options is null)
+            {
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return null;
+            }
             if (options.TryGetValue(
-                key: key.ToLowerInvariant(),
+                key: key.ToUpperInvariant(),
                 value: out string parsedValue))
             {
-                return new List<string>(
-                    collection: parsedValue.Split(
-                        separator: new string[] { ", " },
-                        options: StringSplitOptions.RemoveEmptyEntries));
+                return new ReadOnlyCollection<string>(
+                    list: new List<string>(
+                        collection: parsedValue.Split(
+                            separator: s_defaultSeparators,
+                            options: StringSplitOptions.RemoveEmptyEntries)));
             }
             return defaultValue;
         }
@@ -150,8 +173,17 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string key,
             string defaultValue)
         {
+            if (options is null)
+            {
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return null;
+            }
             if (options.TryGetValue(
-                key: key.ToLowerInvariant(),
+                key: key.ToUpperInvariant(),
                 value: out string parsedValue))
             {
                 return parsedValue;
@@ -163,8 +195,17 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string key,
             bool defaultValue)
         {
+            if (options is null)
+            {
+                return defaultValue;
+            }
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return defaultValue;
+            }
             if (options.TryGetValue(
-                key: key.ToLowerInvariant(),
+                key: key.ToUpperInvariant(),
                 value: out string parsedValue)
                 && bool.TryParse(
                     value: parsedValue,
@@ -198,8 +239,17 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             out int? result)
         {
             result = null;
+            if (options is null)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return false;
+            }
             if (options.TryGetValue(
-                key: key.ToLowerInvariant(),
+                key: key.ToUpperInvariant(),
                 value: out string parsedValue)
                 && int.TryParse(
                     s: parsedValue,
@@ -236,8 +286,17 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             out string result)
         {
             result = null;
+            if (options is null)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return false;
+            }
             if (options.TryGetValue(
-                key: key.ToLowerInvariant(),
+                key: key.ToUpperInvariant(),
                 value: out string parsedValue))
             {
                 result = parsedValue;
@@ -272,8 +331,17 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             out T result) where T : struct, Enum
         {
             result = default;
+            if (options is null)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return false;
+            }
             if (options.TryGetValue(
-                key: key.ToLowerInvariant(),
+                key: key.ToUpperInvariant(),
                 value: out string parsedValue)
                 && Enum.TryParse(
                     value: parsedValue,

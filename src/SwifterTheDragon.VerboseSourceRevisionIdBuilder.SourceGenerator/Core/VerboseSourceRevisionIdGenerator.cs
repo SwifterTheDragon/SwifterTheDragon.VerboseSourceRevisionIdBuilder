@@ -3,6 +3,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -30,9 +31,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         #endregion Fields & Properties
         #region Methods
         public void Initialize(
-            IncrementalGeneratorInitializationContext initializationContext)
+            IncrementalGeneratorInitializationContext context)
         {
-            IncrementalValuesProvider<AdditionalText> configurationFileProvider = initializationContext.AdditionalTextsProvider.Where(
+            IncrementalValuesProvider<AdditionalText> configurationFileProvider = context.AdditionalTextsProvider.Where(
                 predicate: (additionalText) =>
                 {
                     return Path.GetFileName(
@@ -41,7 +42,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             IncrementalValuesProvider<(string semanticVersion, string generatedFileName, string generatedNamespace, string generatedTypeName, string generatedFieldName, string toolName, string toolVersion, string generatorClassName)> configurationProvider = configurationFileProvider.Select(
                 selector: (additionalText, cancellationToken) =>
                 {
-                    SourceText configurationSourceText = additionalText.GetText();
+                    SourceText configurationSourceText = additionalText.GetText(
+                        cancellationToken: cancellationToken);
                     Dictionary<string, string> dictionary = AdditionalTextOptionParser.ParseOptions(
                         additionalText: additionalText);
                     string semanticVersion = string.Empty;
@@ -147,17 +149,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                         key: ConfigurationKeys.AbbrevLength,
                         result: out int? parsedAbbrevLength))
                     {
-                        abbrevLength = parsedAbbrevLength.Value.ToString();
+                        abbrevLength = parsedAbbrevLength.Value.ToString(
+                            provider: CultureInfo.InvariantCulture);
                     }
                     bool firstParentOnly = AdditionalTextOptionParser.GetValue(
                         options: dictionary,
                         key: ConfigurationKeys.FirstParentOnly,
                         defaultValue: ConfigurationDefaults.DefaultFirstParentOnly);
-                    List<string> matchPatterns = AdditionalTextOptionParser.GetValue(
+                    ReadOnlyCollection<string> matchPatterns = AdditionalTextOptionParser.GetValue(
                         options: dictionary,
                         key: ConfigurationKeys.MatchPatterns,
                         defaultValue: ConfigurationDefaults.DefaultMatchPatterns);
-                    List<string> excludePatterns = AdditionalTextOptionParser.GetValue(
+                    ReadOnlyCollection<string> excludePatterns = AdditionalTextOptionParser.GetValue(
                         options: dictionary,
                         key: ConfigurationKeys.ExcludePatterns,
                         defaultValue: ConfigurationDefaults.DefaultExcludePatterns);
@@ -238,7 +241,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                         fieldCount: 4);
                     return (semanticVersion, generatedFileName, generatedNamespace, generatedTypeName, generatedFieldName, toolName, toolVersion, generatorClassName: nameof(VerboseSourceRevisionIdGenerator));
                 });
-            initializationContext.RegisterSourceOutput(
+            context.RegisterSourceOutput(
                 source: configurationProvider,
                 action: (sourceProductionContext, configuration) =>
                 {

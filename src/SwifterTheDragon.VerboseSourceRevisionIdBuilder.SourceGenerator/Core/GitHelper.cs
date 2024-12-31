@@ -1,6 +1,6 @@
 // Copyright SwifterTheDragon, 2024. All Rights Reserved.
 
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
@@ -90,8 +90,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             int candidateAmount,
             string abbrevLength,
             bool firstParentOnly,
-            List<string> matchPatterns,
-            List<string> excludePatterns,
+            ReadOnlyCollection<string> matchPatterns,
+            ReadOnlyCollection<string> excludePatterns,
             bool contains,
             string gitRepositoryRootDirectoryPath)
         {
@@ -260,9 +260,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// will be <c> --match "pattern1" --match "pattern2"</c>.
         /// </returns>
         private static string AddPatterns(
-            List<string> patternsToAdd,
+            ReadOnlyCollection<string> patternsToAdd,
             string patternArgument)
         {
+            if (patternsToAdd is null || patternsToAdd.Count is 0)
+            {
+                return null;
+            }
             string patterns = null;
             foreach (string pattern in patternsToAdd)
             {
@@ -298,6 +302,11 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         private static string EscapeMark(
             string unescapedMark)
         {
+            if (string.IsNullOrWhiteSpace(
+                value: unescapedMark))
+            {
+                return null;
+            }
             // --dirty and --broken arguments from Git describe accept double quotation marks and backslashes and thus must be escaped properly.
             string escapedMark = unescapedMark
                 .Replace(
