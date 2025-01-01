@@ -197,23 +197,23 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
         }
         /// <summary>
-        /// The key to the first parent only configuration value.
+        /// The key to the parent commit type configuration value.
         /// </summary>
-        internal static string FirstParentOnly
+        internal static string ParentCommitType
         {
             get
             {
-                return "FirstParentOnly";
+                return "ParentCommitType";
             }
         }
         /// <summary>
-        /// The key to the contains configuration value.
+        /// The key to the Git tag state configuration value.
         /// </summary>
-        internal static string Contains
+        internal static string GitTagState
         {
             get
             {
-                return "Contains";
+                return "GitTagState";
             }
         }
         /// <summary>

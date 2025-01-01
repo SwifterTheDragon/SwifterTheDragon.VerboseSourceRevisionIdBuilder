@@ -32,6 +32,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <param name="additionalText">
         /// The file to parse options from.
         /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that operations should be cancelled.
+        /// </param>
         /// <example>
         /// <c>   Key1  =  = Value1 </c> would be parsed as "key1"
         /// being the key with "= Value1" being the value.
@@ -118,7 +121,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The key to retrieve the value with.
         /// </param>
         /// <param name="defaultValue">
-        /// The default value to use in the event that
+        /// The default value to use instead if
         /// <c><paramref name="key"/></c> does not exist in
         /// <c><paramref name="options"/></c>.
         /// </param>
@@ -165,7 +168,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The key to retrieve the value with.
         /// </param>
         /// <param name="defaultValue">
-        /// The default value to use in the event that
+        /// The default value to use instead if
         /// <c><paramref name="key"/></c> does not exist in
         /// <c><paramref name="options"/></c>.
         /// </param>
@@ -194,31 +197,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 value: out string parsedValue))
             {
                 return parsedValue;
-            }
-            return defaultValue;
-        }
-        internal static bool GetValue(
-            Dictionary<string, string> options,
-            string key,
-            bool defaultValue)
-        {
-            if (options is null)
-            {
-                return defaultValue;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: key))
-            {
-                return defaultValue;
-            }
-            if (options.TryGetValue(
-                key: key.ToUpperInvariant(),
-                value: out string parsedValue)
-                && bool.TryParse(
-                    value: parsedValue,
-                    result: out bool desiredValue))
-            {
-                return desiredValue;
             }
             return defaultValue;
         }
@@ -315,7 +293,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Attempts to retrieve a value from <c><paramref name="options"/></c>
         /// at <c><paramref name="key"/></c>.
         /// </summary>
-        /// <typeparam name="T">
+        /// <typeparam name="TEnum">
         /// The Enum type to parse the value as.
         /// </typeparam>
         /// <param name="options">
@@ -332,10 +310,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
         /// Otherwise, <see langword="false"/>.
         /// </returns>
-        internal static bool TryGetValue<T>(
+        internal static bool TryGetValue<TEnum>(
             Dictionary<string, string> options,
             string key,
-            out T result) where T : struct, Enum
+            out TEnum result) where TEnum : struct, Enum
         {
             result = default;
             if (options is null)
@@ -353,11 +331,11 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 && Enum.TryParse(
                     value: parsedValue,
                     ignoreCase: true,
-                    result: out T desiredValue)
+                    result: out TEnum desiredValue)
                 && !desiredValue.Equals(
                     obj: default)
                 && Enum.IsDefined(
-                    enumType: typeof(T),
+                    enumType: typeof(TEnum),
                     value: desiredValue))
             {
                 result = desiredValue;

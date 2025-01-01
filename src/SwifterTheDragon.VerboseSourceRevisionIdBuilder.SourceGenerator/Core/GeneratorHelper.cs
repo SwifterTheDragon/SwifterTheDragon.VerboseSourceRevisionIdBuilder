@@ -41,7 +41,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 + "\"\n"
                 + "//     Version: "
                 + toolVersion
-                + "\n//\n";
+                + '\n';
             if (!string.IsNullOrWhiteSpace(
                 value: sourceFileName))
             {

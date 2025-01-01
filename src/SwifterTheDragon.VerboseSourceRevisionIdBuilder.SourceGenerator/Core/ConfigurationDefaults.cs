@@ -199,25 +199,24 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
         }
         /// <summary>
-        /// The default value determining if only the first parent commit
-        /// of a merge commit should be followed or not.
+        /// The default parent commit type for following merge commits.
         /// </summary>
-        internal static bool DefaultFirstParentOnly
+        internal static ParentCommitType DefaultParentCommitType
         {
             get
             {
-                return false;
+                return ParentCommitType.Any;
             }
         }
         /// <summary>
-        /// The default state of if references containing <c>HEAD</c> should
-        /// be used instead of references predating <c>HEAD</c>.
+        /// The default state of if tags containing <c>HEAD</c> should
+        /// be used instead of tags predating <c>HEAD</c>.
         /// </summary>
-        internal static bool DefaultContains
+        internal static GitTagState DefaultGitTagState
         {
             get
             {
-                return false;
+                return GitTagState.PredatesCommit;
             }
         }
         /// <summary>

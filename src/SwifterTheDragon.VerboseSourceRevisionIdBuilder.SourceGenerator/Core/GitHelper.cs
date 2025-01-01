@@ -59,7 +59,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// abbreviated object name with.
         /// Disables <c>--long</c> if <c>0</c>.
         /// </param>
-        /// <param name="firstParentOnly">
+        /// <param name="parentCommitType">
         /// Determines if only the first parent commit of
         /// a merge commit should be followed or not.
         /// </param>
@@ -69,9 +69,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <param name="excludePatterns">
         /// The list of exclude patterns for filtering references with.
         /// </param>
-        /// <param name="contains">
-        /// Determines if references containing <c>HEAD</c> should be used
-        /// instead of references predating <c>HEAD</c>.
+        /// <param name="gitTagState">
+        /// Determines if tags containing <c>HEAD</c> should be used
+        /// instead of tags predating <c>HEAD</c>.
         /// </param>
         /// <param name="gitRepositoryRootDirectoryPath">
         /// The path to the root directory of the Git repository.
@@ -89,10 +89,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             GitReferenceType gitReferenceType,
             int candidateAmount,
             string abbrevLength,
-            bool firstParentOnly,
+            ParentCommitType parentCommitType,
             ReadOnlyCollection<string> matchPatterns,
             ReadOnlyCollection<string> excludePatterns,
-            bool contains,
+            GitTagState gitTagState,
             string gitRepositoryRootDirectoryPath)
         {
             string command = "git describe";
@@ -156,7 +156,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             command += " --candidates="
                 + candidateAmount.ToString(
                     provider: CultureInfo.InvariantCulture);
-            if (firstParentOnly)
+            if (parentCommitType == ParentCommitType.FirstOnly)
             {
                 command += " --first-parent";
             }
@@ -166,7 +166,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             command += AddPatterns(
                 patternsToAdd: excludePatterns,
                 patternArgument: "--exclude");
-            if (contains)
+            if (gitTagState == GitTagState.ContainsCommit)
             {
                 command += " --contains";
             }
@@ -256,9 +256,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// </example>
         /// <returns>
         /// Each pattern will be added to the argument taking a pattern.
-        /// Given a pattern argument <c>--match</c>
-        /// and patterns <c>pattern1</c> &amp; <c>pattern2</c>, the resulting string
-        /// will be <c> --match "pattern1" --match "pattern2"</c>.
         /// </returns>
         private static string AddPatterns(
             ReadOnlyCollection<string> patternsToAdd,

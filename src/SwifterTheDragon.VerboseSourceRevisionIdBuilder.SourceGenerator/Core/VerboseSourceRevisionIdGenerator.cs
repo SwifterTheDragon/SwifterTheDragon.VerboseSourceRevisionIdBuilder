@@ -157,10 +157,14 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                         abbrevLength = parsedAbbrevLength.Value.ToString(
                             provider: CultureInfo.InvariantCulture);
                     }
-                    bool firstParentOnly = AdditionalTextOptionParser.GetValue(
+                    ParentCommitType parentCommitType = ConfigurationDefaults.DefaultParentCommitType;
+                    if (AdditionalTextOptionParser.TryGetValue(
                         options: dictionary,
-                        key: ConfigurationKeys.FirstParentOnly,
-                        defaultValue: ConfigurationDefaults.DefaultFirstParentOnly);
+                        key: ConfigurationKeys.ParentCommitType,
+                        result: out ParentCommitType parsedParentCommitType))
+                    {
+                        parentCommitType = parsedParentCommitType;
+                    }
                     ReadOnlyCollection<string> matchPatterns = AdditionalTextOptionParser.GetValue(
                         options: dictionary,
                         key: ConfigurationKeys.MatchPatterns,
@@ -169,10 +173,14 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                         options: dictionary,
                         key: ConfigurationKeys.ExcludePatterns,
                         defaultValue: ConfigurationDefaults.DefaultExcludePatterns);
-                    bool contains = AdditionalTextOptionParser.GetValue(
+                    GitTagState gitTagState = ConfigurationDefaults.DefaultGitTagState;
+                    if (AdditionalTextOptionParser.TryGetValue(
                         options: dictionary,
-                        key: ConfigurationKeys.Contains,
-                        defaultValue: ConfigurationDefaults.DefaultContains);
+                        key: ConfigurationKeys.GitTagState,
+                        result: out GitTagState parsedGitTagState))
+                    {
+                        gitTagState = parsedGitTagState;
+                    }
                     string verboseGitDescribe = GitHelper.GetVerboseGitDescribe(
                         dirtyMark: dirtyMark,
                         brokenMark: brokenMark,
@@ -180,10 +188,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                         gitReferenceType: gitReferenceType,
                         candidateAmount: candidateAmount,
                         abbrevLength: abbrevLength,
-                        firstParentOnly: firstParentOnly,
+                        parentCommitType: parentCommitType,
                         matchPatterns: matchPatterns,
                         excludePatterns: excludePatterns,
-                        contains: contains,
+                        gitTagState: gitTagState,
                         gitRepositoryRootDirectoryPath: repositoryRootDirectoryPath)
                         // Git check-ref-format & git rev-parse use forward slashes, but Semantic Versioning 2.0.0 does not.
                         .Replace(
@@ -271,7 +279,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                                 + "    internal static class "
                                 + configuration.generatedTypeName
                                 + "\n    {\n"
-                                + "        internal const string"
+                                + "        internal const string "
                                 + configuration.generatedFieldName
                                 + " = @\""
                                 + configuration.semanticVersion
