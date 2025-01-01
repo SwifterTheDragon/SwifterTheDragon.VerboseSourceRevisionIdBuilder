@@ -1,5 +1,6 @@
 // Copyright SwifterTheDragon, 2025. All Rights Reserved.
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
@@ -227,7 +228,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             get
             {
                 return new ReadOnlyCollection<string>(
-                    list: null);
+                    list: new List<string>());
             }
         }
         /// <summary>
@@ -238,7 +239,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             get
             {
                 return new ReadOnlyCollection<string>(
-                    list: null);
+                    list: new List<string>());
             }
         }
         #endregion Fields & Properties

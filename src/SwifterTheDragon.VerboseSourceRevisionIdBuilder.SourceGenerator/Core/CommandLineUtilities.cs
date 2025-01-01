@@ -57,7 +57,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     WorkingDirectory = workingDirectory
                 };
                 _ = cmdProcess.Start();
+#pragma warning disable MA0045 // Do not use blocking calls in a sync method (need to make calling method async)
                 output = cmdProcess.StandardOutput.ReadToEnd().TrimEnd();
+#pragma warning restore MA0045 // Do not use blocking calls in a sync method (need to make calling method async)
                 cmdProcess.WaitForExit();
             }
             return output;
@@ -72,9 +74,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The resulting working directory, if successful.
         /// </param>
         /// <returns>
-        /// <c>true</c> if a valid working directory was found using the
+        /// <see langword="true"/> if a valid working directory was found using the
         /// specified <c><paramref name="path"/></c>.
-        /// Otherwise, <c>false</c>.
+        /// Otherwise, <see langword="false"/>.
         /// </returns>
         private static bool TryGetWorkingDirectory(
             string path,

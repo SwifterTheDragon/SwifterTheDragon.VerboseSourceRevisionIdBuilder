@@ -154,7 +154,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 command += " --long";
             }
             command += " --candidates="
-                + candidateAmount;
+                + candidateAmount.ToString(
+                    provider: CultureInfo.InvariantCulture);
             if (firstParentOnly)
             {
                 command += " --first-parent";

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
@@ -15,6 +16,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     internal static class AdditionalTextOptionParser
     {
         #region Fields & Properties
+        /// <summary>
+        /// The default separators to split a collection of values with.
+        /// </summary>
         private static readonly string[] s_defaultSeparators = new string[]
         {
             ", "
@@ -39,14 +43,17 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// both keys and values before parsing.
         /// </returns>
         internal static Dictionary<string, string> ParseOptions(
-            AdditionalText additionalText)
+            AdditionalText additionalText,
+            CancellationToken cancellationToken)
         {
             if (additionalText is null)
             {
                 return null;
             }
-            var output = new Dictionary<string, string>();
-            foreach (TextLine textLine in additionalText.GetText().Lines)
+            var output = new Dictionary<string, string>(
+                comparer: StringComparer.Ordinal);
+            foreach (TextLine textLine in additionalText.GetText(
+                cancellationToken: cancellationToken).Lines)
             {
                 string line = textLine.ToString().Trim();
                 if (string.IsNullOrWhiteSpace(
@@ -56,13 +63,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 }
                 if (line.StartsWith(
                     value: ";",
-                    comparisonType: StringComparison.InvariantCultureIgnoreCase))
+                    comparisonType: StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
                 if (line.StartsWith(
                     value: "#",
-                    comparisonType: StringComparison.InvariantCultureIgnoreCase))
+                    comparisonType: StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
@@ -229,9 +236,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The resulting parsed value, if successful.
         /// </param>
         /// <returns>
-        /// <c>true</c> if a valid value was found at
+        /// <see langword="true"/> if a valid value was found at
         /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
-        /// Otherwise, <c>false</c>.
+        /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue(
             Dictionary<string, string> options,
@@ -276,9 +283,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The resulting parsed value, if successful.
         /// </param>
         /// <returns>
-        /// <c>true</c> if a valid value was found at
+        /// <see langword="true"/> if a valid value was found at
         /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
-        /// Otherwise, <c>false</c>.
+        /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue(
             Dictionary<string, string> options,
@@ -321,9 +328,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The resulting parsed value, if successful.
         /// </param>
         /// <returns>
-        /// <c>true</c> if a valid value was found at
+        /// <see langword="true"/> if a valid value was found at
         /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
-        /// Otherwise, <c>false</c>.
+        /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue<T>(
             Dictionary<string, string> options,
