@@ -1,4 +1,4 @@
-# Copyright SwifterTheDragon, 2024. All Rights Reserved.
+# Copyright SwifterTheDragon, 2025. All Rights Reserved.
 # This .editorconfig file should be placed at the root directory of the repo.
 # SwifterTheDragon's .editorconfig for VerboseSourceRevisionIdBuilder.
 # Please do not overwrite this file with a template!
@@ -304,7 +304,7 @@ dotnet_diagnostic.RE0001.severity = warning
 # Please keep this rule's severity above suggestion to actively encourage file headers.
 dotnet_diagnostic.IDE0073.severity = warning
 # Prefer the string as the required file header.
-file_header_template = Copyright SwifterTheDragon, 2024. All Rights Reserved.
+file_header_template = Copyright SwifterTheDragon, 2025. All Rights Reserved.
 
 # C# style rules:
 
@@ -8866,4 +8866,4 @@ dotnet_diagnostic.NUnit4001.severity = suggestion
 # Certain analyzers may be incompatible for various reasons, and there may be problems that still need to be resolved in this file.
 # So far, no quality standard is guaranteed.
 
-# Copyright SwifterTheDragon, 2024. All Rights Reserved.
+# Copyright SwifterTheDragon, 2025. All Rights Reserved.

@@ -1,4 +1,4 @@
-// Copyright SwifterTheDragon, 2024. All Rights Reserved.
+// Copyright SwifterTheDragon, 2025. All Rights Reserved.
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
@@ -252,7 +252,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                                 toolName: configuration.toolName,
                                 toolVersion: configuration.toolVersion)
                                 + @"
-// Copyright SwifterTheDragon, 2024. All Rights Reserved.
+// Copyright SwifterTheDragon, 2025. All Rights Reserved.
 
 using System.CodeDom.Compiler;
 

@@ -1,4 +1,4 @@
-// Copyright SwifterTheDragon, 2024. All Rights Reserved.
+// Copyright SwifterTheDragon, 2025. All Rights Reserved.
 
 using System.Collections.ObjectModel;
 
