@@ -27,4 +27,10 @@
             <_Parameter2_TypeName>System.Resources.UltimateResourceFallbackLocation</_Parameter2_TypeName>
         </AssemblyAttribute>
     </ItemGroup>
+    <PropertyGroup>
+        <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    </PropertyGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="$(RepositoryRoot)SonarLint.xml" />
+    </ItemGroup>
 </Project>
