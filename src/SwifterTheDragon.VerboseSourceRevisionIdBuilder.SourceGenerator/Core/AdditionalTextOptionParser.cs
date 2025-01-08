@@ -19,7 +19,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default separators to split a collection of values with.
         /// </summary>
-        private static readonly string[] s_defaultSeparators = new string[]
+        private static readonly string[] s_defaultSeparators = new[]
         {
             ", "
         };
@@ -49,30 +49,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             AdditionalText additionalText,
             CancellationToken cancellationToken)
         {
-            if (additionalText is null)
-            {
-                return null;
-            }
             var output = new Dictionary<string, string>(
                 comparer: StringComparer.Ordinal);
+            if (additionalText is null)
+            {
+                return output;
+            }
             foreach (TextLine textLine in additionalText.GetText(
                 cancellationToken: cancellationToken).Lines)
             {
                 string line = textLine.ToString().Trim();
-                if (string.IsNullOrWhiteSpace(
-                    value: line))
-                {
-                    continue;
-                }
-                if (line.StartsWith(
-                    value: ";",
-                    comparisonType: StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-                if (line.StartsWith(
-                    value: "#",
-                    comparisonType: StringComparison.OrdinalIgnoreCase))
+                if (IsEmptyOrCommentLine(
+                    line: line))
                 {
                     continue;
                 }
@@ -111,7 +99,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             return output;
         }
         /// <summary>
-        /// Retrieves a collection of strings from
+        /// Retrieves a <c><see cref="ReadOnlyCollection{T}"/></c> of <see langword="string"/>s from
         /// <c><paramref name="options"/></c> at <c><paramref name="key"/></c>.
         /// </summary>
         /// <param name="options">
@@ -132,18 +120,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// used instead.
         /// </returns>
         internal static ReadOnlyCollection<string> GetValue(
-            Dictionary<string, string> options,
+            IDictionary<string, string> options,
             string key,
             ReadOnlyCollection<string> defaultValue)
         {
             if (options is null)
             {
-                return null;
+                return defaultValue;
             }
             if (string.IsNullOrWhiteSpace(
                 value: key))
             {
-                return null;
+                return defaultValue;
             }
             if (options.TryGetValue(
                 key: key.ToUpperInvariant(),
@@ -179,18 +167,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><paramref name="defaultValue"/></c> is returned instead.
         /// </returns>
         internal static string GetValue(
-            Dictionary<string, string> options,
+            IDictionary<string, string> options,
             string key,
             string defaultValue)
         {
             if (options is null)
             {
-                return null;
+                return defaultValue;
             }
             if (string.IsNullOrWhiteSpace(
                 value: key))
             {
-                return null;
+                return defaultValue;
             }
             if (options.TryGetValue(
                 key: key.ToUpperInvariant(),
@@ -219,7 +207,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue(
-            Dictionary<string, string> options,
+            IDictionary<string, string> options,
             string key,
             out int? result)
         {
@@ -266,7 +254,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue(
-            Dictionary<string, string> options,
+            IDictionary<string, string> options,
             string key,
             out string result)
         {
@@ -290,7 +278,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             return false;
         }
         /// <summary>
-        /// Attempts to retrieve a value from <c><paramref name="options"/></c>
+        /// Attempts to retrieve a <c><typeparamref name="TEnum"/></c> from <c><paramref name="options"/></c>
         /// at <c><paramref name="key"/></c>.
         /// </summary>
         /// <typeparam name="TEnum">
@@ -311,7 +299,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue<TEnum>(
-            Dictionary<string, string> options,
+            IDictionary<string, string> options,
             string key,
             out TEnum result) where TEnum : struct, Enum
         {
@@ -339,6 +327,39 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     value: desiredValue))
             {
                 result = desiredValue;
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Determines if a string is empty or a comment.
+        /// </summary>
+        /// <param name="line">
+        /// The line to check for being empty or a comment.
+        /// </param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="line"/> starts with
+        /// <c>#</c> or <c>;</c>, or is empty.
+        /// Otherwise, <see langword="false" />.
+        /// </returns>
+        private static bool IsEmptyOrCommentLine(
+            string line)
+        {
+            if (string.IsNullOrWhiteSpace(
+                value: line))
+            {
+                return true;
+            }
+            if (line.StartsWith(
+                value: "#",
+                comparisonType: StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+            if (line.StartsWith(
+                value: ";",
+                comparisonType: StringComparison.OrdinalIgnoreCase))
+            {
                 return true;
             }
             return false;

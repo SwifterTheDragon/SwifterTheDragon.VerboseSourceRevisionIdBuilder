@@ -83,102 +83,59 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><see cref="GetGitDescribeFallback"/></c> is used instead.
         /// </returns>
         internal static string GetVerboseGitDescribe(
-            string dirtyMark,
-            string brokenMark,
-            string invalidHeadLabel,
-            GitReferenceType gitReferenceType,
-            int candidateAmount,
-            string abbrevLength,
-            ParentCommitType parentCommitType,
-            ReadOnlyCollection<string> matchPatterns,
-            ReadOnlyCollection<string> excludePatterns,
-            GitTagState gitTagState,
-            string gitRepositoryRootDirectoryPath)
+            VerboseGitDescribeConfiguration configuration)
         {
-            string command = "git describe";
-            switch (gitReferenceType)
+            if (configuration is null)
             {
-                case GitReferenceType.Tags:
-                    command += " --tags";
-                    break;
-                case GitReferenceType.All:
-                    command += " --all";
-                    break;
-                case GitReferenceType.None:
-                case GitReferenceType.AnnotatedTags:
-                default:
-                    break;
+                return string.Empty;
             }
+            string command = "git describe";
+            command += AddReferenceType(
+                gitReferenceType: configuration.GitReferenceType);
             if (!string.IsNullOrWhiteSpace(
-                value: dirtyMark))
+                value: configuration.DirtyMark))
             {
                 string escapedDirtyMark = EscapeMark(
-                    unescapedMark: dirtyMark);
+                    unescapedMark: configuration.DirtyMark);
                 command += " --dirty="
                     + escapedDirtyMark;
             }
             if (!string.IsNullOrWhiteSpace(
-                value: brokenMark))
+                value: configuration.BrokenMark))
             {
                 string escapedBrokenMark = EscapeMark(
-                    unescapedMark: brokenMark);
+                    unescapedMark: configuration.BrokenMark);
                 command += " --broken="
                     + escapedBrokenMark;
             }
-            if (!string.IsNullOrWhiteSpace(
-                value: abbrevLength)
-                    && int.TryParse(
-                        s: abbrevLength,
-                        style: NumberStyles.Integer,
-                        provider: CultureInfo.InvariantCulture,
-                        result: out int parsedAbbrevLength))
-            {
-                if (parsedAbbrevLength > 0)
-                {
-                    if (parsedAbbrevLength > AbbrevMaximum)
-                    {
-                        parsedAbbrevLength = AbbrevMaximum;
-                    }
-                    if (parsedAbbrevLength < AbbrevMinimum)
-                    {
-                        parsedAbbrevLength = AbbrevMinimum;
-                    }
-                    command += " --abbrev="
-                        + parsedAbbrevLength.ToString(
-                            provider: CultureInfo.InvariantCulture)
-                        + " --long";
-                }
-            }
-            else
-            {
-                command += " --long";
-            }
+            command += AddFormatLength(
+                abbrevLength: configuration.AbbrevLength);
             command += " --candidates="
-                + candidateAmount.ToString(
+                + configuration.CandidateAmount.ToString(
                     provider: CultureInfo.InvariantCulture);
-            if (parentCommitType == ParentCommitType.FirstOnly)
+            if (configuration.ParentCommitType == ParentCommitType.FirstOnly)
             {
                 command += " --first-parent";
             }
             command += AddPatterns(
-                patternsToAdd: matchPatterns,
+                patternsToAdd: configuration.MatchPatterns,
                 patternArgument: "--match");
             command += AddPatterns(
-                patternsToAdd: excludePatterns,
+                patternsToAdd: configuration.ExcludePatterns,
                 patternArgument: "--exclude");
-            if (gitTagState == GitTagState.ContainsCommit)
+            if (configuration.GitTagState == GitTagState.ContainsCommit)
             {
                 command += " --contains";
             }
             string verboseGitDescribe = CommandLineUtilities.ExecuteCommandLineCommand(
                 command: command,
-                directory: gitRepositoryRootDirectoryPath);
+                directory: configuration.GitRepositoryRootDirectoryPath);
             if (string.IsNullOrEmpty(
                 value: verboseGitDescribe))
             {
                 verboseGitDescribe = GetGitDescribeFallback(
-                    invalidHeadLabel: invalidHeadLabel,
-                    gitRepositoryRootDirectoryPath: gitRepositoryRootDirectoryPath);
+                    invalidHeadLabel: configuration.InvalidHeadLabel,
+                    gitRepositoryRootDirectoryPath: configuration.GitRepositoryRootDirectoryPath);
             }
             return verboseGitDescribe;
         }
@@ -258,7 +215,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Each pattern will be added to the argument taking a pattern.
         /// </returns>
         private static string AddPatterns(
+#pragma warning disable S3242 // Method parameters should be declared with base types
             ReadOnlyCollection<string> patternsToAdd,
+#pragma warning restore S3242 // Method parameters should be declared with base types
             string patternArgument)
         {
             if (patternsToAdd is null || patternsToAdd.Count is 0)
@@ -314,6 +273,82 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 oldValue: "\"",
                 newValue: "\\\"");
             return '\"' + escapedMark + '\"';
+        }
+        /// <summary>
+        /// Gives a reference type argument.
+        /// </summary>
+        /// <param name="gitReferenceType">
+        /// The reference type to transform into an argument.
+        /// </param>
+        /// <returns>
+        /// "<c> --tags</c>" if <c><paramref name="gitReferenceType"/></c> is
+        /// <see cref="GitReferenceType.Tags"/>,
+        /// "<c> --all</c>" if <c><paramref name="gitReferenceType"/></c> is
+        /// <see cref="GitReferenceType.All"/>,
+        /// otherwise an empty string.
+        /// </returns>
+        private static string AddReferenceType(
+            GitReferenceType gitReferenceType)
+        {
+            switch (gitReferenceType)
+            {
+                case GitReferenceType.Tags:
+                    return " --tags";
+                case GitReferenceType.All:
+                    return " --all";
+                case GitReferenceType.None:
+                case GitReferenceType.AnnotatedTags:
+                default:
+                    break;
+            }
+            return string.Empty;
+        }
+        /// <summary>
+        /// Gives arguments that specify the format length.
+        /// </summary>
+        /// <param name="abbrevLength">
+        /// How long the formatted output should be.
+        /// </param>
+        /// <returns>
+        /// If <c><paramref name="abbrevLength"/></c> is below <c>1</c>,
+        /// an empty string.
+        /// If <c><paramref name="abbrevLength"/></c> is above <c>0</c>,
+        /// <c><paramref name="abbrevLength"/></c> is clamped to
+        /// (<c><see cref="AbbrevMinimum"/></c>
+        /// -<c><see cref="AbbrevMaximum"/></c>) and "
+        /// <c> --abbrev=<paramref name="abbrevLength"/> --long</c>" is used.
+        /// Otherwise (if <c><paramref name="abbrevLength"/></c> is not a
+        /// valid integer), "<c> --long</c>".
+        /// </returns>
+        private static string AddFormatLength(
+            string abbrevLength)
+        {
+            if (!string.IsNullOrWhiteSpace(
+                value: abbrevLength)
+                    && int.TryParse(
+                        s: abbrevLength,
+                        style: NumberStyles.Integer,
+                        provider: CultureInfo.InvariantCulture,
+                        result: out int parsedAbbrevLength))
+            {
+                if (parsedAbbrevLength < 1)
+                {
+                    return string.Empty;
+                }
+                if (parsedAbbrevLength > AbbrevMaximum)
+                {
+                    parsedAbbrevLength = AbbrevMaximum;
+                }
+                if (parsedAbbrevLength < AbbrevMinimum)
+                {
+                    parsedAbbrevLength = AbbrevMinimum;
+                }
+                return " --abbrev="
+                    + parsedAbbrevLength.ToString(
+                        provider: CultureInfo.InvariantCulture)
+                    + " --long";
+            }
+            return " --long";
         }
         #endregion Methods
     }

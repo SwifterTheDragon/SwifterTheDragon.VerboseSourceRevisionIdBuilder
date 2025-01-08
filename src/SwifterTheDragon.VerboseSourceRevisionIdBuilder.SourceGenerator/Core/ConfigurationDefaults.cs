@@ -14,7 +14,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default semantic version major version configuration value.
         /// </summary>
-        internal static int DefaultSemanticVersionMajorVersion
+        internal static int SemanticVersionMajorVersion
         {
             get
             {
@@ -24,7 +24,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default semantic version minor version configuration value.
         /// </summary>
-        internal static int DefaultSemanticVersionMinorVersion
+        internal static int SemanticVersionMinorVersion
         {
             get
             {
@@ -34,7 +34,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default semantic version patch version configuration value.
         /// </summary>
-        internal static int DefaultSemanticVersionPatchVersion
+        internal static int SemanticVersionPatchVersion
         {
             get
             {
@@ -44,7 +44,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default semantic version prefix configuration value.
         /// </summary>
-        internal static string DefaultSemanticVersionPrefix
+        internal static string SemanticVersionPrefix
         {
             get
             {
@@ -54,7 +54,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default semantic version suffix configuration value.
         /// </summary>
-        internal static string DefaultSemanticVersionSuffix
+        internal static string SemanticVersionSuffix
         {
             get
             {
@@ -64,7 +64,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default generated file name configuration value.
         /// </summary>
-        internal static string DefaultGeneratedFileName
+        internal static string GeneratedFileName
         {
             get
             {
@@ -74,7 +74,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default generated namespace configuration value.
         /// </summary>
-        internal static string DefaultGeneratedNamespace
+        internal static string GeneratedNamespace
         {
             get
             {
@@ -84,7 +84,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default generated type name configuration value.
         /// </summary>
-        internal static string DefaultGeneratedTypeName
+        internal static string GeneratedTypeName
         {
             get
             {
@@ -94,7 +94,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default generated field name configuration value.
         /// </summary>
-        internal static string DefaultGeneratedFieldName
+        internal static string GeneratedFieldName
         {
             get
             {
@@ -105,7 +105,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default dirty mark configuration value for labelling a working
         /// tree with local modification.
         /// </summary>
-        internal static string DefaultDirtyMark
+        internal static string DirtyMark
         {
             get
             {
@@ -116,7 +116,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default broken mark configuration value for labelling a corrupt
         /// repository.
         /// </summary>
-        internal static string DefaultBrokenMark
+        internal static string BrokenMark
         {
             get
             {
@@ -128,7 +128,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// configuration value for anonymous
         /// branches.
         /// </summary>
-        internal static string DefaultDetachedHeadLabel
+        internal static string DetachedHeadLabel
         {
             get
             {
@@ -139,7 +139,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default invalid <c>HEAD</c> label configuration value for unborn
         /// branches.
         /// </summary>
-        internal static string DefaultInvalidHeadLabel
+        internal static string InvalidHeadLabel
         {
             get
             {
@@ -149,7 +149,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default default Git branch name configuration value.
         /// </summary>
-        internal static string DefaultDefaultGitBranchName
+        internal static string DefaultGitBranchName
         {
             get
             {
@@ -160,7 +160,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default repository root directory relative
         /// to configuration file path.
         /// </summary>
-        internal static string DefaultRepositoryRootDirectoryRelativeToConfigurationFilePath
+        internal static string RepositoryRootDirectoryRelativeToConfigurationFilePath
         {
             get
             {
@@ -170,7 +170,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default Git reference type to be described.
         /// </summary>
-        internal static GitReferenceType DefaultGitReferenceType
+        internal static GitReferenceType GitReferenceType
         {
             get
             {
@@ -178,9 +178,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
         }
         /// <summary>
-        /// The default amount of most recent tags to describe HEAD with.
+        /// The default amount of most recent tags to describe <c>HEAD</c> with.
         /// </summary>
-        internal static int DefaultCandidateAmount
+        internal static int CandidateAmount
         {
             get
             {
@@ -191,7 +191,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default amount of hexadecimal digits to describe the abbreviated
         /// object name with.
         /// </summary>
-        internal static string DefaultAbbrevLength
+        internal static string AbbrevLength
         {
             get
             {
@@ -201,7 +201,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default parent commit type for following merge commits.
         /// </summary>
-        internal static ParentCommitType DefaultParentCommitType
+        internal static ParentCommitType ParentCommitType
         {
             get
             {
@@ -212,7 +212,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default state of if tags containing <c>HEAD</c> should
         /// be used instead of tags predating <c>HEAD</c>.
         /// </summary>
-        internal static GitTagState DefaultGitTagState
+        internal static GitTagState GitTagState
         {
             get
             {
@@ -222,7 +222,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default match patterns for filtering references with.
         /// </summary>
-        internal static ReadOnlyCollection<string> DefaultMatchPatterns
+        internal static ReadOnlyCollection<string> MatchPatterns
         {
             get
             {
@@ -233,7 +233,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// The default exclude patterns for filtering references with.
         /// </summary>
-        internal static ReadOnlyCollection<string> DefaultExcludePatterns
+        internal static ReadOnlyCollection<string> ExcludePatterns
         {
             get
             {
