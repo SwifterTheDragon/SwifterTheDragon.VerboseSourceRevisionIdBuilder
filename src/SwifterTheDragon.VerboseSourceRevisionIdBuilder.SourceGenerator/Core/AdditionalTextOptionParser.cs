@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Text;
 using System.Threading;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
@@ -79,14 +80,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 string dirtyConfigurationValue = equalsSeparatedValues[1];
                 if (equalsSeparatedValues.Length > 2)
                 {
+                    var fullDirtyConfigurationValueBuilder = new StringBuilder();
                     for (
                         int equalsSeparatedValueIndex = 2;
                         equalsSeparatedValueIndex < equalsSeparatedValues.Length;
                         equalsSeparatedValueIndex++)
                     {
-                        dirtyConfigurationValue += '='
-                            + equalsSeparatedValues[equalsSeparatedValueIndex];
+                        fullDirtyConfigurationValueBuilder.Append(
+                            value: '=')
+                            .Append(
+                                value: equalsSeparatedValues[equalsSeparatedValueIndex]);
                     }
+                    dirtyConfigurationValue += fullDirtyConfigurationValueBuilder.ToString();
                 }
                 string configurationValue = dirtyConfigurationValue.TrimStart();
                 if (output.ContainsKey(

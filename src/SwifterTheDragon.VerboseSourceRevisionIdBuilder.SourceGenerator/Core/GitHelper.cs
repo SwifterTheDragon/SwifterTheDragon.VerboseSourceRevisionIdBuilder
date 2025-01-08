@@ -2,6 +2,7 @@
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Text;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
@@ -190,7 +191,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return null;
             }
-            string patterns = null;
+            var patternBuilder = new StringBuilder();
             foreach (string pattern in patternsToAdd)
             {
                 if (string.IsNullOrWhiteSpace(
@@ -198,13 +199,18 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 {
                     continue;
                 }
-                patterns += ' '
-                    + patternArgument
-                    + " \""
-                    + pattern
-                    + '\"';
+                patternBuilder.Append(
+                    value: ' ')
+                    .Append(
+                        value: patternArgument)
+                    .Append(
+                        value: " \"")
+                    .Append(
+                        value: pattern)
+                    .Append(
+                        value: '\"');
             }
-            return patterns;
+            return patternBuilder.ToString();
         }
         /// <summary>
         /// Escapes backslashes and double quotation marks for <c>--dirty</c>
