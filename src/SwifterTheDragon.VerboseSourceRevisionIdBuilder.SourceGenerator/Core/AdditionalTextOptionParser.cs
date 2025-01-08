@@ -79,7 +79,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 string dirtyConfigurationValue = equalsSeparatedValues[1];
                 if (equalsSeparatedValues.Length > 2)
                 {
-                    for (int equalsSeparatedValueIndex = 2; equalsSeparatedValueIndex < equalsSeparatedValues.Length; equalsSeparatedValueIndex++)
+                    for (
+                        int equalsSeparatedValueIndex = 2;
+                        equalsSeparatedValueIndex < equalsSeparatedValues.Length;
+                        equalsSeparatedValueIndex++)
                     {
                         dirtyConfigurationValue += '='
                             + equalsSeparatedValues[equalsSeparatedValueIndex];
@@ -221,19 +224,19 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return false;
             }
-            if (options.TryGetValue(
+            if (!options.TryGetValue(
                 key: key.ToUpperInvariant(),
                 value: out string parsedValue)
-                && int.TryParse(
+                || !int.TryParse(
                     s: parsedValue,
                     style: NumberStyles.Integer,
                     provider: CultureInfo.InvariantCulture,
                     result: out int desiredValue))
             {
-                result = desiredValue;
-                return true;
+                return false;
             }
-            return false;
+            result = desiredValue;
+            return true;
         }
         /// <summary>
         /// Attempts to retrieve a value from <c><paramref name="options"/></c>
@@ -268,14 +271,14 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return false;
             }
-            if (options.TryGetValue(
+            if (!options.TryGetValue(
                 key: key.ToUpperInvariant(),
                 value: out string parsedValue))
             {
-                result = parsedValue;
-                return true;
+                return false;
             }
-            return false;
+            result = parsedValue;
+            return true;
         }
         /// <summary>
         /// Attempts to retrieve a <c><typeparamref name="TEnum"/></c> from <c><paramref name="options"/></c>
@@ -313,23 +316,23 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return false;
             }
-            if (options.TryGetValue(
+            if (!options.TryGetValue(
                 key: key.ToUpperInvariant(),
                 value: out string parsedValue)
-                && Enum.TryParse(
+                || !Enum.TryParse(
                     value: parsedValue,
                     ignoreCase: true,
                     result: out TEnum desiredValue)
-                && !desiredValue.Equals(
+                || desiredValue.Equals(
                     obj: default)
-                && Enum.IsDefined(
+                || !Enum.IsDefined(
                     enumType: typeof(TEnum),
                     value: desiredValue))
             {
-                result = desiredValue;
-                return true;
+                return false;
             }
-            return false;
+            result = desiredValue;
+            return true;
         }
         /// <summary>
         /// Determines if a string is empty or a comment.

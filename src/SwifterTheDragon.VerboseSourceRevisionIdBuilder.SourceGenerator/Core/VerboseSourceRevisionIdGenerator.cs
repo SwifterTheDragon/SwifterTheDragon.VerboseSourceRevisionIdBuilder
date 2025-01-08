@@ -33,26 +33,32 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         public void Initialize(
             IncrementalGeneratorInitializationContext context)
         {
-            IncrementalValuesProvider<(string semanticVersion, string generatedFileName, string generatedNamespace, string generatedTypeName, string generatedFieldName)> configurationProvider = FilterConfigFile(
-                context.AdditionalTextsProvider).Select(
-                selector: (additionalText, cancellationToken) =>
-                {
-                    Dictionary<string, string> dictionary = AdditionalTextOptionParser.ParseOptions(
-                        additionalText: additionalText,
-                        cancellationToken: cancellationToken);
-                    string semanticVersion = ParseSemanticVersion(
-                        options: dictionary,
-                        configurationFilePath: additionalText.Path);
-                    string generatedFileName = ParseGeneratedFileName(
-                        options: dictionary);
-                    string generatedNamespace = ParseGeneratedNamespace(
-                        options: dictionary);
-                    string generatedTypeName = ParseGeneratedTypeName(
-                        options: dictionary);
-                    string generatedFieldName = ParseGeneratedFieldName(
-                        options: dictionary);
-                    return (semanticVersion, generatedFileName, generatedNamespace, generatedTypeName, generatedFieldName);
-                });
+            IncrementalValuesProvider<(
+                string semanticVersion,
+                string generatedFileName,
+                string generatedNamespace,
+                string generatedTypeName,
+                string generatedFieldName)> configurationProvider = FilterConfigFile(
+                    context.AdditionalTextsProvider)
+                    .Select(
+                        selector: (additionalText, cancellationToken) =>
+                        {
+                            Dictionary<string, string> dictionary = AdditionalTextOptionParser.ParseOptions(
+                                additionalText: additionalText,
+                                cancellationToken: cancellationToken);
+                            string semanticVersion = ParseSemanticVersion(
+                                options: dictionary,
+                                configurationFilePath: additionalText.Path);
+                            string generatedFileName = ParseGeneratedFileName(
+                                options: dictionary);
+                            string generatedNamespace = ParseGeneratedNamespace(
+                                options: dictionary);
+                            string generatedTypeName = ParseGeneratedTypeName(
+                                options: dictionary);
+                            string generatedFieldName = ParseGeneratedFieldName(
+                                options: dictionary);
+                            return (semanticVersion, generatedFileName, generatedNamespace, generatedTypeName, generatedFieldName);
+                        });
             RegisterOutput(
                 context: context,
                 source: configurationProvider);
@@ -69,15 +75,16 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><see cref="ConfigurationFileName"/></c>.
         /// </returns>
         private static IncrementalValuesProvider<AdditionalText> FilterConfigFile(
-            IncrementalValuesProvider<AdditionalText> additionalTextsProvider)
+            in IncrementalValuesProvider<AdditionalText> additionalTextsProvider)
         {
             return additionalTextsProvider.Where(
                 predicate: (additionalText) =>
                 {
                     return Path.GetFileName(
-                        path: additionalText.Path).Equals(
-                        value: ConfigurationFileName,
-                        comparisonType: System.StringComparison.Ordinal);
+                        path: additionalText.Path)
+                        .Equals(
+                            value: ConfigurationFileName,
+                            comparisonType: System.StringComparison.Ordinal);
                 });
         }
         /// <summary>
@@ -103,11 +110,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string semanticVersionPrefix = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionPrefix,
                 defaultValue: ConfigurationDefaults.SemanticVersionPrefix);
-            return semanticVersionPrefix;
         }
         /// <summary>
         /// Parses the semantic version major version label from configuration
@@ -138,7 +144,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 options: options,
                 key: ConfigurationKeys.SemanticVersionMajorVersion,
                 result: out int? parsedSemanticVersionMajorVersion)
-                    && parsedSemanticVersionMajorVersion.Value > -1)
+                && parsedSemanticVersionMajorVersion.Value > -1)
             {
                 semanticVersionMajorVersion = parsedSemanticVersionMajorVersion.Value;
             }
@@ -258,7 +264,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 semanticVersionMajorVersion: semanticVersionMajorVersionLabel);
             int semanticVersionPatchVersionLabel = ParseSemanticVersionPatchVersion(
                 options: options);
-            string mainSemanticVersionLabels = semanticVersionMajorVersionLabel.ToString(
+            return semanticVersionMajorVersionLabel.ToString(
                 provider: CultureInfo.InvariantCulture)
                 + '.'
                 + semanticVersionMinorVersionLabel.ToString(
@@ -266,7 +272,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 + '.'
                 + semanticVersionPatchVersionLabel.ToString(
                     provider: CultureInfo.InvariantCulture);
-            return mainSemanticVersionLabels;
         }
         /// <summary>
         /// Parses the detached <c>HEAD</c> label from configuration data.
@@ -291,11 +296,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string detachedHeadLabel = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.DetachedHeadLabel,
                 defaultValue: ConfigurationDefaults.DetachedHeadLabel);
-            return detachedHeadLabel;
         }
         /// <summary>
         /// Parses the current Git branch name.
@@ -328,10 +332,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string gitRepositoryRootDirectory = ParseGitRepositoryRootDirectoryPath(
                 options: options,
                 configurationFilePath: configurationFilePath);
-            string currentGitBranchName = GitHelper.GetCurrentGitBranchName(
+            return GitHelper.GetCurrentGitBranchName(
                 detachedHeadLabel: detachedHeadLabel,
                 repositoryRootDirectoryPath: gitRepositoryRootDirectory);
-            return currentGitBranchName;
         }
         /// <summary>
         /// Parses the default Git branch name from configuration data.
@@ -356,11 +359,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string defaultGitBranchName = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.DefaultGitBranchName,
                 defaultValue: ConfigurationDefaults.DefaultGitBranchName);
-            return defaultGitBranchName;
         }
         /// <summary>
         /// Parses the semantic version pre-release label from
@@ -431,11 +433,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string dirtyMark = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.DirtyMark,
                 defaultValue: ConfigurationDefaults.DirtyMark);
-            return dirtyMark;
         }
         /// <summary>
         /// Parses the broken mark from configuration data.
@@ -460,11 +461,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string brokenMark = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.BrokenMark,
                 defaultValue: ConfigurationDefaults.BrokenMark);
-            return brokenMark;
         }
         /// <summary>
         /// Parses the invalid <c>HEAD</c> label from configuration data.
@@ -485,11 +485,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            string invalidHeadLabel = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.InvalidHeadLabel,
                 defaultValue: ConfigurationDefaults.InvalidHeadLabel);
-            return invalidHeadLabel;
         }
         /// <summary>
         /// Parses the <c><see cref="GitReferenceType"/></c> from configuration data.
@@ -648,11 +647,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return matchPatterns;
             }
-            matchPatterns = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.MatchPatterns,
                 defaultValue: ConfigurationDefaults.MatchPatterns);
-            return matchPatterns;
         }
         /// <summary>
         /// Parses exclude patterns from configuration data.
@@ -678,11 +676,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return excludePatterns;
             }
-            excludePatterns = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.ExcludePatterns,
                 defaultValue: ConfigurationDefaults.ExcludePatterns);
-            return excludePatterns;
         }
         /// <summary>
         /// Parses the <c><see cref="GitTagState"/></c> from configuration data.
@@ -749,11 +746,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 options: options,
                 key: ConfigurationKeys.RepositoryRootDirectoryRelativeToConfigurationFilePath,
                 defaultValue: ConfigurationDefaults.RepositoryRootDirectoryRelativeToConfigurationFilePath);
-            string gitRepositoryRootDirectoryPath = Path.GetFullPath(
+            return Path.GetFullPath(
                 path: Path.Combine(
                     path1: configurationFilePath,
                     path2: gitRepositoryRootRelativeToConfigurationFilePath));
-            return gitRepositoryRootDirectoryPath;
         }
         /// <summary>
         /// Parses a verbose git describe command based on configuration data.
@@ -805,7 +801,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string gitRepositoryRootDirectoryPath = ParseGitRepositoryRootDirectoryPath(
                 options: options,
                 configurationFilePath: configurationFilePath);
-            var configuration = new VerboseGitDescribeConfiguration()
+            var configuration = new VerboseGitDescribeConfiguration
             {
                 DirtyMark = dirtyMark,
                 BrokenMark = brokenMark,
@@ -819,13 +815,12 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 GitTagState = gitTagState,
                 GitRepositoryRootDirectoryPath = gitRepositoryRootDirectoryPath
             };
-            string verboseGitDescribe = GitHelper.GetVerboseGitDescribe(
+            return GitHelper.GetVerboseGitDescribe(
                 configuration: configuration)
             // Git check-ref-format & git rev-parse use forward slashes, but Semantic Versioning 2.0.0 does not.
                 .Replace(
                     oldChar: '/',
                     newChar: '-');
-            return verboseGitDescribe;
         }
         /// <summary>
         /// Parses the semantic version build metadata label from
@@ -858,11 +853,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string semanticVersionBuildMetadataLabel = '+'
+            return '+'
                 + ParseVerboseGitDescribe(
                     options: options,
                     configurationFilePath: configurationFilePath);
-            return semanticVersionBuildMetadataLabel;
         }
         /// <summary>
         /// Parses the semantic version suffix from configuration data.
@@ -887,11 +881,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return string.Empty;
             }
-            string semanticVersionSuffix = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionSuffix,
                 defaultValue: ConfigurationDefaults.SemanticVersionSuffix);
-            return semanticVersionSuffix;
         }
         /// <summary>
         /// Parses the entire semantic version from configuration data.
@@ -942,10 +935,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             semanticVersion += ParseSemanticVersionSuffix(
                 options: options);
             // The semantic version will be used in a verbatim string literal, so double quotation marks must be escaped.
-            semanticVersion = semanticVersion.Replace(
+            return semanticVersion.Replace(
                 oldValue: "\"",
                 newValue: "\"\"");
-            return semanticVersion;
         }
         /// <summary>
         /// Parses the generated file name from configuration data.
@@ -1095,8 +1087,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The configuration data provider.
         /// </param>
         private static void RegisterOutput(
-            IncrementalGeneratorInitializationContext context,
-            IncrementalValuesProvider<(string semanticVersion, string generatedFileName, string generatedNamespace, string generatedTypeName, string generatedFieldName)> source)
+            in IncrementalGeneratorInitializationContext context,
+            in IncrementalValuesProvider<(
+                string semanticVersion,
+                string generatedFileName,
+                string generatedNamespace,
+                string generatedTypeName,
+                string generatedFieldName)> source)
         {
             context.RegisterSourceOutput(
                 source: source,
@@ -1112,31 +1109,31 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                             text: GeneratorHelper.MakeAutoGeneratedCodeHeader(
                                 toolName: toolName,
                                 toolVersion: toolVersion)
-                            + "\n// Copyright SwifterTheDragon, 2025. All Rights Reserved.\n\n"
-                            + "using System.CodeDom.Compiler;\n\n"
-                            + "namespace "
-                            + configuration.generatedNamespace
-                            + "\n{\n"
-                            + "    [GeneratedCode(\n"
-                            + "        tool: \""
-                            + toolName
-                            + "\",\n" +
-                            "        version: \""
-                            + toolVersion
-                            + "\")]\n"
-                            + "    internal static class "
-                            + configuration.generatedTypeName
-                            + "\n    {\n"
-                            + "        internal const string "
-                            + configuration.generatedFieldName
-                            + " = @\""
-                            + configuration.semanticVersion
-                            + "\";\n"
-                            + "    }\n"
-                            + "}\n\n"
-                            + GeneratorHelper.MakeAutoGeneratedFooter(
-                                toolName: toolName,
-                                generatorClassName: nameof(VerboseSourceRevisionIdGenerator)),
+                                + "\n// Copyright SwifterTheDragon, 2025. All Rights Reserved.\n\n"
+                                + "using System.CodeDom.Compiler;\n\n"
+                                + "namespace "
+                                + configuration.generatedNamespace
+                                + "\n{\n"
+                                + "    [GeneratedCode(\n"
+                                + "        tool: \""
+                                + toolName
+                                + "\",\n"
+                                + "        version: \""
+                                + toolVersion
+                                + "\")]\n"
+                                + "    internal static class "
+                                + configuration.generatedTypeName
+                                + "\n    {\n"
+                                + "        internal const string "
+                                + configuration.generatedFieldName
+                                + " = @\""
+                                + configuration.semanticVersion
+                                + "\";\n"
+                                + "    }\n"
+                                + "}\n\n"
+                                + GeneratorHelper.MakeAutoGeneratedFooter(
+                                    toolName: toolName,
+                                    generatorClassName: nameof(VerboseSourceRevisionIdGenerator)),
                             encoding: Encoding.UTF8));
                 });
         }

@@ -91,13 +91,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             string directoryName = Path.GetDirectoryName(
                 path: path);
-            if (Directory.Exists(
+            if (!Directory.Exists(
                 path: directoryName))
             {
-                workingDirectory = directoryName;
-                return true;
+                return false;
             }
-            return false;
+            workingDirectory = directoryName;
+            return true;
         }
         #endregion Methods
     }

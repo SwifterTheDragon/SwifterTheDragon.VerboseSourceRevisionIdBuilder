@@ -147,7 +147,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
         }
         /// <summary>
-        /// The default default Git branch name configuration value.
+        /// The default, default Git branch name configuration value.
         /// </summary>
         internal static string DefaultGitBranchName
         {

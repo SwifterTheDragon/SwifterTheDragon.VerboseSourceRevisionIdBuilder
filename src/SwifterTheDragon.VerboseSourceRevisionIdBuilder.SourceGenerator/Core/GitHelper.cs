@@ -39,42 +39,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// Runs a verbose git describe command and returns the output.
         /// </summary>
-        /// <param name="dirtyMark">
-        /// The label for a working tree with local modification.
-        /// </param>
-        /// <param name="brokenMark">
-        /// The label for a corrupt repository.
-        /// </param>
-        /// <param name="invalidHeadLabel">
-        /// The label for an invalid <c>HEAD</c> state.
-        /// </param>
-        /// <param name="gitReferenceType">
-        /// The type of Git references to describe <c>HEAD</c> with.
-        /// </param>
-        /// <param name="candidateAmount">
-        /// The amount of most recent tags to describe <c>HEAD</c> with.
-        /// </param>
-        /// <param name="abbrevLength">
-        /// The amount of hexadecimal digits to describe the
-        /// abbreviated object name with.
-        /// Disables <c>--long</c> if <c>0</c>.
-        /// </param>
-        /// <param name="parentCommitType">
-        /// Determines if only the first parent commit of
-        /// a merge commit should be followed or not.
-        /// </param>
-        /// <param name="matchPatterns">
-        /// The list of match patterns for filtering references with.
-        /// </param>
-        /// <param name="excludePatterns">
-        /// The list of exclude patterns for filtering references with.
-        /// </param>
-        /// <param name="gitTagState">
-        /// Determines if tags containing <c>HEAD</c> should be used
-        /// instead of tags predating <c>HEAD</c>.
-        /// </param>
-        /// <param name="gitRepositoryRootDirectoryPath">
-        /// The path to the root directory of the Git repository.
+        /// <param name="configuration">
+        /// The configuration data for the verbose Git describe command.
         /// </param>
         /// <returns>
         /// The output of a verbose Git describe command
@@ -270,8 +236,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     oldValue: "\\",
                     newValue: "\\\\")
                 .Replace(
-                oldValue: "\"",
-                newValue: "\\\"");
+                    oldValue: "\"",
+                    newValue: "\\\"");
             return '\"' + escapedMark + '\"';
         }
         /// <summary>
@@ -325,11 +291,11 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             if (!string.IsNullOrWhiteSpace(
                 value: abbrevLength)
-                    && int.TryParse(
-                        s: abbrevLength,
-                        style: NumberStyles.Integer,
-                        provider: CultureInfo.InvariantCulture,
-                        result: out int parsedAbbrevLength))
+                && int.TryParse(
+                    s: abbrevLength,
+                    style: NumberStyles.Integer,
+                    provider: CultureInfo.InvariantCulture,
+                    result: out int parsedAbbrevLength))
             {
                 if (parsedAbbrevLength < 1)
                 {
