@@ -80,16 +80,22 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 string dirtyConfigurationValue = equalsSeparatedValues[1];
                 if (equalsSeparatedValues.Length > 2)
                 {
+                    string[] dirtyConfigurationValueParts = new string[equalsSeparatedValues.Length - 2];
+                    const int RemainingConfigurationValuePartsStartingIndex = 2;
+                    Array.Copy(
+                        sourceArray: equalsSeparatedValues,
+                        sourceIndex: RemainingConfigurationValuePartsStartingIndex,
+                        destinationArray: dirtyConfigurationValueParts,
+                        destinationIndex: dirtyConfigurationValueParts.GetLowerBound(
+                            dimension: 0),
+                        length: equalsSeparatedValues.Length - RemainingConfigurationValuePartsStartingIndex);
                     var fullDirtyConfigurationValueBuilder = new StringBuilder();
-                    for (
-                        int equalsSeparatedValueIndex = 2;
-                        equalsSeparatedValueIndex < equalsSeparatedValues.Length;
-                        equalsSeparatedValueIndex++)
+                    foreach (string dirtyConfigurationValuePart in dirtyConfigurationValueParts)
                     {
                         fullDirtyConfigurationValueBuilder.Append(
                             value: '=')
                             .Append(
-                                value: equalsSeparatedValues[equalsSeparatedValueIndex]);
+                                value: dirtyConfigurationValuePart);
                     }
                     dirtyConfigurationValue += fullDirtyConfigurationValueBuilder.ToString();
                 }
