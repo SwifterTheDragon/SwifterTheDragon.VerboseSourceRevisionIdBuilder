@@ -536,8 +536,8 @@ dotnet_style_prefer_conditional_expression_over_assignment = true
 # Simplifies code for readability.
 # Please keep this rule's severity above silent to actively encourage shorter code.
 dotnet_diagnostic.IDE0046.severity = suggestion
-# Prefer return statements to use a ternary conditional.
-dotnet_style_prefer_conditional_expression_over_return = true
+# Prefer return statements to use an if-else statement.
+dotnet_style_prefer_conditional_expression_over_return = false
 # IDE0050: Convert anonymous type to tuple
 # This rule is deprecated.
 # Please keep this rule's severity disabled to avoid using deprecated rules.
