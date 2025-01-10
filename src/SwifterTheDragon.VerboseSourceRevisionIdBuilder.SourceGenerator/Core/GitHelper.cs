@@ -90,7 +90,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             command += AddPatterns(
                 patternsToAdd: configuration.ExcludePatterns,
                 patternArgument: "--exclude");
-            if (configuration.GitTagState == GitTagState.ContainsCommit)
+            if (configuration.GitTagState == GitTagState.ContainsHead)
             {
                 command += " --contains";
             }

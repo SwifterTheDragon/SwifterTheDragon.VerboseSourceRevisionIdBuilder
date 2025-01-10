@@ -13,12 +13,12 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// </summary>
         None = 0,
         /// <summary>
-        /// Only use tags that predate the commit.
+        /// Only use tags that predate <c>HEAD</c>.
         /// </summary>
-        PredatesCommit = 1,
+        PredatesHead = 1,
         /// <summary>
-        /// Only use tags that contain the commit.
+        /// Only use tags that contain <c>HEAD</c>.
         /// </summary>
-        ContainsCommit = 2
+        ContainsHead = 2
     }
 }

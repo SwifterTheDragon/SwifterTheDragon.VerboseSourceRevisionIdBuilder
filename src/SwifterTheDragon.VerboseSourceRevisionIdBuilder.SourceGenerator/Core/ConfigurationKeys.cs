@@ -9,9 +9,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     {
         #region Fields & Properties
         /// <summary>
-        /// The key to the semantic version major version configuration value.
+        /// The key to the semantic version major version label configuration value.
         /// </summary>
-        internal static string SemanticVersionMajorVersion
+        internal static string SemanticVersionMajorVersionLabel
         {
             get
             {
@@ -19,9 +19,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
         }
         /// <summary>
-        /// The key to the semantic version minor version configuration value.
+        /// The key to the semantic version minor version label configuration value.
         /// </summary>
-        internal static string SemanticVersionMinorVersion
+        internal static string SemanticVersionMinorVersionLabel
         {
             get
             {
@@ -29,9 +29,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
         }
         /// <summary>
-        /// The key to the semantic version patch version configuration value.
+        /// The key to the semantic version patch version label configuration value.
         /// </summary>
-        internal static string SemanticVersionPatchVersion
+        internal static string SemanticVersionPatchVersionLabel
         {
             get
             {

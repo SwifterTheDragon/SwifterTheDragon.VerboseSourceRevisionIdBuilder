@@ -127,7 +127,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// </param>
         /// <returns>
         /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionMajorVersion"/></c> in
+        /// <c><see cref="ConfigurationKeys.SemanticVersionMajorVersionLabel"/></c> in
         /// <c><paramref name="options"/></c>, if it exists.
         /// If it does not exist, then
         /// <c><see cref="ConfigurationDefaults.SemanticVersionMajorVersion"/></c>
@@ -145,7 +145,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             if (AdditionalTextOptionParser.TryGetValue(
                 options: options,
-                key: ConfigurationKeys.SemanticVersionMajorVersion,
+                key: ConfigurationKeys.SemanticVersionMajorVersionLabel,
                 result: out int? parsedSemanticVersionMajorVersion)
                 && parsedSemanticVersionMajorVersion.Value > -1)
             {
@@ -165,7 +165,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// </param>
         /// <returns>
         /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionMinorVersion"/></c> in
+        /// <c><see cref="ConfigurationKeys.SemanticVersionMinorVersionLabel"/></c> in
         /// <c><paramref name="options"/></c>, if it exists.
         /// If it does not exist
         /// &amp; <c><paramref name="semanticVersionMajorVersion"/></c>
@@ -191,7 +191,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             if (AdditionalTextOptionParser.TryGetValue(
                 options: options,
-                key: ConfigurationKeys.SemanticVersionMinorVersion,
+                key: ConfigurationKeys.SemanticVersionMinorVersionLabel,
                 result: out int? parsedSemanticVersionMinorVersion)
                 && parsedSemanticVersionMinorVersion.Value > -1)
             {
@@ -208,7 +208,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// </param>
         /// <returns>
         /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionPatchVersion"/></c>
+        /// <c><see cref="ConfigurationKeys.SemanticVersionPatchVersionLabel"/></c>
         /// in <c><paramref name="options"/></c>, if it exists.
         /// If it does not exist, then
         /// <c><see cref="ConfigurationDefaults.SemanticVersionPatchVersion"/></c>
@@ -226,7 +226,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             if (AdditionalTextOptionParser.TryGetValue(
                 options: options,
-                key: ConfigurationKeys.SemanticVersionPatchVersion,
+                key: ConfigurationKeys.SemanticVersionPatchVersionLabel,
                 result: out int? parsedSemanticVersionPatchVersion)
                 && parsedSemanticVersionPatchVersion.Value > -1)
             {

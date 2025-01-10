@@ -216,7 +216,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             get
             {
-                return GitTagState.PredatesCommit;
+                return GitTagState.PredatesHead;
             }
         }
         /// <summary>
