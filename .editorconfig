@@ -509,7 +509,6 @@ dotnet_style_explicit_tuple_names = true
 # CS0162 should control unreachable code preferences.
 # This rule is never enabled on build.
 # This rule's severity cannot be configured.
-dotnet_diagnostic.IDE0035.severity = unset
 # Please see CS0162 instead.
 
 # IDE0037: Use inferred member names

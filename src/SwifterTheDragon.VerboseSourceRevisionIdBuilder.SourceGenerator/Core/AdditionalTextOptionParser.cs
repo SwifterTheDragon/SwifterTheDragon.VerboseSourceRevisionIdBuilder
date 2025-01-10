@@ -134,7 +134,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// used instead.
         /// </returns>
         internal static ReadOnlyCollection<string> GetValue(
-            IDictionary<string, string> options,
+            // This diagnostic only shows up in build output logs, for reasons unknown.
+#pragma warning disable S3242 // Method parameters should be declared with base types
+            Dictionary<string, string> options,
+#pragma warning restore S3242 // Method parameters should be declared with base types
             string key,
             ReadOnlyCollection<string> defaultValue)
         {
@@ -181,7 +184,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><paramref name="defaultValue"/></c> is returned instead.
         /// </returns>
         internal static string GetValue(
-            IDictionary<string, string> options,
+            // This diagnostic only shows up in build output logs, for reasons unknown.
+#pragma warning disable S3242 // Method parameters should be declared with base types
+            Dictionary<string, string> options,
+#pragma warning restore S3242 // Method parameters should be declared with base types
             string key,
             string defaultValue)
         {
@@ -221,7 +227,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue(
-            IDictionary<string, string> options,
+            // This diagnostic only shows up in build output logs, for reasons unknown.
+#pragma warning disable S3242 // Method parameters should be declared with base types
+            Dictionary<string, string> options,
+#pragma warning restore S3242 // Method parameters should be declared with base types
             string key,
             out int? result)
         {
@@ -313,7 +322,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// Otherwise, <see langword="false"/>.
         /// </returns>
         internal static bool TryGetValue<TEnum>(
-            IDictionary<string, string> options,
+            // This diagnostic only shows up in build output logs, for reasons unknown.
+#pragma warning disable S3242 // Method parameters should be declared with base types
+            Dictionary<string, string> options,
+#pragma warning restore S3242 // Method parameters should be declared with base types
             string key,
             out TEnum result) where TEnum : struct, Enum
         {

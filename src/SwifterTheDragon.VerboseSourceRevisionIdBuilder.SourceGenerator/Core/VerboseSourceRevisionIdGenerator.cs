@@ -15,7 +15,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     /// Generates a single file providing the current verbose source revision ID.
     /// </summary>
     [Generator]
+    // This diagnostic only shows up in build output logs, for reasons unknown.
+#pragma warning disable CA1812 // Avoid uninstantiated internal classes
     internal sealed class VerboseSourceRevisionIdGenerator : IIncrementalGenerator
+#pragma warning restore CA1812 // Avoid uninstantiated internal classes
     {
         #region Fields & Properties
         /// <summary>
