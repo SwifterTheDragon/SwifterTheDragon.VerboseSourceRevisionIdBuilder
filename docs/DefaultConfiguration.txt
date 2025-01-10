@@ -1,0 +1,26 @@
+# Only a file named "VerboseSourceRevisionIdConfig.txt" will be used!
+
+# These are the default configuration values for each key.
+
+MajorVersionLabel = 0
+MinorVersionLabel = 1
+PatchVersionLabel = 0
+Prefix =
+Suffix =
+RepositoryRootDirectoryRelativeToConfigurationFilePath =
+DirtyMark = -dirty
+BrokenMark = -broken
+DetachedHeadLabel = DETACHED-HEAD
+InvalidHeadLabel = INVALID-HEAD
+DefaultGitBranchName = main
+GitReferenceType = All
+Candidates = 10
+AbbrevLength = Default
+ParentCommitType = Any
+GitTagState = PredatesHead
+MatchPatterns =
+ExcludePatterns =
+GeneratedFileName = VerboseSourceRevisionIdBuilder.Generated.cs
+GeneratedNamespace = SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
+GeneratedTypeName = VerboseSourceRevisionIdBuilder
+GeneratedFieldName = VerboseSourceRevisionId
