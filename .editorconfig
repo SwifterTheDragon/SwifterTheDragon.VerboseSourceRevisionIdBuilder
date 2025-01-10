@@ -41,6 +41,52 @@ spelling_use_default_exclusion_dictionary = true
 # Defines a custom exclusion dictionary location and file.
 spelling_exclusion_path = exclusion.dic
 
+# XML project files
+[*.csproj]
+
+# An indent of 4x spaces offers the best compatiblity for easily readable code when customization is unavailable.
+indent_style = space
+indent_size = 4
+tab_width = 4
+# File character encoding
+# UTF-8 is widely supported.
+# See https://en.wikipedia.org/wiki/UTF-8#cite_ref-W3TechsWebEncoding_10-0 for details.
+charset = utf-8
+# Trailing whitespace is redundant and should be removed.
+trim_trailing_whitespace = true
+# EOLs are normalized by .gitattributes so that version control always receives LF EOLs,
+# while local files receive the most compatible EOL character for the user's operating system.
+# Since end_of_line cannot provide OS-specific EOLs, please don't specify an end_of_line.
+end_of_line = unset
+# See .gitattributes instead.
+
+# A final new line offers the best compatibility.
+# See https://stackoverflow.com/a/67337745 for details.
+insert_final_newline = true
+
+# XML configuration files
+[*.xml]
+
+# An indent of 4x spaces offers the best compatiblity for easily readable code when customization is unavailable.
+indent_style = space
+indent_size = 4
+tab_width = 4
+# File character encoding
+# UTF-8 is widely supported.
+# See https://en.wikipedia.org/wiki/UTF-8#cite_ref-W3TechsWebEncoding_10-0 for details.
+charset = utf-8
+# Trailing whitespace is redundant and should be removed.
+trim_trailing_whitespace = true
+# EOLs are normalized by .gitattributes so that version control always receives LF EOLs,
+# while local files receive the most compatible EOL character for the user's operating system.
+# Since end_of_line cannot provide OS-specific EOLs, please don't specify an end_of_line.
+end_of_line = unset
+# See .gitattributes instead.
+
+# A final new line offers the best compatibility.
+# See https://stackoverflow.com/a/67337745 for details.
+insert_final_newline = true
+
 # C# files
 [*.cs]
 
