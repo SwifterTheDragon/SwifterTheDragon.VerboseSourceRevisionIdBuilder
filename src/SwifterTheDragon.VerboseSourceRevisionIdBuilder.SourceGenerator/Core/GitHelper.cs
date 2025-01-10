@@ -94,9 +94,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 command += " --contains";
             }
-            string verboseGitDescribe = CommandLineUtilities.ExecuteCommandLineCommand(
-                command: command,
-                directory: configuration.GitRepositoryRootDirectoryPath);
+            string verboseGitDescribe = NormaliseIllegalSemanticVersionCharacters(
+                input: CommandLineUtilities.ExecuteCommandLineCommand(
+                    command: command,
+                    directory: configuration.GitRepositoryRootDirectoryPath));
             if (string.IsNullOrEmpty(
                 value: verboseGitDescribe))
             {
@@ -321,6 +322,46 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     + " --long";
             }
             return " --long";
+        }
+        /// <summary>
+        /// Removes characters not allowed by semantic versioning 2.0.0.
+        /// </summary>
+        /// <param name="input">
+        /// The string to be normalised.
+        /// </param>
+        /// <example>
+        /// "<c>./~^value</c>" becomes "<c>-Period--ForwardSlash--Tilde--Caret-value</c>".
+        /// </example>
+        /// <returns>
+        /// The normalised string.
+        /// </returns>
+        private static string NormaliseIllegalSemanticVersionCharacters(
+            string input)
+        {
+            if (string.IsNullOrWhiteSpace(
+                value: input))
+            {
+                return string.Empty;
+            }
+            string output = input
+                .Replace(
+                    oldValue: "/",
+                    newValue: "-ForwardSlash-")
+                .Replace(
+                    oldValue: "~",
+                    newValue: "-Tilde-")
+                .Replace(
+                    oldValue: "^",
+                    newValue: "-Caret-");
+            if (output.StartsWith(
+                value: ".",
+                comparisonType: System.StringComparison.OrdinalIgnoreCase))
+            {
+                return "-Period-"
+                    + output.Substring(
+                        startIndex: 1);
+            }
+            return output;
         }
         #endregion Methods
     }

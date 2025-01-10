@@ -819,11 +819,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 GitRepositoryRootDirectoryPath = gitRepositoryRootDirectoryPath
             };
             return GitHelper.GetVerboseGitDescribe(
-                configuration: configuration)
-            // Git check-ref-format & git rev-parse use forward slashes, but Semantic Versioning 2.0.0 does not.
-                .Replace(
-                    oldChar: '/',
-                    newChar: '-');
+                configuration: configuration);
         }
         /// <summary>
         /// Parses the semantic version build metadata label from
