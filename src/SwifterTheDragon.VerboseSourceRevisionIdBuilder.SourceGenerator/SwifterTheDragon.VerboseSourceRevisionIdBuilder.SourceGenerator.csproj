@@ -12,6 +12,8 @@
         <PackageProjectUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</PackageProjectUrl>
         <RepositoryUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     </PropertyGroup>
     <ItemGroup>
       <None Include="..\..\README.md">
