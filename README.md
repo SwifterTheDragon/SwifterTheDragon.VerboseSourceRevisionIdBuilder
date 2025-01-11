@@ -2,6 +2,10 @@
 
 Gives a more verbose source revision ID than what Source Link offers and exposes it via an incremental source generator so it can be used in AssemblyInformationalVersionAttributes without MSBuild, allowing use in Unity projects.
 
+# NuGet
+
+Download the NuGet package [here](https://www.nuget.org/packages/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator).
+
 # Format
 
 This repository provides a valid [semantic version](https://semver.org/spec/v2.0.0.html) string as a constant field.
