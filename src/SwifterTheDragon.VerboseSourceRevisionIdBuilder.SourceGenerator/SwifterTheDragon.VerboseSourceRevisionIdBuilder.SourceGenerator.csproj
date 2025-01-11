@@ -16,10 +16,8 @@
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     </PropertyGroup>
     <ItemGroup>
-      <None Include="..\..\README.md">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
+      <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+      <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="\"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Meziantou.Analyzer" Version="2.0.184">
