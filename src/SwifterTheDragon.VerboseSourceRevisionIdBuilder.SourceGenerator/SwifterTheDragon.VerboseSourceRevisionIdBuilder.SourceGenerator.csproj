@@ -1,13 +1,13 @@
 <!-- Copyright SwifterTheDragon, 2025. All Rights Reserved. -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <Description>Gives a more verbose source revision ID than what Source Link offers and exposes it via an incremental source generator so it can be used in AssemblyInformationalVersionAttributes without MSBuild, allowing use in Unity projects.</Description>
-        <FileVersion>0.1.0.0</FileVersion>
+        <FileVersion>1.0.0.0</FileVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>$(AssemblyName)</Title>
-        <Version>0.1.0</Version>
+        <Version>1.0.0</Version>
         <Authors>SwifterTheDragon</Authors>
         <PackageProjectUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</PackageProjectUrl>
         <RepositoryUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</RepositoryUrl>

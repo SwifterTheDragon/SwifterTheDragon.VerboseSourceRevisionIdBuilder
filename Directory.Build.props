@@ -7,7 +7,7 @@
         <!-- Do not add <Description> here. Each assembly should receive a unique description. -->
         <!-- Do not add <FileVersion> here. Each assembly should receive a unique file version. -->
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-        <InformationalVersion>0.1.0-alpha</InformationalVersion>
+        <InformationalVersion>1.0.0</InformationalVersion>
         <Product>VerboseSourceRevisionIdBuilder</Product>
     </PropertyGroup>
     <ItemGroup>
