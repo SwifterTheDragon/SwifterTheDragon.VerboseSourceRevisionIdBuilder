@@ -2,10 +2,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
-        <Description>Provides source generated output for other assemblies.</Description>
+        <Description>Gives a more verbose source revision ID than what Source Link offers and exposes it via an incremental source generator so it can be used in AssemblyInformationalVersionAttributes without MSBuild, allowing use in Unity projects.</Description>
         <FileVersion>0.1.0.0</FileVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>$(AssemblyName)</Title>
+        <Version>0.1.0</Version>
+        <Authors>SwifterTheDragon</Authors>
+        <PackageProjectUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+    <ItemGroup>
+      <None Include="..\..\README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Meziantou.Analyzer" Version="2.0.184">
             <PrivateAssets>all</PrivateAssets>
