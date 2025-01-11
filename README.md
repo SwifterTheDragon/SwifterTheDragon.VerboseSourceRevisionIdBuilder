@@ -33,7 +33,7 @@ they are replaced with alternative representations:
 
 # Configuration
 
-See [Configuration.md](./docs/Configuration.md) for more details.
+See [Configuration.md](https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder/tree/main/docs) for more details.
 
 # Example
 
