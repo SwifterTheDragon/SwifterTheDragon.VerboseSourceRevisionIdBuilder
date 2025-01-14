@@ -15,17 +15,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
     {
         #region Fields & Properties
         /// <summary>
-        /// The minimum amount of hexadecimal digits that a fresh repo uses
-        /// to describe abbreviated object names with.
-        /// </summary>
-        private static int AbbrevMinimum
-        {
-            get
-            {
-                return 4;
-            }
-        }
-        /// <summary>
         /// The maximum amount of hexadecimal digits that a
         /// SHA-1 hash can be represented with.
         /// </summary>
@@ -287,9 +276,8 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// If <c><paramref name="abbrevLength"/></c> is below <c>1</c>,
         /// an empty string.
         /// If <c><paramref name="abbrevLength"/></c> is above <c>0</c>,
-        /// <c><paramref name="abbrevLength"/></c> is clamped to
-        /// (<c><see cref="AbbrevMinimum"/></c>
-        /// -<c><see cref="AbbrevMaximum"/></c>) and "
+        /// <c><paramref name="abbrevLength"/></c> is clamped below
+        /// <c><see cref="AbbrevMaximum"/></c> (inclusive) and "
         /// <c> --abbrev=<paramref name="abbrevLength"/> --long</c>" is used.
         /// Otherwise (if <c><paramref name="abbrevLength"/></c> is not a
         /// valid integer), "<c> --long</c>".
@@ -297,13 +285,19 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         private static string AddFormatLength(
             string abbrevLength)
         {
-            if (!string.IsNullOrWhiteSpace(
+            if (string.IsNullOrWhiteSpace(
                 value: abbrevLength)
-                && int.TryParse(
-                    s: abbrevLength,
-                    style: NumberStyles.Integer,
-                    provider: CultureInfo.InvariantCulture,
-                    result: out int parsedAbbrevLength))
+                || abbrevLength.Equals(
+                    value: "Dynamic",
+                    comparisonType: System.StringComparison.OrdinalIgnoreCase))
+            {
+                return " --long";
+            }
+            if (int.TryParse(
+                s: abbrevLength,
+                style: NumberStyles.Integer,
+                provider: CultureInfo.InvariantCulture,
+                result: out int parsedAbbrevLength))
             {
                 if (parsedAbbrevLength < 1)
                 {
@@ -313,16 +307,14 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 {
                     parsedAbbrevLength = AbbrevMaximum;
                 }
-                if (parsedAbbrevLength < AbbrevMinimum)
-                {
-                    parsedAbbrevLength = AbbrevMinimum;
-                }
                 return " --abbrev="
                     + parsedAbbrevLength.ToString(
                         provider: CultureInfo.InvariantCulture)
                     + " --long";
             }
-            return " --long";
+            return " --long --abbrev="
+                + ConfigurationDefaults.AbbrevLength.ToString(
+                    provider: CultureInfo.InvariantCulture);
         }
         /// <summary>
         /// Removes characters not allowed by semantic versioning 2.0.0.

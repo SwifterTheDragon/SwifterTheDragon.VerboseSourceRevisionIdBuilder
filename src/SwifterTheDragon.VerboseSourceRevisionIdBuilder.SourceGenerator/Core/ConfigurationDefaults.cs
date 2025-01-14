@@ -192,11 +192,11 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The default amount of hexadecimal digits to describe the abbreviated
         /// object name with.
         /// </summary>
-        internal static string AbbrevLength
+        internal static int AbbrevLength
         {
             get
             {
-                return "Default";
+                return 40;
             }
         }
         /// <summary>

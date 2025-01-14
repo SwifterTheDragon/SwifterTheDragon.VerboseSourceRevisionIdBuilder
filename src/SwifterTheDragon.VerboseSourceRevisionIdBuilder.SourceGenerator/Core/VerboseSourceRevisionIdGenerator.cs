@@ -579,20 +579,31 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            string abbrevLength = ConfigurationDefaults.AbbrevLength;
+            string defaultAbbrevLength = ConfigurationDefaults.AbbrevLength.ToString(
+                provider: CultureInfo.InvariantCulture);
             if (options is null || options.Count is 0)
             {
-                return abbrevLength;
+                return defaultAbbrevLength;
             }
-            if (AdditionalTextOptionParser.TryGetValue(
+            string parsedAbbrevLength = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.AbbrevLength,
-                result: out int? parsedAbbrevLength))
+                defaultValue: defaultAbbrevLength);
+            if (int.TryParse(
+                s: parsedAbbrevLength,
+                style: NumberStyles.Integer,
+                provider: CultureInfo.InvariantCulture,
+                result: out int _))
             {
-                abbrevLength = parsedAbbrevLength.Value.ToString(
-                    provider: CultureInfo.InvariantCulture);
+                return parsedAbbrevLength;
             }
-            return abbrevLength;
+            if (parsedAbbrevLength.Equals(
+                value: "Dynamic",
+                comparisonType: System.StringComparison.OrdinalIgnoreCase))
+            {
+                return parsedAbbrevLength;
+            }
+            return defaultAbbrevLength;
         }
         /// <summary>
         /// Parses the <c><see cref="ParentCommitType"/></c> from configuration data.
