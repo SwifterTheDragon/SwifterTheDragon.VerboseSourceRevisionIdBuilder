@@ -1,3 +1,6 @@
+# Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+# SPDX-License-Identifier: MIT
+
 # Only a file named "VerboseSourceRevisionIdConfig.txt" will be used!
 
 # These are the default configuration values for each key.

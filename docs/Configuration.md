@@ -54,3 +54,5 @@ Here is a list of all keys defined by this version, and the supported values ass
 ---
 
 Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+
+SPDX-License-Identifier: MIT

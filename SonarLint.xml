@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright SwifterTheDragon, 2025. All Rights Reserved. -->
+<!-- Copyright SwifterTheDragon, 2024-2025. All Rights Reserved. -->
+<!-- SPDX-License-Identifier: MIT -->
 <!-- This SonarLint.xml file should be placed in the root directory of the repo. -->
 <!-- SwifterTheDragon's SonarLint.xml for VerboseSourceRevisionIdBuilder. -->
 <!-- Please do not overwrite this file with a template! -->
@@ -162,7 +163,7 @@
                 </Parameter>
                 <Parameter>
                     <Key>headerFormat</Key>
-                    <Value>// Copyright SwifterTheDragon, 2025. All Rights Reserved.</Value>
+                    <Value>// Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.\n// SPDX-License-Identifier: MIT</Value>
                 </Parameter>
             </Parameters>
         </Rule>

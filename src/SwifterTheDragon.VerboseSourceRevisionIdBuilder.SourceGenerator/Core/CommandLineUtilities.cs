@@ -1,4 +1,5 @@
-// Copyright SwifterTheDragon, 2025. All Rights Reserved.
+// Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+// SPDX-License-Identifier: MIT
 
 using System.Diagnostics;
 using System.IO;

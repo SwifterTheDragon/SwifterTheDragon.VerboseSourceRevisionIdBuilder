@@ -6,3 +6,5 @@ or browse a configuration file with default settings [here](./DefaultConfigurati
 ---
 
 Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+
+SPDX-License-Identifier: MIT

@@ -1,4 +1,5 @@
-# Copyright SwifterTheDragon, 2025. All Rights Reserved.
+# Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+# SPDX-License-Identifier: MIT
 # This CodeMetricsConfig.txt file should be placed in the root directory of the repo.
 # SwifterTheDragon's CodeMetricsConfig.txt for VerboseSourceRevisionIdBuilder.
 # Please do not overwrite this file with a template!
@@ -42,4 +43,4 @@ CA1506(Field): 40
 CA1506(Property): 40
 CA1506(Event): 40
 
-# Copyright SwifterTheDragon, 2025. All Rights Reserved.
+# Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.

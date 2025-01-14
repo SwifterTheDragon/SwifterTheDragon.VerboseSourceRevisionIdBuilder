@@ -46,3 +46,5 @@ See [Configuration.md](https://github.com/SwifterTheDragon/VerboseSourceRevision
 ---
 
 Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+
+SPDX-License-Identifier: MIT

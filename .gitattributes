@@ -1,4 +1,5 @@
-# Copyright SwifterTheDragon, 2025. All Rights Reserved.
+# Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+# SPDX-License-Identifier: MIT
 # This .gitattributes file should be placed in the root directory of the repo.
 # SwifterTheDragon's .gitattributes for VerboseSourceRevisionIdBuilder.
 # Please do not overwrite this file with a template!
@@ -13,4 +14,4 @@
 # Set file behaviour to treat as text & diff as C# source code.
 *.cs text diff=csharp
 
-# Copyright SwifterTheDragon, 2025. All Rights Reserved.
+# Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
