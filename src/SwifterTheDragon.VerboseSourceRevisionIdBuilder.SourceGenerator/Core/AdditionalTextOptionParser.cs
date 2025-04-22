@@ -265,7 +265,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// at <c><paramref name="key"/></c>.
         /// </summary>
         /// <typeparam name="TEnum">
-        /// The Enum type to parse the value as.
+        /// The <c><see langword="enum"/></c> type to parse the value as.
         /// </typeparam>
         /// <param name="options">
         /// The options to retrieve the value from.
