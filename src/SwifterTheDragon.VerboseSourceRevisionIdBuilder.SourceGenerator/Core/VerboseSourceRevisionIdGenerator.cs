@@ -110,10 +110,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionPrefix,
@@ -245,10 +241,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         private static string ParseMainSemanticVersionLabels(
             Dictionary<string, string> options)
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             int semanticVersionMajorVersionLabel = ParseSemanticVersionMajorVersion(
                 options: options);
             int semanticVersionMinorVersionLabel = ParseSemanticVersionMinorVersion(
@@ -284,10 +276,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.DetachedHeadLabel,
@@ -310,15 +298,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options,
             string configurationFilePath)
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: configurationFilePath))
-            {
-                return string.Empty;
-            }
             string detachedHeadLabel = ParseDetachedHeadLabel(
                 options: options);
             string gitRepositoryRootDirectory = ParseGitRepositoryRootDirectoryPath(
@@ -347,10 +326,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.DefaultGitBranchName,
@@ -383,10 +358,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options,
             string configurationFilePath)
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             string currentGitBranchName = ParseCurrentGitBranchName(
                 options: options,
                 configurationFilePath: configurationFilePath);
@@ -421,10 +392,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.DirtyMark,
@@ -449,10 +416,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.BrokenMark,
@@ -557,10 +520,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             string defaultAbbrevLength = ConfigurationDefaults.AbbrevLength.ToString(
                 provider: CultureInfo.InvariantCulture);
-            if (options is null || options.Count is 0)
-            {
-                return defaultAbbrevLength;
-            }
             string parsedAbbrevLength = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.AbbrevLength,
@@ -569,13 +528,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 s: parsedAbbrevLength,
                 style: NumberStyles.Integer,
                 provider: CultureInfo.InvariantCulture,
-                result: out int _))
-            {
-                return parsedAbbrevLength;
-            }
-            if (parsedAbbrevLength.Equals(
-                value: "Dynamic",
-                comparisonType: System.StringComparison.OrdinalIgnoreCase))
+                result: out int _)
+                || parsedAbbrevLength.Equals(
+                    value: "Dynamic",
+                    comparisonType: System.StringComparison.OrdinalIgnoreCase))
             {
                 return parsedAbbrevLength;
             }
@@ -624,11 +580,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            ReadOnlyCollection<string> matchPatterns = ConfigurationDefaults.MatchPatterns;
-            if (options is null || options.Count is 0)
-            {
-                return matchPatterns;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.MatchPatterns,
@@ -653,11 +604,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            ReadOnlyCollection<string> excludePatterns = ConfigurationDefaults.ExcludePatterns;
-            if (options is null || options.Count is 0)
-            {
-                return excludePatterns;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.ExcludePatterns,
@@ -706,15 +652,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 #pragma warning restore S3242 // Method parameters should be declared with base types
             string configurationFilePath)
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
-            if (string.IsNullOrEmpty(
-                value: configurationFilePath))
-            {
-                return string.Empty;
-            }
             string gitRepositoryRootRelativeToConfigurationFilePath = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.RepositoryRootDirectoryRelativeToConfigurationFilePath,
@@ -742,15 +679,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options,
             string configurationFilePath)
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: configurationFilePath))
-            {
-                return string.Empty;
-            }
             string dirtyMark = ParseDirtyMark(
                 options: options);
             string brokenMark = ParseBrokenMark(
@@ -813,15 +741,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options,
             string configurationFilePath)
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: configurationFilePath))
-            {
-                return string.Empty;
-            }
             return '+'
                 + ParseVerboseGitDescribe(
                     options: options,
@@ -846,10 +765,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return string.Empty;
-            }
             return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionSuffix,
@@ -882,15 +797,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string configurationFilePath)
         {
             string semanticVersion = string.Empty;
-            if (options is null || options.Count is 0)
-            {
-                return semanticVersion;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: configurationFilePath))
-            {
-                return semanticVersion;
-            }
             semanticVersion += ParseSemanticVersionPrefix(
                 options: options);
             semanticVersion += ParseMainSemanticVersionLabels(
@@ -927,20 +833,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return ConfigurationDefaults.GeneratedFileName;
-            }
-            string parsedGeneratedFileName = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.GeneratedFileName,
                 defaultValue: ConfigurationDefaults.GeneratedFileName);
-            if (string.IsNullOrWhiteSpace(
-                value: parsedGeneratedFileName))
-            {
-                return ConfigurationDefaults.GeneratedFileName;
-            }
-            return parsedGeneratedFileName;
         }
         /// <summary>
         /// Parses the generated namespace from configuration data.
@@ -961,20 +857,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return ConfigurationDefaults.GeneratedNamespace;
-            }
-            string parsedGeneratedNamespace = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.GeneratedNamespace,
                 defaultValue: ConfigurationDefaults.GeneratedNamespace);
-            if (string.IsNullOrWhiteSpace(
-                value: parsedGeneratedNamespace))
-            {
-                return ConfigurationDefaults.GeneratedNamespace;
-            }
-            return parsedGeneratedNamespace;
         }
         /// <summary>
         /// Parses the generated type name from configuration data.
@@ -995,20 +881,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return ConfigurationDefaults.GeneratedTypeName;
-            }
-            string parsedGeneratedTypeName = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.GeneratedTypeName,
                 defaultValue: ConfigurationDefaults.GeneratedTypeName);
-            if (string.IsNullOrWhiteSpace(
-                value: parsedGeneratedTypeName))
-            {
-                return ConfigurationDefaults.GeneratedTypeName;
-            }
-            return parsedGeneratedTypeName;
         }
         /// <summary>
         /// Parses the generated field name from configuration data.
@@ -1029,20 +905,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return ConfigurationDefaults.GeneratedFieldName;
-            }
-            string parsedGeneratedFieldName = AdditionalTextOptionParser.GetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.GeneratedFieldName,
                 defaultValue: ConfigurationDefaults.GeneratedFieldName);
-            if (string.IsNullOrWhiteSpace(
-                value: parsedGeneratedFieldName))
-            {
-                return ConfigurationDefaults.GeneratedFieldName;
-            }
-            return parsedGeneratedFieldName;
         }
         /// <summary>
         /// Registers source code output to this generator's context,
