@@ -57,59 +57,30 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return output;
             }
-            foreach (TextLine textLine in additionalText.GetText(
-                cancellationToken: cancellationToken).Lines)
+            TextLineCollection textLines = additionalText.GetText(
+                cancellationToken: cancellationToken).Lines;
+            if (textLines.Count is 0)
             {
-                string line = textLine.ToString().Trim();
-                if (IsEmptyOrCommentLine(
-                    line: line))
+                return output;
+            }
+            foreach (TextLine textLine in textLines)
+            {
+                if (!TryParseLine(
+                    input: textLine.ToString(),
+                    out string parsedKey,
+                    out string parsedValue))
                 {
                     continue;
                 }
-                string[] equalsSeparatedValues = line.Split(
-                    separator: '=');
-                if (equalsSeparatedValues.Length < 2)
-                {
-                    continue;
-                }
-                string configurationKey = equalsSeparatedValues[0].TrimEnd().ToUpperInvariant();
-                if (string.IsNullOrWhiteSpace(
-                    value: configurationKey))
-                {
-                    continue;
-                }
-                string dirtyConfigurationValue = equalsSeparatedValues[1];
-                if (equalsSeparatedValues.Length > 2)
-                {
-                    string[] dirtyConfigurationValueParts = new string[equalsSeparatedValues.Length - 2];
-                    const int RemainingConfigurationValuePartsStartingIndex = 2;
-                    Array.Copy(
-                        sourceArray: equalsSeparatedValues,
-                        sourceIndex: RemainingConfigurationValuePartsStartingIndex,
-                        destinationArray: dirtyConfigurationValueParts,
-                        destinationIndex: dirtyConfigurationValueParts.GetLowerBound(
-                            dimension: 0),
-                        length: equalsSeparatedValues.Length - RemainingConfigurationValuePartsStartingIndex);
-                    var fullDirtyConfigurationValueBuilder = new StringBuilder();
-                    foreach (string dirtyConfigurationValuePart in dirtyConfigurationValueParts)
-                    {
-                        fullDirtyConfigurationValueBuilder.Append(
-                            value: '=')
-                            .Append(
-                                value: dirtyConfigurationValuePart);
-                    }
-                    dirtyConfigurationValue += fullDirtyConfigurationValueBuilder.ToString();
-                }
-                string configurationValue = dirtyConfigurationValue.TrimStart();
                 if (output.ContainsKey(
-                    key: configurationKey))
+                    key: parsedKey))
                 {
-                    output[configurationKey] = configurationValue;
+                    output[parsedKey] = parsedValue;
                     continue;
                 }
                 output.Add(
-                    key: configurationKey,
-                    value: configurationValue);
+                    key: parsedKey,
+                    value: parsedValue);
             }
             return output;
         }
@@ -358,38 +329,72 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             result = desiredValue;
             return true;
         }
-        /// <summary>
-        /// Determines if a string is empty or a comment.
-        /// </summary>
-        /// <param name="line">
-        /// The line to check for being empty or a comment.
-        /// </param>
-        /// <returns>
-        /// <see langword="true"/> if <paramref name="line"/> starts with
-        /// <c>#</c> or <c>;</c>, or is empty.
-        /// Otherwise, <see langword="false" />.
-        /// </returns>
-        private static bool IsEmptyOrCommentLine(
-            string line)
+        private static bool TryParseLine(
+            string input,
+            out string parsedKey,
+            out string parsedValue)
         {
+            parsedKey = null;
+            parsedValue = null;
             if (string.IsNullOrWhiteSpace(
-                value: line))
+                value: input))
             {
-                return true;
+                return false;
             }
-            if (line.StartsWith(
+            string trimmedLine = input.Trim();
+            if (trimmedLine.StartsWith(
                 value: "#",
-                comparisonType: StringComparison.OrdinalIgnoreCase))
+                comparisonType: StringComparison.Ordinal)
+                || trimmedLine.StartsWith(
+                    value: ";",
+                    comparisonType: StringComparison.Ordinal))
             {
+                return false;
+            }
+            string[] equalsSeparatedParts = trimmedLine.Split(
+                separator: '=');
+            if (equalsSeparatedParts.Length < 2)
+            {
+                return false;
+            }
+            string key = equalsSeparatedParts[0].TrimEnd();
+            if (string.IsNullOrWhiteSpace(
+                value: key))
+            {
+                return false;
+            }
+            if (equalsSeparatedParts.Length < 3)
+            {
+                string value = equalsSeparatedParts[1].TrimStart();
+                if (string.IsNullOrWhiteSpace(
+                    value: value))
+                {
+                    return false;
+                }
+                parsedKey = key.ToUpperInvariant();
+                parsedValue = value;
                 return true;
             }
-            if (line.StartsWith(
-                value: ";",
-                comparisonType: StringComparison.OrdinalIgnoreCase))
+            string[] valueParts = new string[equalsSeparatedParts.Length - 2];
+            const int RemainingValuePartsStartingIndex = 2;
+            Array.Copy(
+                sourceArray: equalsSeparatedParts,
+                sourceIndex: RemainingValuePartsStartingIndex,
+                destinationArray: valueParts,
+                destinationIndex: valueParts.GetLowerBound(
+                    dimension: 0),
+                length: equalsSeparatedParts.Length - RemainingValuePartsStartingIndex);
+            var remainingValueBuilder = new StringBuilder();
+            foreach (string valuePart in valueParts)
             {
-                return true;
+                remainingValueBuilder.Append(
+                    value: '=')
+                    .Append(
+                        value: valuePart);
             }
-            return false;
+            parsedKey = key.ToUpperInvariant();
+            parsedValue = equalsSeparatedParts[1].TrimStart() + remainingValueBuilder;
+            return true;
         }
         #endregion Methods
     }
