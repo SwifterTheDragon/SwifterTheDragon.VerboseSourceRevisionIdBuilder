@@ -113,12 +113,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string key,
             ReadOnlyCollection<string> defaultValue)
         {
-            if (options is null)
-            {
-                return defaultValue;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: key))
+            if (options is null
+                || string.IsNullOrWhiteSpace(
+                    value: key))
             {
                 return defaultValue;
             }
@@ -163,12 +160,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string key,
             string defaultValue)
         {
-            if (options is null)
-            {
-                return defaultValue;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: key))
+            if (options is null
+                || string.IsNullOrWhiteSpace(
+                    value: key))
             {
                 return defaultValue;
             }
@@ -207,12 +201,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             out int? result)
         {
             result = null;
-            if (options is null)
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: key))
+            if (options is null
+                || string.IsNullOrWhiteSpace(
+                    value: key))
             {
                 return false;
             }
@@ -254,12 +245,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             out string result)
         {
             result = null;
-            if (options is null)
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: key))
+            if (options is null
+                || string.IsNullOrWhiteSpace(
+                    value: key))
             {
                 return false;
             }
@@ -302,12 +290,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             out TEnum result) where TEnum : struct, Enum
         {
             result = default;
-            if (options is null)
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(
-                value: key))
+            if (options is null
+                || string.IsNullOrWhiteSpace(
+                    value: key))
             {
                 return false;
             }
