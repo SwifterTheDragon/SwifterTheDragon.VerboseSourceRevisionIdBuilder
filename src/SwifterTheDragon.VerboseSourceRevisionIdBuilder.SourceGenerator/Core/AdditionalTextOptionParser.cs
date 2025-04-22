@@ -177,56 +177,56 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             return defaultValue;
         }
         /// <summary>
-        /// Attempts to retrieve a value from <c><paramref name="options"/></c>
-        /// at <c><paramref name="key"/></c>.
+        /// Retrieves an integer from <c><paramref name="options"/></c> at
+        /// <c><paramref name="key"/></c>.
         /// </summary>
         /// <param name="options">
         /// The options to retrieve the value from.
         /// </param>
         /// <param name="key">
-        /// The key to try and retrieve the value with.
+        /// The key to retrieve the value with.
         /// </param>
-        /// <param name="result">
-        /// The resulting parsed value, if successful.
+        /// <param name="defaultValue">
+        /// The default value to use instead if <c><paramref name="key"/></c>
+        /// does not exist in <c><paramref name="options"/></c>.
         /// </param>
         /// <returns>
-        /// <see langword="true"/> if a valid value was found at
-        /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
-        /// Otherwise, <see langword="false"/>.
+        /// The value stored at <c><paramref name="key"/></c> in
+        /// <c><paramref name="options"/></c>.
+        /// If no such value exists, <c><paramref name="defaultValue"/></c> is
+        /// used instead.
         /// </returns>
-        internal static bool TryGetValue(
-            // This diagnostic only shows up in build output logs, for reasons unknown.
+        internal static int GetValue(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
 #pragma warning restore S3242 // Method parameters should be declared with base types
             string key,
-            out int? result)
+            int defaultValue)
         {
-            result = null;
             if (options is null
                 || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
-                return false;
+                return defaultValue;
             }
-            if (!options.TryGetValue(
+            if (options.TryGetValue(
                 key: key.ToUpperInvariant(),
                 value: out string parsedValue)
-                || !int.TryParse(
+                && int.TryParse(
                     s: parsedValue,
                     style: NumberStyles.Integer,
-                    provider: CultureInfo.InvariantCulture,
-                    result: out int desiredValue))
+                    CultureInfo.InvariantCulture,
+                    out int desiredValue))
             {
-                return false;
+                return desiredValue;
             }
-            result = desiredValue;
-            return true;
+            return defaultValue;
         }
         /// <summary>
-        /// Attempts to retrieve a <c><typeparamref name="TEnum"/></c> from <c><paramref name="options"/></c>
-        /// at <c><paramref name="key"/></c>.
+        /// Retrieves a <c><typeparamref name="TEnum"/></c>
+        /// from <c><paramref name="options"/></c> at
+        /// <c><paramref name="key"/></c>.
         /// </summary>
         /// <typeparam name="TEnum">
         /// The <c><see langword="enum"/></c> type to parse the value as.
@@ -235,31 +235,31 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// The options to retrieve the value from.
         /// </param>
         /// <param name="key">
-        /// The key to try and retrieve the value with.
+        /// The key to retrieve the value with.
         /// </param>
-        /// <param name="result">
-        /// The resulting parsed value, if successful.
+        /// <param name="defaultValue">
+        /// The default value to use instead if <c><paramref name="key"/></c>
+        /// does not exist in <c><paramref name="options"/></c>.
         /// </param>
         /// <returns>
-        /// <see langword="true"/> if a valid value was found at
-        /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
-        /// Otherwise, <see langword="false"/>.
+        /// The value stored at <c><paramref name="key"/></c> in
+        /// <c><paramref name="options"/></c>.
+        /// If no such value exists, <c><paramref name="defaultValue"/></c> is
+        /// returned instead.
         /// </returns>
-        internal static bool TryGetValue<TEnum>(
-            // This diagnostic only shows up in build output logs, for reasons unknown.
+        internal static TEnum GetValue<TEnum>(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
 #pragma warning restore S3242 // Method parameters should be declared with base types
             string key,
-            out TEnum result) where TEnum : struct, Enum
+            TEnum defaultValue) where TEnum : struct, Enum
         {
-            result = default;
             if (options is null
                 || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
-                return false;
+                return defaultValue;
             }
             if (!options.TryGetValue(
                 key: key.ToUpperInvariant(),
@@ -274,10 +274,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     enumType: typeof(TEnum),
                     value: desiredValue))
             {
-                return false;
+                return defaultValue;
             }
-            result = desiredValue;
-            return true;
+            return desiredValue;
         }
         private static bool TryParseLine(
             string input,

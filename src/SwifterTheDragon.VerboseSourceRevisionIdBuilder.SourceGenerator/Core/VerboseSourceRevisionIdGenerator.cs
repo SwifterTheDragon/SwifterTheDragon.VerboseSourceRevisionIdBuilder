@@ -139,20 +139,16 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            int semanticVersionMajorVersion = ConfigurationDefaults.SemanticVersionMajorVersion;
-            if (options is null || options.Count is 0)
-            {
-                return semanticVersionMajorVersion;
-            }
-            if (AdditionalTextOptionParser.TryGetValue(
+            int defaultSemanticVersionMajorVersionLabel = ConfigurationDefaults.SemanticVersionMajorVersion;
+            int parsedSemanticVersionMajorVersionLabel = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionMajorVersionLabel,
-                result: out int? parsedSemanticVersionMajorVersion)
-                && parsedSemanticVersionMajorVersion.Value > -1)
+                defaultValue: defaultSemanticVersionMajorVersionLabel);
+            if (parsedSemanticVersionMajorVersionLabel < 0)
             {
-                semanticVersionMajorVersion = parsedSemanticVersionMajorVersion.Value;
+                return defaultSemanticVersionMajorVersionLabel;
             }
-            return semanticVersionMajorVersion;
+            return parsedSemanticVersionMajorVersionLabel;
         }
         /// <summary>
         /// Parses the semantic version minor version label from configuration
@@ -161,7 +157,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <param name="options">
         /// The configuration data to parse from.
         /// </param>
-        /// <param name="semanticVersionMajorVersion">
+        /// <param name="semanticVersionMajorVersionLabel">
         /// The semantic version major version label.
         /// </param>
         /// <returns>
@@ -169,7 +165,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><see cref="ConfigurationKeys.SemanticVersionMinorVersionLabel"/></c> in
         /// <c><paramref name="options"/></c>, if it exists.
         /// If it does not exist
-        /// &amp; <c><paramref name="semanticVersionMajorVersion"/></c>
+        /// &amp; <c><paramref name="semanticVersionMajorVersionLabel"/></c>
         /// is <c>0</c>, then <c>1</c> is returned.
         /// Otherwise,
         /// <c><see cref="ConfigurationDefaults.SemanticVersionMinorVersion"/></c>
@@ -179,26 +175,22 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
 #pragma warning restore S3242 // Method parameters should be declared with base types
-            int semanticVersionMajorVersion)
+            int semanticVersionMajorVersionLabel)
         {
-            int semanticVersionMinorVersion = ConfigurationDefaults.SemanticVersionMinorVersion;
-            if (semanticVersionMajorVersion > 0)
+            int defaultSemanticVersionMinorVersionLabel = ConfigurationDefaults.SemanticVersionMinorVersion;
+            if (semanticVersionMajorVersionLabel > 0)
             {
-                semanticVersionMinorVersion = 0;
+                defaultSemanticVersionMinorVersionLabel = 0;
             }
-            if (options is null || options.Count is 0)
-            {
-                return semanticVersionMinorVersion;
-            }
-            if (AdditionalTextOptionParser.TryGetValue(
+            int parsedSemanticVersionMinorVersionLabel = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionMinorVersionLabel,
-                result: out int? parsedSemanticVersionMinorVersion)
-                && parsedSemanticVersionMinorVersion.Value > -1)
+                defaultValue: defaultSemanticVersionMinorVersionLabel);
+            if (parsedSemanticVersionMinorVersionLabel < 0)
             {
-                semanticVersionMinorVersion = parsedSemanticVersionMinorVersion.Value;
+                return defaultSemanticVersionMinorVersionLabel;
             }
-            return semanticVersionMinorVersion;
+            return parsedSemanticVersionMinorVersionLabel;
         }
         /// <summary>
         /// Parses the semantic version patch version label from
@@ -220,20 +212,16 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            int semanticVersionPatchVersion = ConfigurationDefaults.SemanticVersionPatchVersion;
-            if (options is null || options.Count is 0)
-            {
-                return semanticVersionPatchVersion;
-            }
-            if (AdditionalTextOptionParser.TryGetValue(
+            int defaultSemanticVersionPatchVersionLabel = ConfigurationDefaults.SemanticVersionPatchVersion;
+            int parsedSemanticVersionPatchVersionLabel = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.SemanticVersionPatchVersionLabel,
-                result: out int? parsedSemanticVersionPatchVersion)
-                && parsedSemanticVersionPatchVersion.Value > -1)
+                defaultValue: defaultSemanticVersionPatchVersionLabel);
+            if (parsedSemanticVersionPatchVersionLabel < 0)
             {
-                semanticVersionPatchVersion = parsedSemanticVersionPatchVersion.Value;
+                return defaultSemanticVersionPatchVersionLabel;
             }
-            return semanticVersionPatchVersion;
+            return parsedSemanticVersionPatchVersionLabel;
         }
         /// <summary>
         /// Parses major, minor, and patch semantic version labels from
@@ -265,7 +253,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 options: options);
             int semanticVersionMinorVersionLabel = ParseSemanticVersionMinorVersion(
                 options: options,
-                semanticVersionMajorVersion: semanticVersionMajorVersionLabel);
+                semanticVersionMajorVersionLabel: semanticVersionMajorVersionLabel);
             int semanticVersionPatchVersionLabel = ParseSemanticVersionPatchVersion(
                 options: options);
             return semanticVersionMajorVersionLabel.ToString(
@@ -513,19 +501,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            if (options is null || options.Count is 0)
-            {
-                return GitReferenceType.None;
-            }
-            GitReferenceType gitReferenceType = ConfigurationDefaults.GitReferenceType;
-            if (AdditionalTextOptionParser.TryGetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.GitReferenceType,
-                result: out GitReferenceType parsedGitReferenceType))
-            {
-                gitReferenceType = parsedGitReferenceType;
-            }
-            return gitReferenceType;
+                defaultValue: ConfigurationDefaults.GitReferenceType);
         }
         /// <summary>
         /// Parses the candidate amount from configuration data.
@@ -546,19 +525,16 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            int candidateAmount = ConfigurationDefaults.CandidateAmount;
-            if (options is null || options.Count is 0)
-            {
-                return candidateAmount;
-            }
-            if (AdditionalTextOptionParser.TryGetValue(
+            int defaultCandidateAmount = ConfigurationDefaults.CandidateAmount;
+            int parsedCandidateAmount = AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.CandidateAmount,
-                result: out int? parsedCandidateAmount))
+                defaultValue: defaultCandidateAmount);
+            if (parsedCandidateAmount < 0)
             {
-                candidateAmount = parsedCandidateAmount.Value;
+                return defaultCandidateAmount;
             }
-            return candidateAmount;
+            return parsedCandidateAmount;
         }
         /// <summary>
         /// Parses the abbrev length from configuration data.
@@ -624,19 +600,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            ParentCommitType parentCommitType = ConfigurationDefaults.ParentCommitType;
-            if (options is null || options.Count is 0)
-            {
-                return parentCommitType;
-            }
-            if (AdditionalTextOptionParser.TryGetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.ParentCommitType,
-                result: out ParentCommitType parsedParentCommitType))
-            {
-                parentCommitType = parsedParentCommitType;
-            }
-            return parentCommitType;
+                defaultValue: ConfigurationDefaults.ParentCommitType);
         }
         /// <summary>
         /// Parses match patterns from configuration data.
@@ -715,19 +682,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             Dictionary<string, string> options)
 #pragma warning restore S3242 // Method parameters should be declared with base types
         {
-            GitTagState gitTagState = ConfigurationDefaults.GitTagState;
-            if (options is null || options.Count is 0)
-            {
-                return gitTagState;
-            }
-            if (AdditionalTextOptionParser.TryGetValue(
+            return AdditionalTextOptionParser.GetValue(
                 options: options,
                 key: ConfigurationKeys.GitTagState,
-                result: out GitTagState parsedGitTagState))
-            {
-                gitTagState = parsedGitTagState;
-            }
-            return gitTagState;
+                defaultValue: ConfigurationDefaults.GitTagState);
         }
         /// <summary>
         /// Parses the Git repository root directory path from
