@@ -238,7 +238,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <c><see cref="ParseSemanticVersionMajorVersion(Dictionary{string, string})"/></c>,
         /// <c><see cref="ParseSemanticVersionMinorVersion(Dictionary{string, string}, int)"/></c>,
         /// and
-        /// <c><see cref="ParseParentCommitType(Dictionary{string, string})"/></c>,
+        /// <c><see cref="ParseSemanticVersionPatchVersion(Dictionary{string, string})"/></c>,
         /// formatted as
         /// "<c>MAJOR</c>.<c>MINOR</c>.<c>PATCH</c>".
         /// </returns>
