@@ -4,7 +4,7 @@
 # SwifterTheDragon's .gitignore for SwifterTheDragon.VerboseSourceRevisionIdBuilder.
 # Please do not overwrite this file with a template!
 
-# gitattributes docs: https://git-scm.com/docs/gitignore
+# gitignore docs: https://git-scm.com/docs/gitignore
 
 # Lines starting with '#' are treated as comment lines.
 
