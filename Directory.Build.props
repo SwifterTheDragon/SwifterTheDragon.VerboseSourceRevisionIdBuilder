@@ -12,7 +12,6 @@
         <Product>VerboseSourceRevisionIdBuilder</Product>
     </PropertyGroup>
     <ItemGroup>
-        <!-- Do not add System.Reflection.AssemblyDefaultAliasAttribute here. Each assembly should receive a unique default alias. -->
         <AssemblyAttribute Include="System.CLSCompliantAttribute">
             <_Parameter1>true</_Parameter1>
         </AssemblyAttribute>
