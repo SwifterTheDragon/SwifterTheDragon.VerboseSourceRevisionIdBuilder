@@ -10,6 +10,7 @@
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
         <InformationalVersion>1.0.0</InformationalVersion>
         <Product>VerboseSourceRevisionIdBuilder</Product>
+        <Title>$(AssemblyName)</Title>
     </PropertyGroup>
     <ItemGroup>
         <AssemblyAttribute Include="System.CLSCompliantAttribute">
