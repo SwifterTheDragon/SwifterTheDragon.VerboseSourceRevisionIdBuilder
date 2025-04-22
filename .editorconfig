@@ -1,6 +1,6 @@
 # Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
 # SPDX-License-Identifier: MIT
-# This .editorconfig file should be placed in the root directory of the repo.
+# This .editorconfig file should be placed in the root directory of the repository.
 # SwifterTheDragon's .editorconfig for VerboseSourceRevisionIdBuilder.
 # Please do not overwrite this file with a template!
 
@@ -8269,7 +8269,7 @@ dotnet_diagnostic.HLQ013.severity = warning
 # This analyzer will not be used.
 # https://www.nuget.org/packages/DotNetAnalyzers.DocumentationAnalyzers
 
-# ! IDisposableAnalyzers has a concerningly high number of false positives mentioned in open issues on the source repo.
+# ! IDisposableAnalyzers has a concerningly high number of false positives mentioned in open issues on the source repository.
 # Certain documentation pages are also unfinished.
 # This analyzer will not be used.
 # https://www.nuget.org/packages/IDisposableAnalyzers/

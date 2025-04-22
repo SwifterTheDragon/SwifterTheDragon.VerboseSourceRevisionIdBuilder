@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright SwifterTheDragon, 2024-2025. All Rights Reserved. -->
 <!-- SPDX-License-Identifier: MIT -->
-<!-- This SonarLint.xml file should be placed in the root directory of the repo. -->
+<!-- This SonarLint.xml file should be placed in the root directory of the repository. -->
 <!-- SwifterTheDragon's SonarLint.xml for VerboseSourceRevisionIdBuilder. -->
 <!-- Please do not overwrite this file with a template! -->
 <AnalysisInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">

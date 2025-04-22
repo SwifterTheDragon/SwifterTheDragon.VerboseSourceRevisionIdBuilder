@@ -1,6 +1,6 @@
 # Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
 # SPDX-License-Identifier: MIT
-# This CodeMetricsConfig.txt file should be placed in the root directory of the repo.
+# This CodeMetricsConfig.txt file should be placed in the root directory of the repository.
 # SwifterTheDragon's CodeMetricsConfig.txt for VerboseSourceRevisionIdBuilder.
 # Please do not overwrite this file with a template!
 
