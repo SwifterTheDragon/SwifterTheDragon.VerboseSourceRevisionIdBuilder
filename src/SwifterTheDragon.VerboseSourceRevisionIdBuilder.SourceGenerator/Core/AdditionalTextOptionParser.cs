@@ -225,46 +225,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             return true;
         }
         /// <summary>
-        /// Attempts to retrieve a value from <c><paramref name="options"/></c>
-        /// at <c><paramref name="key"/></c>.
-        /// </summary>
-        /// <param name="options">
-        /// The options to retrieve the value from.
-        /// </param>
-        /// <param name="key">
-        /// The key to try and retrieve the value with.
-        /// </param>
-        /// <param name="result">
-        /// The resulting parsed value, if successful.
-        /// </param>
-        /// <returns>
-        /// <see langword="true"/> if a valid value was found at
-        /// <c><paramref name="key"/></c> in <c><paramref name="options"/></c>.
-        /// Otherwise, <see langword="false"/>.
-        /// </returns>
-        internal static bool TryGetValue(
-            IDictionary<string, string> options,
-            string key,
-            out string result)
-        {
-            result = null;
-            if (options is null
-                || options.Count is 0
-                || string.IsNullOrWhiteSpace(
-                    value: key))
-            {
-                return false;
-            }
-            if (!options.TryGetValue(
-                key: key.ToUpperInvariant(),
-                value: out string parsedValue))
-            {
-                return false;
-            }
-            result = parsedValue;
-            return true;
-        }
-        /// <summary>
         /// Attempts to retrieve a <c><typeparamref name="TEnum"/></c> from <c><paramref name="options"/></c>
         /// at <c><paramref name="key"/></c>.
         /// </summary>
