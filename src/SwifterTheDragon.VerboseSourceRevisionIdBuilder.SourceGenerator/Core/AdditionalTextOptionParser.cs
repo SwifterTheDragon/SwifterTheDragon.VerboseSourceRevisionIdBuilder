@@ -278,6 +278,28 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return desiredValue;
         }
+        /// <summary>
+        /// Try to parse a <c><paramref name="parsedKey"/></c> and
+        /// <c><paramref name="parsedValue"/></c> from
+        /// <c><paramref name="input"/></c>.
+        /// </summary>
+        /// <param name="input">
+        /// The line to parse a key and value from.
+        /// </param>
+        /// <param name="parsedKey">
+        /// The resulting key, if successful.
+        /// </param>
+        /// <param name="parsedValue">
+        /// The resulting value, if successful.
+        /// </param>
+        /// <returns>
+        /// <c><see langword="null"/></c> if <c><paramref name="input"/></c> is
+        /// null, whitespace, begins with '<c>#</c>' or '<c>;</c>', lacks both a
+        /// key and a value, or if either the key or value themselves are
+        /// whitespace. Otherwise, <c><paramref name="parsedKey"/></c> is the
+        /// parsed case-insensitive key, and
+        /// <c><paramref name="parsedValue"/></c> is the case-sensitive value.
+        /// </returns>
         private static bool TryParseLine(
             string input,
             out string parsedKey,
