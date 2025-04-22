@@ -24,8 +24,6 @@
         </AssemblyAttribute>
         <AssemblyAttribute Include="System.Resources.NeutralResourcesLanguageAttribute">
             <_Parameter1>en-001</_Parameter1>
-            <_Parameter2>Satellite</_Parameter2>
-            <_Parameter2_TypeName>System.Resources.UltimateResourceFallbackLocation</_Parameter2_TypeName>
         </AssemblyAttribute>
     </ItemGroup>
     <PropertyGroup>
