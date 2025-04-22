@@ -16,7 +16,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             get
             {
-                return "MajorVersion";
+                return "MajorVersionLabel";
             }
         }
         /// <summary>
@@ -26,7 +26,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             get
             {
-                return "MinorVersion";
+                return "MinorVersionLabel";
             }
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             get
             {
-                return "PatchVersion";
+                return "PatchVersionLabel";
             }
         }
         /// <summary>
