@@ -114,6 +114,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             ReadOnlyCollection<string> defaultValue)
         {
             if (options is null
+                || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
@@ -161,6 +162,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             string defaultValue)
         {
             if (options is null
+                || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
@@ -202,6 +204,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             result = null;
             if (options is null
+                || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
@@ -246,6 +249,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             result = null;
             if (options is null
+                || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
@@ -291,6 +295,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             result = default;
             if (options is null
+                || options.Count is 0
                 || string.IsNullOrWhiteSpace(
                     value: key))
             {
