@@ -295,10 +295,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <returns>
         /// <c><see langword="null"/></c> if <c><paramref name="input"/></c> is
         /// null, whitespace, begins with '<c>#</c>' or '<c>;</c>', lacks both a
-        /// key and a value, or if either the key or value themselves are
-        /// whitespace. Otherwise, <c><paramref name="parsedKey"/></c> is the
-        /// parsed case-insensitive key, and
-        /// <c><paramref name="parsedValue"/></c> is the case-sensitive value.
+        /// key and a value, or if the key itself is whitespace. Otherwise,
+        /// <c><paramref name="parsedKey"/></c> is the parsed case-insensitive
+        /// key, and <c><paramref name="parsedValue"/></c> is the case-sensitive
+        /// value.
         /// </returns>
         private static bool TryParseLine(
             string input,
@@ -334,16 +334,10 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             {
                 return false;
             }
+            parsedKey = key.ToUpperInvariant();
+            parsedValue = equalsSeparatedParts[1].TrimStart();
             if (equalsSeparatedParts.Length < 3)
             {
-                string value = equalsSeparatedParts[1].TrimStart();
-                if (string.IsNullOrWhiteSpace(
-                    value: value))
-                {
-                    return false;
-                }
-                parsedKey = key.ToUpperInvariant();
-                parsedValue = value;
                 return true;
             }
             string[] valueParts = new string[equalsSeparatedParts.Length - 2];
@@ -363,8 +357,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     .Append(
                         value: valuePart);
             }
-            parsedKey = key.ToUpperInvariant();
-            parsedValue = equalsSeparatedParts[1].TrimStart() + remainingValueBuilder;
+            parsedValue += remainingValueBuilder;
             return true;
         }
         #endregion Methods
