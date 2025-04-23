@@ -5,6 +5,6 @@ or browse a configuration file with default settings [here](./DefaultConfigurati
 
 ---
 
-Copyright SwifterTheDragon, 2024-2025. All Rights Reserved.
+Copyright SwifterTheDragon and the SwifterTheDragon.VerboseSourceRevisionIdBuilder contributors, 2024-2025. All Rights Reserved.
 
 SPDX-License-Identifier: MIT
