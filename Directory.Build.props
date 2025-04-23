@@ -9,7 +9,7 @@
         <!-- Do not add <FileVersion> here. Each assembly should receive a unique file version. -->
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
         <InformationalVersion>2.0.0</InformationalVersion>
-        <Product>VerboseSourceRevisionIdBuilder</Product>
+        <Product>SwifterTheDragon.VerboseSourceRevisionIdBuilder</Product>
         <Title>$(AssemblyName)</Title>
     </PropertyGroup>
     <ItemGroup>
