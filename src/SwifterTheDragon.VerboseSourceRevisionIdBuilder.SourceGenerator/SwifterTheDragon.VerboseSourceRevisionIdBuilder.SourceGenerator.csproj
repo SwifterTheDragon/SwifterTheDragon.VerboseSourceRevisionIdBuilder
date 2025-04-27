@@ -7,12 +7,6 @@
         <FileVersion>2.0.0.0</FileVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
         <Version>2.0.0</Version>
-        <Authors>SwifterTheDragon</Authors>
-        <PackageProjectUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/SwifterTheDragon/VerboseSourceRevisionIdBuilder</RepositoryUrl>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     </PropertyGroup>
     <ItemGroup>
       <None Include="..\..\README.md" Pack="true" PackagePath="\" />
