@@ -573,11 +573,11 @@ dotnet_diagnostic.IDE0041.severity = suggestion
 # Prefer is null check.
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true
 # IDE0045: Use conditional expression for assignment
-# Simplifies code for readability.
-# Please keep this rule's severity above silent to actively encourage shorter code.
+# If-else statements are easier to read than ternary conditionals.
+# Please keep this rule's severity above silent to actively encourage more readable code.
 dotnet_diagnostic.IDE0045.severity = suggestion
-# Prefer assignments with a ternary conditional.
-dotnet_style_prefer_conditional_expression_over_assignment = true
+# Prefer assignments with an if-else statement.
+dotnet_style_prefer_conditional_expression_over_assignment = false
 # IDE0046: Use conditional expression for return
 # Simplifies code for readability.
 # Please keep this rule's severity above silent to actively encourage shorter code.
