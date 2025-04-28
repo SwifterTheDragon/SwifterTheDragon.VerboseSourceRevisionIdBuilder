@@ -8538,7 +8538,7 @@ dotnet_diagnostic.RCS9011.severity = warning
 # Unit Testing C# files
 [Tests/**.cs]
 
-# NUnit Analyzers, which should only be used with projects that provide unit tests via NUnit.
+# NUnit.Analyzers, which should only be used with projects that provide unit tests via NUnit.
 # https://www.nuget.org/packages/NUnit.Analyzers
 # https://github.com/nunit/nunit.analyzers/tree/master/documentation
 
