@@ -1565,12 +1565,6 @@ dotnet_diagnostic.CA1515.severity = suggestion
 # Please keep this rule's severity above suggestion to actively encourage properly naming enum values.
 dotnet_diagnostic.CA1700.severity = warning
 dotnet_code_quality.CA1700.api_surface = all
-# CA1704: Identifiers should be spelled correctly
-# The name of an identifier contains one or more words that are not recognised by the Microsoft spelling checker library.
-# Please keep this rule's severity above silent to actively encourage correctly spelling identifiers.
-dotnet_diagnostic.CA1704.severity = suggestion
-# Please note that CA1704 comes from a separate Analyser package (Text.Analyzers) that is not yet ready for use.
-
 # CA1707: Identifiers should not contain underscores
 # Avoiding underscores simplifies code.
 # Please keep this rule's severity above silent to actively encourage more readable code.
@@ -1597,13 +1591,6 @@ dotnet_diagnostic.CA1712.severity = warning
 # Events should be named with descriptive words, not "Before" / "After".
 # Please keep this rule's severity above suggestion to actively encourage properly naming events.
 dotnet_diagnostic.CA1713.severity = warning
-# CA1714: Flags enums should have plural names
-# Flags enums should be named with plural names.
-# Please keep this rule's severity above suggestion to actively encourage properly naming flag enums.
-dotnet_diagnostic.CA1714.severity = warning
-dotnet_code_quality.CA1714.api_surface = all
-# Please note that CA1714 comes from a separate Analyser package (Text.Analyzers) that is not yet ready for use.
-
 # CA1715: Identifiers should have correct prefix
 # Interfaces should start with I & type parameters should start with T.
 # Please keep this rule's severity above suggestion to actively encourage properly naming identifiers.
@@ -1614,13 +1601,6 @@ dotnet_code_quality.CA1715.api_surface = all
 # Please keep this rule's severity above suggestion to actively encourage properly naming identifiers.
 dotnet_diagnostic.CA1716.severity = warning
 dotnet_code_quality.CA1716.api_surface = all
-# CA1717: Only FlagsAttribute enums should have plural names
-# Ensuring that only FlagsAttribute enums have plural names helps readability.
-# Please keep this rule's severity above suggestion to actively encourage properly naming identifiers.
-dotnet_diagnostic.CA1717.severity = warning
-dotnet_code_quality.CA1717.api_surface = all
-# Please note that CA1717 comes from a separate Analyser package (Text.Analyzers) that is not yet ready for use.
-
 # CA1720: Identifiers should not contain type names
 # Placing type names into identifiers harms readability.
 # Please keep this rule's severity above suggestion to actively encourage properly naming identifiers.
