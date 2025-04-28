@@ -51,7 +51,7 @@ indent_size = 4
 tab_width = 4
 # File character encoding
 # UTF-8 is widely supported.
-# See https://en.wikipedia.org/wiki/UTF-8#cite_ref-W3TechsWebEncoding_10-0 for details.
+# See https://en.wikipedia.org/wiki/UTF-8 for details.
 charset = utf-8
 # Trailing whitespace is redundant and should be removed.
 trim_trailing_whitespace = true
@@ -74,7 +74,7 @@ indent_size = 4
 tab_width = 4
 # File character encoding
 # UTF-8 is widely supported.
-# See https://en.wikipedia.org/wiki/UTF-8#cite_ref-W3TechsWebEncoding_10-0 for details.
+# See https://en.wikipedia.org/wiki/UTF-8 for details.
 charset = utf-8
 # Trailing whitespace is redundant and should be removed.
 trim_trailing_whitespace = true
@@ -97,7 +97,7 @@ indent_size = 4
 tab_width = 4
 # File character encoding
 # UTF-8 is widely supported.
-# See https://en.wikipedia.org/wiki/UTF-8#cite_ref-W3TechsWebEncoding_10-0 for details.
+# See https://en.wikipedia.org/wiki/UTF-8 for details.
 charset = utf-8
 # Trailing whitespace is redundant and should be removed.
 trim_trailing_whitespace = true
