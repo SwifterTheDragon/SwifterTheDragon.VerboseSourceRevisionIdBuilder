@@ -1,6 +1,7 @@
 // Copyright SwifterTheDragon, and the SwifterTheDragon.VerboseSourceRevisionIdBuilder contributors, 2024-2025. All Rights Reserved.
 // SPDX-License-Identifier: MIT
 
+using System.Diagnostics;
 using System.Text;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
@@ -29,8 +30,7 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         {
             get
             {
-                return typeof(GeneratorHelper).Assembly.GetName().Version.ToString(
-                    fieldCount: 4);
+                return FileVersionInfo.GetVersionInfo(typeof(GeneratorHelper).Assembly.Location).ProductVersion;
             }
         }
         #endregion Fields & Properties
