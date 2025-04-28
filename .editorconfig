@@ -2649,7 +2649,7 @@ dotnet_diagnostic.S1128.severity = none
 
 # S113: Files should end with a newline
 # insert_final_newline & RCS0058 should control final newline preferences, not analysers.
-# Please keep this rule's severity disabled to avoid improperly configuring final newline preferences.
+# Please keep this rule's severity disabled to avoid using multiple tools to control the same preferences.
 dotnet_diagnostic.S113.severity = none
 # Please see insert_final_newline & RCS0058 instead.
 
