@@ -934,7 +934,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 source: source,
                 action: (sourceProductionContext, configuration) =>
                 {
-                    AssemblyName assemblyName = typeof(VerboseSourceRevisionIdGenerator).Assembly.GetName();
                     sourceProductionContext.AddSource(
                         hintName: configuration.generatedFileName,
                         sourceText: SourceText.From(
