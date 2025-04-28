@@ -8,7 +8,7 @@
         <!-- Do not add <Description> here. Each assembly should receive a unique description. -->
         <!-- Do not add <FileVersion> here. Each assembly should receive a unique file version. -->
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-        <InformationalVersion>2.0.0</InformationalVersion>
+        <InformationalVersion>2.1.0</InformationalVersion>
         <Product>SwifterTheDragon.VerboseSourceRevisionIdBuilder</Product>
         <Title>$(AssemblyName)</Title>
         <Authors>SwifterTheDragon</Authors>
