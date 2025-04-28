@@ -74,10 +74,6 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         /// <summary>
         /// Makes a code footer comment to label auto-generated code.
         /// </summary>
-        /// <param name="toolName">
-        /// The name of the tool that generated the code.
-        /// Specifically, the assembly name.
-        /// </param>
         /// <param name="generatorClassName">
         /// The name of the class that generated the code.
         /// </param>
