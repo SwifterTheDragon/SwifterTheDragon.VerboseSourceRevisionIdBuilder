@@ -747,8 +747,24 @@
         <Type name="ParentCommitType">
             <Description>
                 <summary>
+                    Specifies which parent commit should be used.
                 </summary>
             </Description>
+            <Field name="None">
+                <summary>
+                    The default value. This should never be used intentionally.
+                </summary>
+            </Field>
+            <Field name="Any">
+                <summary>
+                    Any parent commit.
+                </summary>
+            </Field>
+            <Field name="FirstOnly">
+                <summary>
+                    Only the first parent commit.
+                </summary>
+            </Field>
         </Type>
         <Type name="VerboseGitDescribeConfiguration">
             <Description>

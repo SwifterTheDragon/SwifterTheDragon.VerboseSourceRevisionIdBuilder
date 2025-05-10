@@ -3,23 +3,22 @@
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Specifies which parent commit should be used.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ParentCommitType"]/Description/*'/>
     internal enum ParentCommitType
     {
-        /// <summary>
-        /// The default value.
-        /// This should never be used intentionally.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ParentCommitType"]/Field[@name="None"]/*'/>
         None = 0,
-        /// <summary>
-        /// Any parent commit.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ParentCommitType"]/Field[@name="Any"]/*'/>
         Any = 1,
-        /// <summary>
-        /// Only the first parent commit.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ParentCommitType"]/Field[@name="FirstOnly"]/*'/>
         FirstOnly = 2
     }
 }
