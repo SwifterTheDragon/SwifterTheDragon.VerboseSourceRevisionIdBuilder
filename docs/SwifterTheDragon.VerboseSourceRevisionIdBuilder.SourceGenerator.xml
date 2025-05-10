@@ -349,8 +349,185 @@
         <Type name="ConfigurationKeys">
             <Description>
                 <summary>
+                    The keys to configuration values.
                 </summary>
             </Description>
+            <Property name="SemanticVersionMajorVersionLabel">
+                <summary>
+                    Gets the key to the semantic version major version label configuration value.
+                </summary>
+                <value>
+                    The key to the semantic version major version label configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionMinorVersionLabel">
+                <summary>
+                    Gets the key to the semantic version minor version label configuration value.
+                </summary>
+                <value>
+                    The key to the semantic version minor version label configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionPatchVersionLabel">
+                <summary>
+                    Gets the key to the semantic version patch version label configuration value.
+                </summary>
+                <value>
+                    The key to the semantic version patch version label configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedFileName">
+                <summary>
+                    Gets the key to the generated file name configuration value.
+                </summary>
+                <value>
+                    The key to the generated file name configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedNamespace">
+                <summary>
+                    Gets he key to the generated namespace configuration value.
+                </summary>
+                <value>
+                    The key to the generated namespace configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedTypeName">
+                <summary>
+                    Gets the key to the generated type name configuration value.
+                </summary>
+                <value>
+                    The key to the generated type name configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedFieldName">
+                <summary>
+                    Gets the key to the generated field name configuration value.
+                </summary>
+                <value>
+                    The key to the generated field name configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionPrefix">
+                <summary>
+                    Gets the key to the semantic version prefix configuration value.
+                </summary>
+                <value>
+                    The key to the semantic version prefix configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionSuffix">
+                <summary>
+                    Gets the key to the semantic version suffix configuration value.
+                </summary>
+                <value>
+                    The key to the semantic version suffix configuration value.
+                </value>
+            </Property>
+            <Property name="DirtyMark">
+                <summary>
+                    Gets the key to the dirty mark configuration value, for labelling a working tree with local modification.
+                </summary>
+                <value>
+                    The key to the dirty mark configuration value, for labelling a working tree with local modification.
+                </value>
+            </Property>
+            <Property name="BrokenMark">
+                <summary>
+                    Gets the key to the broken mark configuration value, for labelling a corrupt repository.
+                </summary>
+                <value>
+                    The key to the broken mark configuration value, for labelling a corrupt repository.
+                </value>
+            </Property>
+            <Property name="DetachedHeadLabel">
+                <summary>
+                    Gets the key to the detached <c>HEAD</c> label configuration value, for anonymous branches.
+                </summary>
+                <value>
+                    The key to the detached <c>HEAD</c> label configuration value, for anonymous branches.
+                </value>
+            </Property>
+            <Property name="InvalidHeadLabel">
+                <summary>
+                    Gets the key to the invalid <c>HEAD</c> label configuration value, for unborn branches.
+                </summary>
+                <value>
+                    The key to the invalid <c>HEAD</c> label configuration value, for unborn branches.
+                </value>
+            </Property>
+            <Property name="DefaultGitBranchName">
+                <summary>
+                    Gets the key to the default Git branch name configuration value.
+                </summary>
+                <value>
+                    The key to the default Git branch name configuration value.
+                </value>
+            </Property>
+            <Property name="RepositoryRootDirectoryRelativeToConfigurationFilePath">
+                <summary>
+                    Gets the key to the repository root directory relative to configuration file path configuration value.
+                </summary>
+                <value>
+                    The key to the repository root directory relative to configuration file path configuration value.
+                </value>
+            </Property>
+            <Property name="GitReferenceType">
+                <summary>
+                    Gets the key to the Git reference type configuration value.
+                </summary>
+                <value>
+                    The key to the Git reference type configuration value.
+                </value>
+            </Property>
+            <Property name="CandidateAmount">
+                <summary>
+                    Gets the key to the candidate (most recent tag) amount configuration value.s
+                </summary>
+                <value>
+                    The key to the candidate (most recent tag) amount configuration value.
+                </value>
+            </Property>
+            <Property name="AbbrevLength">
+                <summary>
+                    Gets the key to the abbreviation length (the amount of hexadecimal digits to describe an abbreviated object name with) configuration value.
+                </summary>
+                <value>
+                    The key to the abbreviation length (the amount of hexadecimal digits to describe an abbreviated object name with) configuration value.
+                </value>
+            </Property>
+            <Property name="ParentCommitType">
+                <summary>
+                    Gets the key to the parent commit type configuration value.
+                </summary>
+                <value>
+                    The key to the parent commit type configuration value.
+                </value>
+            </Property>
+            <Property name="GitTagState">
+                <summary>
+                    Gets the key to the Git tag state configuration value.
+                </summary>
+                <value>
+                    The key to the Git tag state configuration value.
+                </value>
+            </Property>
+            <Property name="MatchPatterns">
+                <summary>
+                    Gets the key to the match patterns configuration value.
+                </summary>
+                <value>
+                    The key to the match patterns configuration value.
+                </value>
+            </Property>
+            <Property name="ExcludePatterns">
+                <summary>
+                    Gets the key to the exclude patterns configuration value.
+                </summary>
+                <value>
+                    The key to the exclude patterns configuration value.
+                </value>
+            </Property>
         </Type>
         <Type name="GeneratorHelper">
             <Description>

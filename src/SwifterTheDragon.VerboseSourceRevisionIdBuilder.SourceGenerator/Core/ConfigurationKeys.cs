@@ -3,15 +3,15 @@
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// The keys to configuration values.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Description/*'/>
     internal static class ConfigurationKeys
     {
         #region Fields & Properties
-        /// <summary>
-        /// The key to the semantic version major version label configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="SemanticVersionMajorVersionLabel"]/*'/>
         internal static string SemanticVersionMajorVersionLabel
         {
             get
@@ -19,9 +19,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "MajorVersionLabel";
             }
         }
-        /// <summary>
-        /// The key to the semantic version minor version label configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="SemanticVersionMinorVersionLabel"]/*'/>
         internal static string SemanticVersionMinorVersionLabel
         {
             get
@@ -29,9 +29,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "MinorVersionLabel";
             }
         }
-        /// <summary>
-        /// The key to the semantic version patch version label configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="SemanticVersionPatchVersionLabel"]/*'/>
         internal static string SemanticVersionPatchVersionLabel
         {
             get
@@ -39,9 +39,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "PatchVersionLabel";
             }
         }
-        /// <summary>
-        /// The key to the generated file name configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="GeneratedFileName"]/*'/>
         internal static string GeneratedFileName
         {
             get
@@ -49,9 +49,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "GeneratedFileName";
             }
         }
-        /// <summary>
-        /// The key to the generated namespace configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="GeneratedNamespace"]/*'/>
         internal static string GeneratedNamespace
         {
             get
@@ -59,9 +59,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "GeneratedNamespace";
             }
         }
-        /// <summary>
-        /// The key to the generated type name configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="GeneratedTypeName"]/*'/>
         internal static string GeneratedTypeName
         {
             get
@@ -69,9 +69,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "GeneratedTypeName";
             }
         }
-        /// <summary>
-        /// The key to the generated field name value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="GeneratedFieldName"]/*'/>
         internal static string GeneratedFieldName
         {
             get
@@ -79,9 +79,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "GeneratedFieldName";
             }
         }
-        /// <summary>
-        /// The key to the semantic version prefix configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="SemanticVersionPrefix"]/*'/>
         internal static string SemanticVersionPrefix
         {
             get
@@ -89,9 +89,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "Prefix";
             }
         }
-        /// <summary>
-        /// The key to the semantic version suffix configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="SemanticVersionSuffix"]/*'/>
         internal static string SemanticVersionSuffix
         {
             get
@@ -99,10 +99,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "Suffix";
             }
         }
-        /// <summary>
-        /// The key to the dirty mark configuration value for labelling a
-        /// working tree with local modification.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="DirtyMark"]/*'/>
         internal static string DirtyMark
         {
             get
@@ -110,10 +109,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "DirtyMark";
             }
         }
-        /// <summary>
-        /// The key to the broken mark configuration value for labelling a
-        /// corrupt repository.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="BrokenMark"]/*'/>
         internal static string BrokenMark
         {
             get
@@ -121,10 +119,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "BrokenMark";
             }
         }
-        /// <summary>
-        /// The key to the detached <c>HEAD</c> label
-        /// configuration value for anonymous branches.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="DetachedHeadLabel"]/*'/>
         internal static string DetachedHeadLabel
         {
             get
@@ -132,10 +129,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "DetachedHeadLabel";
             }
         }
-        /// <summary>
-        /// The key to the invalid <c>HEAD</c> label
-        /// configuration value for unborn branches.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="InvalidHeadLabel"]/*'/>
         internal static string InvalidHeadLabel
         {
             get
@@ -143,9 +139,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "InvalidHeadLabel";
             }
         }
-        /// <summary>
-        /// The key to the default Git branch name configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="DefaultGitBranchName"]/*'/>
         internal static string DefaultGitBranchName
         {
             get
@@ -153,10 +149,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "DefaultGitBranchName";
             }
         }
-        /// <summary>
-        /// The key to the repository root directory relative to configuration
-        /// file path configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="RepositoryRootDirectoryRelativeToConfigurationFilePath"]/*'/>
         internal static string RepositoryRootDirectoryRelativeToConfigurationFilePath
         {
             get
@@ -164,9 +159,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "RepositoryRootRelativeToConfigurationFilePath";
             }
         }
-        /// <summary>
-        /// The key to the Git reference type configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="GitReferenceType"]/*'/>
         internal static string GitReferenceType
         {
             get
@@ -174,10 +169,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "GitReferenceType";
             }
         }
-        /// <summary>
-        /// The key to the candidate (most recent tag) amount configuration
-        /// value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="CandidateAmount"]/*'/>
         internal static string CandidateAmount
         {
             get
@@ -185,11 +179,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "CandidateAmount";
             }
         }
-        /// <summary>
-        /// The key to the abbrev length (amount of hexadecimal digits to
-        /// describe an abbreviated object name with)
-        /// configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="AbbrevLength"]/*'/>
         internal static string AbbrevLength
         {
             get
@@ -197,9 +189,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "AbbrevLength";
             }
         }
-        /// <summary>
-        /// The key to the parent commit type configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="ParentCommitType"]/*'/>
         internal static string ParentCommitType
         {
             get
@@ -207,9 +199,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "ParentCommitType";
             }
         }
-        /// <summary>
-        /// The key to the Git tag state configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="GitTagState"]/*'/>
         internal static string GitTagState
         {
             get
@@ -217,9 +209,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "GitTagState";
             }
         }
-        /// <summary>
-        /// The key to the match pattern configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="MatchPatterns"]/*'/>
         internal static string MatchPatterns
         {
             get
@@ -227,9 +219,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 return "MatchPatterns";
             }
         }
-        /// <summary>
-        /// The key to the exclude pattern configuration value.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="ConfigurationKeys"]/Property[@name="ExcludePatterns"]/*'/>
         internal static string ExcludePatterns
         {
             get
