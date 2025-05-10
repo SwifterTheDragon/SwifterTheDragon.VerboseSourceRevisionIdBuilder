@@ -769,8 +769,157 @@
         <Type name="VerboseGitDescribeConfiguration">
             <Description>
                 <summary>
+                    Configuration data for verbose Git describe commands.
                 </summary>
             </Description>
+            <Field name="i_dirtyMark">
+                <summary>
+                    The backing store for <c><see cref="DirtyMark" /></c>.
+                </summary>
+            </Field>
+            <Property name="DirtyMark">
+                <summary>
+                    Gets the dirty mark value.
+                </summary>
+                <value>
+                    The value for the <c>--dirty=[=&lt;mark&gt;]</c> argument, labelling a working tree with local modification.
+                </value>
+            </Property>
+            <Field name="i_brokenMark">
+                <summary>
+                    The backing store for <c><see cref="BrokenMark" /></c>.
+                </summary>
+            </Field>
+            <Property name="BrokenMark">
+                <summary>
+                    Gets the broken mark value.
+                </summary>
+                <value>
+                    The value for the <c>--broken[=&lt;mark&gt;]</c> argument, labelling a corrupt repository.
+                </value>
+            </Property>
+            <Field name="i_invalidHeadLabel">
+                <summary>
+                    The backing store for <c><see cref="InvalidHeadLabel" /></c>.
+                </summary>
+            </Field>
+            <Property name="InvalidHeadLabel">
+                <summary>
+                    Gets the invalid <c>HEAD</c> label.
+                </summary>
+                <value>
+                    A label for an invalid <c>HEAD</c> state, such as unborn branches.
+                </value>
+            </Property>
+            <Field name="i_gitReferenceType">
+                <summary>
+                    The backing store for <c><see cref="GitReferenceType" /></c>.
+                </summary>
+            </Field>
+            <Property name="GitReferenceType">
+                <summary>
+                    Gets the value for the arguments that specify which reference types are allowed.
+                </summary>
+                <value>
+                    The value for the arguments that specify which reference types are allowed.
+                </value>
+            </Property>
+            <Field name="i_candidateAmount">
+                <summary>
+                    The backing store for <c><see cref="CandidateAmount" /></c>.
+                </summary>
+            </Field>
+            <Property name="CandidateAmount">
+                <summary>
+                    Gets the value for the candidates argument.
+                </summary>
+                <value>
+                    The value for the <c>--candidates=&lt;n&gt;</c> argument, specifying the amount of most recent tags to describe <c>HEAD</c> with.
+                </value>
+            </Property>
+            <Field name="i_abbrevLength">
+                <summary>
+                    The backing store for <c><see cref="AbbrevLength" /></c>.
+                </summary>
+            </Field>
+            <Property name="AbbrevLength">
+                <summary>
+                    Gets the abbreviation length value.
+                </summary>
+                <value>
+                    The value for the <c>--abbrev=&lt;n&gt;</c> argument, specifying how many hexadecimal digits of the abbreviated object name to use, suppressing <c>--long</c> if <c>0</c>.
+                </value>
+            </Property>
+            <Field name="i_parentCommitType">
+                <summary>
+                    The backing store for <c><see cref="ParentCommitType" /></c>.
+                </summary>
+            </Field>
+            <Property name="ParentCommitType">
+                <summary>
+                    Gets the parent commit type value.
+                </summary>
+                <value>
+                    Specifies if the <c>--first-parent</c> argument should be included, or omitted, controlling if only the first parent of a merge commit should be followed.
+                </value>
+            </Property>
+            <Field name="i_matchPatterns">
+                <summary>
+                    The backing store for <c><see cref="MatchPatterns" /></c>.
+                </summary>
+            </Field>
+            <Property name="MatchPatterns">
+                <summary>
+                    Gets the match patterns value.
+                </summary>
+                <value>
+                    A collection of patterns for the <c>--match &lt;pattern&gt;</c> argument, specifying glob patterns that references must match.
+                </value>
+            </Property>
+            <Field name="i_excludePatterns">
+                <summary>
+                    The backing store for <c><see cref="ExcludePatterns" /></c>.
+                </summary>
+            </Field>
+            <Property name="ExcludePatterns">
+                <summary>
+                    Gets the exclude patterns value.
+                </summary>
+                <value>
+                    A collection of patterns for the <c>--exclude &lt;pattern&gt;</c> argument, specifying glob patterns that references must not match.
+                </value>
+            </Property>
+            <Field name="i_gitTagState">
+                <summary>
+                    The backing store for <c><see cref="GitTagState" /></c>.
+                </summary>
+            </Field>
+            <Property name="GitTagState">
+                <summary>
+                    Gets the Git tag state value.
+                </summary>
+                <value>
+                    Specifies if the <c>--contains</c> argument should be included, or omitted, controlling if tags containing <c>HEAD</c> should be used, or tags predating <c>HEAD</c>.
+                </value>
+            </Property>
+            <Field name="i_gitRepositoryRootDirectoryPath">
+                <summary>
+                    The backing store for <c><see cref="GitRepositoryRootDirectoryPath" /></c>.
+                </summary>
+            </Field>
+            <Property name="GitRepositoryRootDirectoryPath">
+                <summary>
+                    Gets the Git repository root directory path value.
+                </summary>
+                <value>
+                    The absolute file path to the Git repository root directory.
+                </value>
+            </Property>
+            <Method name="#ctor">
+                <summary>
+                    This empty constructor is here solely to reduce accessibility from <c><see langword="public" /></c>, down to <c><see langword="internal" /></c>.
+                </summary>
+            </Method>
         </Type>
         <Type name="VerboseSourceRevisionIdGenerator">
             <Description>

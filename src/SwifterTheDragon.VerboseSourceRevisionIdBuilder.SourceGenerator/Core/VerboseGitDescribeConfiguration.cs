@@ -5,20 +5,19 @@ using System.Collections.ObjectModel;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Configuration data for verbose Git describe commands.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Description/*'/>
     internal sealed class VerboseGitDescribeConfiguration
     {
         #region Fields & Properties
-        /// <summary>
-        /// The backing store for <c><see cref="DirtyMark"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_dirtyMark"]/*'/>
         private string i_dirtyMark;
-        /// <summary>
-        /// The value for the <c>--dirty[=&lt;mark&gt;]</c> argument labelling a
-        /// working tree with local modification.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="DirtyMark"]/*'/>
         internal string DirtyMark
         {
             get
@@ -30,14 +29,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_dirtyMark = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="BrokenMark"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_brokenMark"]/*'/>
         private string i_brokenMark;
-        /// <summary>
-        /// The value for the <c>--broken[=&lt;mark&gt;]</c> argument labelling a
-        /// corrupt repository.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="BrokenMark"]/*'/>
         internal string BrokenMark
         {
             get
@@ -49,13 +47,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_brokenMark = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="InvalidHeadLabel"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_invalidHeadLabel"]/*'/>
         private string i_invalidHeadLabel;
-        /// <summary>
-        /// A label for an invalid <c>HEAD</c> state, such as unborn branches.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="InvalidHeadLabel"]/*'/>
         internal string InvalidHeadLabel
         {
             get
@@ -67,14 +65,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_invalidHeadLabel = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="GitReferenceType"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_gitReferenceType"]/*'/>
         private GitReferenceType i_gitReferenceType;
-        /// <summary>
-        /// The value for the arguments that specify which reference types
-        /// are allowed.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="GitReferenceType"]/*'/>
         internal GitReferenceType GitReferenceType
         {
             get
@@ -86,14 +83,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_gitReferenceType = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="CandidateAmount"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_candidateAmount"]/*'/>
         private int i_candidateAmount;
-        /// <summary>
-        /// The value for the <c>--candidates=&lt;n&gt;</c> argument, specifying
-        /// the amount of most recent tags to describe <c>HEAD</c> with.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="CandidateAmount"]/*'/>
         internal int CandidateAmount
         {
             get
@@ -105,15 +101,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_candidateAmount = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="AbbrevLength"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_abbrevLength"]/*'/>
         private string i_abbrevLength;
-        /// <summary>
-        /// The value for the <c>--abbrev=&lt;n&gt;</c> argument, specifying
-        /// how many hexadecimal digits of the abbreviated object name to use,
-        /// suppressing <c>--long</c> if <c>0</c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="AbbrevLength"]/*'/>
         internal string AbbrevLength
         {
             get
@@ -125,15 +119,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_abbrevLength = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="ParentCommitType"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_parentCommitType"]/*'/>
         private ParentCommitType i_parentCommitType;
-        /// <summary>
-        /// Specifies if the <c>--first-parent</c> argument should be included
-        /// or omitted, controlling if only the first parent of a merge commit
-        /// should be followed.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="ParentCommitType"]/*'/>
         internal ParentCommitType ParentCommitType
         {
             get
@@ -145,14 +137,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_parentCommitType = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="MatchPatterns"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_matchPatterns"]/*'/>
         private ReadOnlyCollection<string> i_matchPatterns;
-        /// <summary>
-        /// A collection of patterns for the <c>--match &lt;pattern&gt;</c>
-        /// argument, specifying glob patterns that references must match.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="MatchPatterns"]/*'/>
         internal ReadOnlyCollection<string> MatchPatterns
         {
             get
@@ -164,14 +155,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_matchPatterns = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="ExcludePatterns"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_excludePatterns"]/*'/>
         private ReadOnlyCollection<string> i_excludePatterns;
-        /// <summary>
-        /// A collection of patterns for the <c>--exclude &lt;pattern&gt;</c>
-        /// argument, specifying glob patterns that references must not match.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="ExcludePatterns"]/*'/>
         internal ReadOnlyCollection<string> ExcludePatterns
         {
             get
@@ -183,15 +173,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_excludePatterns = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="GitTagState"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_gitTagState"]/*'/>
         private GitTagState i_gitTagState;
-        /// <summary>
-        /// Specifies if the <c>--contains</c> argument should be included or
-        /// omitted, controlling if tags containing <c>HEAD</c> should be used,
-        /// or tags predating <c>HEAD</c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="GitTagState"]/*'/>
         internal GitTagState GitTagState
         {
             get
@@ -203,13 +191,13 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 i_gitTagState = value;
             }
         }
-        /// <summary>
-        /// The backing store for <c><see cref="GitRepositoryRootDirectoryPath"/></c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Field[@name="i_gitRepositoryRootDirectoryPath"]/*'/>
         private string i_gitRepositoryRootDirectoryPath;
-        /// <summary>
-        /// The absolute file path to the Git repository root directory.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Property[@name="GitRepositoryRootDirectoryPath"]/*'/>
         internal string GitRepositoryRootDirectoryPath
         {
             get
@@ -223,9 +211,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         }
         #endregion Fields & Properties
         #region Methods
-        /// <summary>
-        /// The default constructor, present solely to reduce accessibility.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseGitDescribeConfiguration"]/Method[@name="#ctor"]/*'/>
         internal VerboseGitDescribeConfiguration()
         {
             // Do nothing.
