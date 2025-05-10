@@ -6,24 +6,15 @@ using System.IO;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Provides command line utilities, such as executing a command.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="CommandLineUtilities"]/Description/*'/>
     internal static class CommandLineUtilities
     {
         #region Methods
-        /// <summary>
-        /// Executes a command through <c>cmd.exe</c> in the desired directory.
-        /// </summary>
-        /// <param name="command">
-        /// The command to be passed to <c>cmd.exe</c>
-        /// </param>
-        /// <param name="directory">
-        /// The directory to run the command on.
-        /// </param>
-        /// <returns>
-        /// The output of the command that was executed.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="CommandLineUtilities"]/Method[@name="ExecuteCommandLineCommand(System.String,System.String)"]/*'/>
         internal static string ExecuteCommandLineCommand(
             string command,
             string directory)
@@ -65,20 +56,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return output;
         }
-        /// <summary>
-        /// Attempts to get a working directory from a path.
-        /// </summary>
-        /// <param name="path">
-        /// The path to try and get the working directory from.
-        /// </param>
-        /// <param name="workingDirectory">
-        /// The resulting working directory, if successful.
-        /// </param>
-        /// <returns>
-        /// <see langword="true"/> if a valid working directory was found using the
-        /// specified <c><paramref name="path"/></c>.
-        /// Otherwise, <see langword="false"/>.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="CommandLineUtilities"]/Method[@name="TryGetWorkingDirectory(System.String,System.String@)"]/*'/>
         private static bool TryGetWorkingDirectory(
             string path,
             out string workingDirectory)

@@ -131,8 +131,37 @@
         <Type name="CommandLineUtilities">
             <Description>
                 <summary>
+                    Provides command line utilities, such as executing a command.
                 </summary>
             </Description>
+            <Method name="ExecuteCommandLineCommand(System.String,System.String)">
+                <summary>
+                    Executes a command via <c>cmd.exe</c> in the desired directory.
+                </summary>
+                <param name="command">
+                    The command to be passed to <c>cmd.exe</c>.
+                </param>
+                <param name="directory">
+                    The directory to run the command on.
+                </param>
+                <returns>
+                    The output of the command that was executed.
+                </returns>
+            </Method>
+            <Method name="TryGetWorkingDirectory(System.String,System.String@)">
+                <summary>
+                    Try to get a working directory from a path.
+                </summary>
+                <param name="path">
+                    The path to try to get the working directory from.
+                </param>
+                <param name="workingDirectory">
+                    The resulting working directory, if successful.
+                </param>
+                <returns>
+                    <c><see langword="false" /></c> if a valid working directory was not found. Otherwise <c><see langword="true" /></c>, and <c><paramref name="workingDirectory" /></c> is the working directory that was found.
+                </returns>
+            </Method>
         </Type>
         <Type name="ConfigurationDefaults">
             <Description>
