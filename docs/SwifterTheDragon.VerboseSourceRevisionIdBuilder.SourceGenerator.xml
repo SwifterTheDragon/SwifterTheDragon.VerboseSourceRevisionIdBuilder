@@ -166,8 +166,185 @@
         <Type name="ConfigurationDefaults">
             <Description>
                 <summary>
+                    The default values for configuration.
                 </summary>
             </Description>
+            <Property name="SemanticVersionMajorVersion">
+                <summary>
+                    Gets the default semantic version major version configuration value.
+                </summary>
+                <value>
+                    The default semantic version major version configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionMinorVersion">
+                <summary>
+                    Gets the default semantic version minor version configuration value.
+                </summary>
+                <value>
+                    The default semantic version minor version configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionPatchVersion">
+                <summary>
+                    Gets the default semantic version patch version configuration value.
+                </summary>
+                <value>
+                    The default semantic version patch version configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionPrefix">
+                <summary>
+                    Gets the default semantic version prefix configuration value.
+                </summary>
+                <value>
+                    The default semantic version prefix configuration value.
+                </value>
+            </Property>
+            <Property name="SemanticVersionSuffix">
+                <summary>
+                    Gets the default semantic version suffix configuration value.
+                </summary>
+                <value>
+                    The default semantic version suffix configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedFileName">
+                <summary>
+                    Gets the default generated file name configuration value.
+                </summary>
+                <value>
+                    The default generated file name configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedNamespace">
+                <summary>
+                    Gets the default generated namespace configuration value.
+                </summary>
+                <value>
+                    The default generated namespace configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedTypeName">
+                <summary>
+                    Gets the default generated type name configuration value.
+                </summary>
+                <value>
+                    The default generated type name configuration value.
+                </value>
+            </Property>
+            <Property name="GeneratedFieldName">
+                <summary>
+                    Gets the default generated field name configuration value.
+                </summary>
+                <value>
+                    The default generated field name configuration value.
+                </value>
+            </Property>
+            <Property name="DirtyMark">
+                <summary>
+                    Gets the default dirty mark configuration value, for labelling a working tree with local modification.
+                </summary>
+                <value>
+                    The default dirty mark configuration value, for labelling a working tree with local modification.
+                </value>
+            </Property>
+            <Property name="BrokenMark">
+                <summary>
+                    Gets the default broken mark configuration value, for labelling a corrupt repository.
+                </summary>
+                <value>
+                    The default broken mark configuration value, for labelling a corrupt repository.
+                </value>
+            </Property>
+            <Property name="DetachedHeadLabel">
+                <summary>
+                    Gets the default detached <c>HEAD</c> label configuration value, for anonymous branches.
+                </summary>
+                <value>
+                    The default detached <c>HEAD</c> label configuration value, for anonymous branches.
+                </value>
+            </Property>
+            <Property name="InvalidHeadLabel">
+                <summary>
+                    Gets the default invalid <c>HEAD</c> label configuration value, for unborn branches.
+                </summary>
+                <value>
+                    The default invalid <c>HEAD</c> label configuration value, for unborn branches.
+                </value>
+            </Property>
+            <Property name="DefaultGitBranchName">
+                <summary>
+                    Gets the default Git branch name configuration value.
+                </summary>
+                <value>
+                    The default Git branch name configuration value.
+                </value>
+            </Property>
+            <Property name="RepositoryRootDirectoryRelativeToConfigurationFilePath">
+                <summary>
+                    Gets the default configuration value for the repository root directory relative to configuration file path.
+                </summary>
+                <value>
+                    The default configuration value for the repository root directory relative to configuration file path.
+                </value>
+            </Property>
+            <Property name="GitReferenceType">
+                <summary>
+                    Gets the default configuration value for the Git reference type to be described.
+                </summary>
+                <value>
+                    The default configuration value for the Git reference type to be described.
+                </value>
+            </Property>
+            <Property name="CandidateAmount">
+                <summary>
+                    Gets the default configuration value for the amount of most recent tags to describe <c>HEAD</c> with.
+                </summary>
+                <value>
+                    The default configuration value for the amount of most recent tags to describe <c>HEAD</c> with.
+                </value>
+            </Property>
+            <Property name="AbbrevLength">
+                <summary>
+                    Gets the default configuration value for the amount of hexadecimal digits to describe the abbreviated object name with.
+                </summary>
+                <value>
+                    The default configuration value for the amount of hexadecimal digits to describe the abbreviated object name with.
+                </value>
+            </Property>
+            <Property name="ParentCommitType">
+                <summary>
+                    Gets the default configuration value for following merge commit parent commits.
+                </summary>
+                <value>
+                    The default configuration value for following merge commit parent commits.
+                </value>
+            </Property>
+            <Property name="GitTagState">
+                <summary>
+                    Gets the default configuration value for if tags containing <c>HEAD</c> should be used, instead of tags predating <c>HEAD</c>.
+                </summary>
+                <value>
+                    The default configuration value for if tags containing <c>HEAD</c> should be used, instead of tags predating <c>HEAD</c>.
+                </value>
+            </Property>
+            <Property name="MatchPatterns">
+                <summary>
+                    Gets the default configuration value for match patterns to filter references with.
+                </summary>
+                <value>
+                    The default configuration value for match patterns to filter references with.
+                </value>
+            </Property>
+            <Property name="ExcludePatterns">
+                <summary>
+                    Gets the default configuration value for exclude patterns to filter references with.
+                </summary>
+                <value>
+                    The default configuration value for exclude patterns to filter references with.
+                </value>
+            </Property>
         </Type>
         <Type name="ConfigurationKeys">
             <Description>
