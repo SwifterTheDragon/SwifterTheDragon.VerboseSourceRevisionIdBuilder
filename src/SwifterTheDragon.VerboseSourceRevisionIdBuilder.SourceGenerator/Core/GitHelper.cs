@@ -7,17 +7,15 @@ using System.Text;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Provides Git related utilities,
-    /// such as fetching the current branch name.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Description/*'/>
     internal static class GitHelper
     {
         #region Fields & Properties
-        /// <summary>
-        /// The maximum amount of hexadecimal digits that a
-        /// SHA-1 hash can be represented with.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Property[@name="AbbrevMaximum"]/*'/>
         private static int AbbrevMaximum
         {
             get
@@ -27,18 +25,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
         }
         #endregion Fields & Properties
         #region Methods
-        /// <summary>
-        /// Runs a verbose git describe command and returns the output.
-        /// </summary>
-        /// <param name="configuration">
-        /// The configuration data for the verbose Git describe command.
-        /// </param>
-        /// <returns>
-        /// The output of a verbose Git describe command
-        /// with trailing white space trimmed.
-        /// If output is blank, then
-        /// <c><see cref="GetGitDescribeFallback"/></c> is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="GetVerboseGitDescribe(SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.VerboseGitDescribeConfiguration)"]/*'/>
         internal static string GetVerboseGitDescribe(
             VerboseGitDescribeConfiguration configuration)
         {
@@ -97,21 +86,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return verboseGitDescribe;
         }
-        /// <summary>
-        /// Runs a command to fetch the current
-        /// git branch name and returns the output.
-        /// </summary>
-        /// <param name="detachedHeadLabel">
-        /// The label for a detached HEAD state.
-        /// </param>
-        /// <param name="repositoryRootDirectoryPath">
-        /// The path to the root directory of the Git repository.
-        /// </param>
-        /// <returns>
-        /// The output of <c>git branch --show-current</c>.
-        /// If output is blank, then
-        /// <c><paramref name="detachedHeadLabel"/></c> is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="GetCurrentGitBranchName(System.String,System.String)"]/*'/>
         internal static string GetCurrentGitBranchName(
             string detachedHeadLabel,
             string repositoryRootDirectoryPath)
@@ -126,21 +103,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return currentBranchName;
         }
-        /// <summary>
-        /// Runs a fallback git describe command and returns the output.
-        /// </summary>
-        /// <param name="invalidHeadLabel">
-        /// A text value representing an invalid HEAD state.
-        /// </param>
-        /// <param name="gitRepositoryRootDirectoryPath">
-        /// The path to the root directory of the Git repository.
-        /// </param>
-        /// <returns>
-        /// The output of
-        /// <c>git describe --always</c> with trailing white space trimmed.
-        /// If output is blank, then
-        /// <c><paramref name="invalidHeadLabel"/></c> is returned instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="GetGitDescribeFallback(System.String,System.String)"]/*'/>
         private static string GetGitDescribeFallback(
             string invalidHeadLabel,
             string gitRepositoryRootDirectoryPath)
@@ -155,23 +120,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return gitDescribeFallback;
         }
-        /// <summary>
-        /// Makes a list of pattern arguments.
-        /// </summary>
-        /// <param name="patternsToAdd">
-        /// The patterns to be added to the arguments.
-        /// </param>
-        /// <param name="patternArgument">
-        /// The argument taking a pattern.
-        /// </param>
-        /// <example>
-        /// Given a pattern argument <c>--match</c>
-        /// and patterns <c>pattern1</c> &amp; <c>pattern2</c>, the resulting string
-        /// will be <c> --match "pattern1" --match "pattern2"</c>.
-        /// </example>
-        /// <returns>
-        /// Each pattern will be added to the argument taking a pattern.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="AddPatterns(System.Collections.ObjectModel.ReadOnlyCollection{System.String},System.String)"]/*'/>
         private static string AddPatterns(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             ReadOnlyCollection<string> patternsToAdd,
@@ -203,22 +154,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return patternBuilder.ToString();
         }
-        /// <summary>
-        /// Escapes backslashes and double quotation marks for <c>--dirty</c>
-        /// and <c>--broken</c> arguments from <c>git describe</c>,
-        /// then pads the result in double quotation marks.
-        /// </summary>
-        /// <param name="unescapedMark">
-        /// The mark to be escaped.
-        /// </param>
-        /// <example>
-        /// <c>\"</c> becomes <c>"\\\""</c>.
-        /// </example>
-        /// <returns>
-        /// <c><paramref name="unescapedMark"/></c> with backslashes and double
-        /// quotation marks escaped, then surrounds the result in double
-        /// quotation marks.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="EscapeMark(System.String)"]/*'/>
         private static string EscapeMark(
             string unescapedMark)
         {
@@ -237,19 +175,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     newValue: "\\\"");
             return '\"' + escapedMark + '\"';
         }
-        /// <summary>
-        /// Gives a reference type argument.
-        /// </summary>
-        /// <param name="gitReferenceType">
-        /// The reference type to transform into an argument.
-        /// </param>
-        /// <returns>
-        /// "<c> --tags</c>" if <c><paramref name="gitReferenceType"/></c> is
-        /// <see cref="GitReferenceType.Tags"/>,
-        /// "<c> --all</c>" if <c><paramref name="gitReferenceType"/></c> is
-        /// <see cref="GitReferenceType.All"/>,
-        /// otherwise an empty string.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="AddReferenceType(SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitReferenceType)"]/*'/>
         private static string AddReferenceType(
             GitReferenceType gitReferenceType)
         {
@@ -266,22 +194,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return string.Empty;
         }
-        /// <summary>
-        /// Gives arguments that specify the format length.
-        /// </summary>
-        /// <param name="abbrevLength">
-        /// How long the formatted output should be.
-        /// </param>
-        /// <returns>
-        /// If <c><paramref name="abbrevLength"/></c> is below <c>1</c>,
-        /// an empty string.
-        /// If <c><paramref name="abbrevLength"/></c> is above <c>0</c>,
-        /// <c><paramref name="abbrevLength"/></c> is clamped below
-        /// <c><see cref="AbbrevMaximum"/></c> (inclusive) and "
-        /// <c> --abbrev=<paramref name="abbrevLength"/> --long</c>" is used.
-        /// Otherwise (if <c><paramref name="abbrevLength"/></c> is not a
-        /// valid integer), "<c> --long</c>".
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="AddFormatLength(System.String)"]/*'/>
         private static string AddFormatLength(
             string abbrevLength)
         {
@@ -316,18 +231,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 + ConfigurationDefaults.AbbrevLength.ToString(
                     provider: CultureInfo.InvariantCulture);
         }
-        /// <summary>
-        /// Removes characters not allowed by semantic versioning 2.0.0.
-        /// </summary>
-        /// <param name="input">
-        /// The string to be normalised.
-        /// </param>
-        /// <example>
-        /// "<c>./~^value</c>" becomes "<c>-Period--ForwardSlash--Tilde--Caret-value</c>".
-        /// </example>
-        /// <returns>
-        /// The normalised string.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitHelper"]/Method[@name="NormaliseIllegalSemanticVersionCharacters(System.String)"]/*'/>
         private static string NormaliseIllegalSemanticVersionCharacters(
             string input)
         {

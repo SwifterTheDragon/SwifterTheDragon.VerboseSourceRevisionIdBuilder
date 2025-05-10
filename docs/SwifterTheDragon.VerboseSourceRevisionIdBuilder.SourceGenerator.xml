@@ -577,8 +577,123 @@
         <Type name="GitHelper">
             <Description>
                 <summary>
+                    Provides Git related utilities, such as fetching the current branch name.
                 </summary>
             </Description>
+            <Property name="AbbrevMaximum">
+                <summary>
+                    Gets the maximum amount of hexadecimal digits that a <c>SHA-1</c> hash can be represented with.
+                </summary>
+                <value>
+                    The maximum amount of hexadecimal digits that a <c>SHA-1</c> hash can be represented with.
+                </value>
+            </Property>
+            <Method name="GetVerboseGitDescribe(SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.VerboseGitDescribeConfiguration)">
+                <summary>
+                    Runs a verbose Git describe commmand, and returns the result.
+                </summary>
+                <param name="configuration">
+                    The configuration data for the verbose Git describe command.
+                </param>
+                <returns>
+                    The output of the verbose Git describe command, with trailing white space trimmed. If output is blank, then <c><see cref="GetGitDescribeFallback" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="GetCurrentGitBranchName(System.String,System.String)">
+                <summary>
+                    Runs a command to fetch the current Git branch name, and returns the result.
+                </summary>
+                <param name="detachedHeadLabel">
+                    The label for a detached <c>HEAD</c> state.
+                </param>
+                <param name="repositoryRootDirectoryPath">
+                    The path to the root directory of the Git repository.
+                </param>
+                <returns>
+                    The output of <c>git branch --show-current</c>. If output is blank, then <c><paramref name="detachedHeadLabel" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="GetGitDescribeFallback(System.String,System.String)">
+                <summary>
+                    Runs a fallback Git describe command, and returns the result.
+                </summary>
+                <param name="invalidHeadLabel">
+                    The label for an invalid <c>HEAD</c> state.
+                </param>
+                <param name="gitRepositoryRootDirectoryPath">
+                    The path to the root directory of the Git repository.
+                </param>
+                <returns>
+                    The output of <c>git describe --always</c>, with trailing white space trimmed. If output is blank, then <c><paramref name-="invalidHeadLabel" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="AddPatterns(System.Collections.ObjectModel.ReadOnlyCollection{System.String},System.String)">
+                <summary>
+                    Makes a list of pattern arguments.
+                </summary>
+                <param name="patternsToAdd">
+                    The patterns to be added to the arguments.
+                </param>
+                <param name="patternArgument">
+                    The argument taking patterns.
+                </param>
+                <example>
+                    Given an argument accepting patterns <c>--match</c>, and patterns <c>pattern1</c>, &amp; <c>pattern2</c>, the resulting string would be <c>--match &quot;pattern1&quot; --match &quot;pattern2&quot;</c>.
+                </example>
+                <returns>
+                    <c><paramref name="patternArgument" /></c> with <c><paramref name="patternsToAdd" /></c> added.
+                </returns>
+            </Method>
+            <Method name="EscapeMark(System.String)">
+                <summary>
+                    Escapes backslashes, and double quotation marks for <c>--dirty</c>, and <c>--broken</c> arguments from <c>git describe</c>, then pads the result in double quotation marks.
+                </summary>
+                <param name="unescapedMark">
+                    The mark to be escaped.
+                </param>
+                <example>
+                    <c>\&quot;</c> becomes <c>&quot;\\\&quot;&quot;</c>.
+                </example>
+                <returns>
+                    <c><paramref name="unescapedMark" /></c> with backslashes, and double quotation marks escaped, and the resulting value surrounded in double quotation marks.
+                </returns>
+            </Method>
+            <Method name="AddReferenceType(SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitReferenceType)">
+                <summary>
+                    Gives a reference type argument.
+                </summary>
+                <param name="gitReferenceType">
+                    The reference type to be transformed into an argument.
+                </param>
+                <returns>
+                    &quot;<c> --tags</c>&quot; if <c><paramref name="gitReferenceType" /></c> is <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitReferenceType.Tags" /></c>. &quot;<c> --all</c>&quot; if <c><paramref name="gitReferenceType" /></c> is <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitReferenceType.All" /></c>. Otherwise, an empty <c><see langword="string" /></c>.
+                </returns>
+            </Method>
+            <Method name="AddFormatLength(System.String)">
+                <summary>
+                    Gives arguments that specify the format length.
+                </summary>
+                <param name="abbrevLength">
+                    How long the formatted output should be.
+                </param>
+                <returns>
+                    If <c><paramref name="abbrevLength" /></c> is below <c>1</c>, then an empty <c><see langword="string" /></c>. If <c><paramref name="abbrevLength" /></c> is above <c>0</c>, then <c><paramref name="abbrevLength" /></c> is clamped below <c><see cref="AbbrevLength" /></c> (inclusive), and &quot;<c> --abbrev=<paramref name="abbrevLength" /> --long</c>&quot; is used. Otherwise (if <c><paramref name="abbrevLength" /></c> is not a valid <c><see langword="int" /></c>), then &quot;<c> --long</c>&quot; is used.
+                </returns>
+            </Method>
+            <Method name="NormaliseIllegalSemanticVersionCharacters(System.String)">
+                <summary>
+                    Removes characters not allowed by <c><see href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</see></c>.
+                </summary>
+                <param name="input">
+                    The text to be normalised.
+                </param>
+                <example>
+                    &quot;<c>./~^value</c>&quot; becomes &quot;<c>-Period--ForwardSlash--Tilde--Caret-value</c>&quot;.
+                </example>
+                <returns>
+                    The normalised string.
+                </returns>
+            </Method>
         </Type>
         <Type name="GitReferenceType">
             <Description>
