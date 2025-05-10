@@ -3,28 +3,26 @@
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Specifies which reference types are being referred to.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitReferenceType"]/Description/*'/>
     internal enum GitReferenceType
     {
-        /// <summary>
-        /// The default value.
-        /// This should never be used intentionally.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitReferenceType"]/Field[@name="None"]/*'/>
         None = 0,
-        /// <summary>
-        /// Only annotated tags are being referenced.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitReferenceType"]/Field[@name="AnnotatedTags"]/*'/>
         AnnotatedTags = 1,
-        /// <summary>
-        /// Both annotated tags and lightweight (non-annotated)
-        /// tags are being referenced.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitReferenceType"]/Field[@name="Tags"]/*'/>
         Tags = 2,
-        /// <summary>
-        /// All reference types are being referenced.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitReferenceType"]/Field[@name="All"]/*'/>
         All = 3
     }
 }

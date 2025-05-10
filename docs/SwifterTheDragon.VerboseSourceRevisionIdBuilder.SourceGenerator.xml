@@ -698,8 +698,29 @@
         <Type name="GitReferenceType">
             <Description>
                 <summary>
+                    Specifies which reference types are being referred to.
                 </summary>
             </Description>
+            <Field name="None">
+                <summary>
+                    The default value. This should never be used intentionally.
+                </summary>
+            </Field>
+            <Field name="AnnotatedTags">
+                <summary>
+                    Only annotated tags are being referenced.
+                </summary>
+            </Field>
+            <Field name="Tags">
+                <summary>
+                    Both annotated tags, as well as lightweight (non-annotated) tags are being referenced.
+                </summary>
+            </Field>
+            <Field name="All">
+                <summary>
+                    All reference types are being referenced.
+                </summary>
+            </Field>
         </Type>
         <Type name="GitTagState">
             <Description>
