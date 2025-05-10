@@ -1,3 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Assembly name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator">
+    <Description>
+        <summary>
+            Gives a more verbose source revision ID than what Source Link offers and exposes it via an incremental source generator so it can be used in AssemblyInformationalVersionAttributes without MSBuild, allowing use in Unity projects.
+        </summary>
+    </Description>
+    <Namespace name="Core">
+        <Description>
+            <summary>
+                Provides miscellaneous functionality.
+            </summary>
+        </Description>
+        <Type name="AdditionalTextOptionParser">
+            <Description>
+            </Description>
+        </Type>
+        <Type name="CommandLineUtilities">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="ConfigurationDefaults">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="ConfigurationKeys">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="GeneratorHelper">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="GitHelper">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="GitReferenceType">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="GitTagState">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="ParentCommitType">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="VerboseGitDescribeConfiguration">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+        <Type name="VerboseSourceRevisionIdGenerator">
+            <Description>
+                <summary>
+                </summary>
+            </Description>
+        </Type>
+    </Namespace>
 </Assembly>
