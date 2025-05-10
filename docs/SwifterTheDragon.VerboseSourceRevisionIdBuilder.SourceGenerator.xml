@@ -13,7 +13,120 @@
         </Description>
         <Type name="AdditionalTextOptionParser">
             <Description>
+                <summary>
+                    Parses key-value pairs from AdditionalTexts.
+                </summary>
             </Description>
+            <Field name="s_defaultSeparators">
+                <summary>
+                    The default separators to split a collection of values with.
+                </summary>
+            </Field>
+            <Method name="ParseOptions(Microsoft.CodeAnalysis.AdditionalText,System.Threading.CancellationToken)">
+                <summary>
+                    Parses case-insensitive keys, and case-sensitive values from <c><paramref name="additionalText" /></c>.
+                </summary>
+                <param name="additionalText">
+                    The file to parse options from.
+                </param>
+                <param name="cancellationToken">
+                    See <c><see cref="global::System.Threading.CancellationToken" /></c>.
+                </param>
+                <example>
+                    <c>   Key1  =  = Value1 </c> would be parsed as "<c>key1</c>" being the key, with "<c>= Value1</c>" being the value.
+                </example>
+                <returns>
+                    A collection of case-insensitive keys, and case-sensitive values parsed from <c><paramref name="additionalText" /></c>. Leading, and trailing white space is trimmed from both keys, and values, before parsing.
+                </returns>
+            </Method>
+            <Method name="GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.String})">
+                <summary>
+                    Retrieves a <c><see cref="global::System.Collections.ObjectModel.ReadOnlyCollection{T}" /></c> of <c><see langword="string" /></c>s from <c><paramref name="options" /></c> at the key of <c><paramref name="key" /></c>.
+                </summary>
+                <param name="options">
+                    The options to retrieve the value from.
+                </param>
+                <param name="key">
+                    The key to retrieve the value with.
+                </param>
+                <param name="defaultValue">
+                    The default value to use instead if <c><paramref name="key" /></c> does not exist in <c><paramref name="options" /></c>.
+                </param>
+                <returns>
+                    The value stored at <c><paramref name="key" /></c> within <c><paramref name="options" /></c>. If no such value exists, <c><paramref name="defaultValue" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+                <summary>
+                    Retrieves a <c><see langword="string" /></c> from <c><paramref name="options" /></c> at the key of <c><paramref name="key" /></c>.
+                </summary>
+                <param name="options">
+                    The options to retrieve the value from.
+                </param>
+                <param name="key">
+                    The key to retrieve the value with.
+                </param>
+                <param name="defaultValue">
+                    The default value to use instead if <c><paramref name="key" /></c> does not exist in <c><paramref name="options" /></c>.
+                </param>
+                <returns>
+                    The value stored at <c><paramref name="key" /></c> within <c><paramref name="options" /></c>. If no such value exists, <c><paramref name="defaultValue" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String,int)">
+                <summary>
+                    Retrieves an <c><see langword="int" /></c> from <c><paramref name="options" /></c> at the key of <c><paramref name="key" /></c>.
+                </summary>
+                <param name="options">
+                    The options to retrieve a value from.
+                </param>
+                <param name="key">
+                    The key to retrieve the value with.
+                </param>
+                <param name="defaultValue">
+                    The default value to use instead if <c><paramref name="key" /></c> does not exist in <c><paramref name="options" /></c>.
+                </param>
+                <returns>
+                    The value stored at <c><paramref name="key" /></c> within <c><paramref name="options" /></c>. If no such value exists, <c><paramref name="defaultValue" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="GetValue``1(System.Collections.Generic.Dictionary{System.String,System.String},System.String,``0)">
+                <summary>
+                    Retrieves a <c><typeparamref name="TEnum" /></c> from <c><paramref name="options" /></c> at the key of <c><paramref name="key" /></c>.
+                </summary>
+                <typeparam name="TEnum">
+                    The <c><see langword="enum" /></c> type to parse the value as.
+                </typeparam>
+                <param name="options">
+                    The options to retrieve the value from.
+                </param>
+                <param name="key">
+                    The key to retrieve the value with.
+                </param>
+                <param name="defaultValue">
+                    The default value to use instead if <c><paramref name="key" /></c> does not exist in <c><paramref name="options" /></c>.
+                </param>
+                <returns>
+                    The value stored at <c><paramref name="key" /></c> within <c><paramref name="options" /></c>. If no such value exists, <c><paramref name="defaultValue" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="TryParseLine(System.String,System.String@,System.String@)">
+                <summary>
+                    Try to parse <c><paramref name="parsedKey" /></c>, and <c><paramref name="parsedValue" /></c> from <c><paramref name="input" /></c>.
+                </summary>
+                <param name="input">
+                    The line to parse a key and value from.
+                </param>
+                <param name="parsedKey">
+                    The resulting key, if successful.
+                </param>
+                <param name="parsedValue">
+                    The resulting value, if successful.
+                </param>
+                <returns>
+                    <c><see langword="false" /></c> if <c><paramref name="input" /></c> is <c><see langword="null" /></c>, white space, begins with '<c>#</c>', begins with '<c>;</c>', lacks both a key, and a value, or if the key is white space. Otherwise <c><see langword="true" /></c>, <c><paramref name="parsedKey" /></c> is the case-insensitive key, and <c><paramref name="parsedValue" /></c> is the case-sensitive value.
+                </returns>
+            </Method>
         </Type>
         <Type name="CommandLineUtilities">
             <Description>

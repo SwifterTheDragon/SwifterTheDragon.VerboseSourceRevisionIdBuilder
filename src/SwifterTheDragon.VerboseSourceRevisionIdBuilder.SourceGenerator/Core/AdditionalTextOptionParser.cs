@@ -12,41 +12,24 @@ using System.Threading;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Provides utilities for AdditionalTexts, such as parsing key-value pairs.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Description/*'/>
     internal static class AdditionalTextOptionParser
     {
         #region Fields & Properties
-        /// <summary>
-        /// The default separators to split a collection of values with.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Field[@name="s_defaultSeparators"]/*'/>
         private static readonly string[] s_defaultSeparators = new[]
         {
             ", "
         };
         #endregion Fields & Properties
         #region Methods
-        /// <summary>
-        /// Parses a collection of case-insensitive keys and
-        /// case-sensitive values from <c><paramref name="additionalText"/></c>.
-        /// </summary>
-        /// <param name="additionalText">
-        /// The file to parse options from.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// Propagates notification that operations should be cancelled.
-        /// </param>
-        /// <example>
-        /// <c>   Key1  =  = Value1 </c> would be parsed as "key1"
-        /// being the key with "= Value1" being the value.
-        /// </example>
-        /// <returns>
-        /// A collection of case-insensitive keys and case-sensitive values
-        /// parsed from <c><paramref name="additionalText"/></c>.
-        /// Leading and trailing whitespace is trimmed from
-        /// both keys and values before parsing.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Method[@name="ParseOptions(Microsoft.CodeAnalysis.AdditionalText,System.Threading.CancellationToken)"]/*'/>
         internal static Dictionary<string, string> ParseOptions(
             AdditionalText additionalText,
             CancellationToken cancellationToken)
@@ -84,27 +67,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return output;
         }
-        /// <summary>
-        /// Retrieves a <c><see cref="ReadOnlyCollection{T}"/></c> of <see langword="string"/>s from
-        /// <c><paramref name="options"/></c> at <c><paramref name="key"/></c>.
-        /// </summary>
-        /// <param name="options">
-        /// The options to retrieve the value from.
-        /// </param>
-        /// <param name="key">
-        /// The key to retrieve the value with.
-        /// </param>
-        /// <param name="defaultValue">
-        /// The default value to use instead if
-        /// <c><paramref name="key"/></c> does not exist in
-        /// <c><paramref name="options"/></c>.
-        /// </param>
-        /// <returns>
-        /// The value stored at <c><paramref name="key"/></c> within
-        /// <c><paramref name="options"/></c>.
-        /// If no such value exists, <c><paramref name="defaultValue"/></c> is
-        /// used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Method[@name="GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.String})"]/*'/>
         internal static ReadOnlyCollection<string> GetValue(
             // This diagnostic only shows up in build output logs, for reasons unknown.
 #pragma warning disable S3242 // Method parameters should be declared with base types
@@ -132,27 +97,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return defaultValue;
         }
-        /// <summary>
-        /// Retrieves a string from <c><paramref name="options"/></c> at
-        /// <c><paramref name="key"/></c>.
-        /// </summary>
-        /// <param name="options">
-        /// The options to retrieve the value from.
-        /// </param>
-        /// <param name="key">
-        /// The key to retrieve the value with.
-        /// </param>
-        /// <param name="defaultValue">
-        /// The default value to use instead if
-        /// <c><paramref name="key"/></c> does not exist in
-        /// <c><paramref name="options"/></c>.
-        /// </param>
-        /// <returns>
-        /// The value stored at <c><paramref name="key"/></c>
-        /// within <c><paramref name="options"/></c>.
-        /// If no such value exists,
-        /// <c><paramref name="defaultValue"/></c> is returned instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Method[@name="GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)"]/*'/>
         internal static string GetValue(
             // This diagnostic only shows up in build output logs, for reasons unknown.
 #pragma warning disable S3242 // Method parameters should be declared with base types
@@ -176,26 +123,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return defaultValue;
         }
-        /// <summary>
-        /// Retrieves an integer from <c><paramref name="options"/></c> at
-        /// <c><paramref name="key"/></c>.
-        /// </summary>
-        /// <param name="options">
-        /// The options to retrieve the value from.
-        /// </param>
-        /// <param name="key">
-        /// The key to retrieve the value with.
-        /// </param>
-        /// <param name="defaultValue">
-        /// The default value to use instead if <c><paramref name="key"/></c>
-        /// does not exist in <c><paramref name="options"/></c>.
-        /// </param>
-        /// <returns>
-        /// The value stored at <c><paramref name="key"/></c> in
-        /// <c><paramref name="options"/></c>.
-        /// If no such value exists, <c><paramref name="defaultValue"/></c> is
-        /// used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Method[@name="GetValue(System.Collections.Generic.Dictionary{System.String,System.String},System.String,int)"]/*'/>
         internal static int GetValue(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
@@ -223,30 +153,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return defaultValue;
         }
-        /// <summary>
-        /// Retrieves a <c><typeparamref name="TEnum"/></c>
-        /// from <c><paramref name="options"/></c> at
-        /// <c><paramref name="key"/></c>.
-        /// </summary>
-        /// <typeparam name="TEnum">
-        /// The <c><see langword="enum"/></c> type to parse the value as.
-        /// </typeparam>
-        /// <param name="options">
-        /// The options to retrieve the value from.
-        /// </param>
-        /// <param name="key">
-        /// The key to retrieve the value with.
-        /// </param>
-        /// <param name="defaultValue">
-        /// The default value to use instead if <c><paramref name="key"/></c>
-        /// does not exist in <c><paramref name="options"/></c>.
-        /// </param>
-        /// <returns>
-        /// The value stored at <c><paramref name="key"/></c> in
-        /// <c><paramref name="options"/></c>.
-        /// If no such value exists, <c><paramref name="defaultValue"/></c> is
-        /// returned instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Method[@name="GetValue``1(System.Collections.Generic.Dictionary{System.String,System.String},System.String,``0)"]/*'/>
         internal static TEnum GetValue<TEnum>(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
@@ -278,28 +187,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return desiredValue;
         }
-        /// <summary>
-        /// Try to parse a <c><paramref name="parsedKey"/></c> and
-        /// <c><paramref name="parsedValue"/></c> from
-        /// <c><paramref name="input"/></c>.
-        /// </summary>
-        /// <param name="input">
-        /// The line to parse a key and value from.
-        /// </param>
-        /// <param name="parsedKey">
-        /// The resulting key, if successful.
-        /// </param>
-        /// <param name="parsedValue">
-        /// The resulting value, if successful.
-        /// </param>
-        /// <returns>
-        /// <c><see langword="null"/></c> if <c><paramref name="input"/></c> is
-        /// null, whitespace, begins with '<c>#</c>' or '<c>;</c>', lacks both a
-        /// key and a value, or if the key itself is whitespace. Otherwise,
-        /// <c><paramref name="parsedKey"/></c> is the parsed case-insensitive
-        /// key, and <c><paramref name="parsedValue"/></c> is the case-sensitive
-        /// value.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="AdditionalTextOptionParser"]/Method[@name="TryParseLine(System.String,System.String@,System.String@)"]/*'/>
         private static bool TryParseLine(
             string input,
             out string parsedKey,
