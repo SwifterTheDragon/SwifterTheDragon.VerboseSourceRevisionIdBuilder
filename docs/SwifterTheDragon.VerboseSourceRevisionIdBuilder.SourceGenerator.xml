@@ -725,8 +725,24 @@
         <Type name="GitTagState">
             <Description>
                 <summary>
+                    Specifies if tags predating, or containing the commit should be used.
                 </summary>
             </Description>
+            <Field name="None">
+                <summary>
+                    The default value. This should never be used intentionally.
+                </summary>
+            </Field>
+            <Field name="PredatesHead">
+                <summary>
+                    Only use tags that predate <c>HEAD</c>.
+                </summary>
+            </Field>
+            <Field name="ContainsHead">
+                <summary>
+                    Only use tags that contain <c>HEAD</c>.
+                </summary>
+            </Field>
         </Type>
         <Type name="ParentCommitType">
             <Description>

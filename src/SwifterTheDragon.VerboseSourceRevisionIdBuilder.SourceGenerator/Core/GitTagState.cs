@@ -3,23 +3,22 @@
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Specifies if tags predating or containing the commit should be used.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitTagState"]/Description/*'/>
     internal enum GitTagState
     {
-        /// <summary>
-        /// The default value.
-        /// This should never be used intentionally.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitTagState"]/Field[@name="None"]/*'/>
         None = 0,
-        /// <summary>
-        /// Only use tags that predate <c>HEAD</c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitTagState"]/Field[@name="PredatesHead"]/*'/>
         PredatesHead = 1,
-        /// <summary>
-        /// Only use tags that contain <c>HEAD</c>.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="GitTagState"]/Field[@name="ContainsHead"]/*'/>
         ContainsHead = 2
     }
 }
