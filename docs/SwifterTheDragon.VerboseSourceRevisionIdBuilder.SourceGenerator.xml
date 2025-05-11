@@ -677,7 +677,7 @@
                     How long the formatted output should be.
                 </param>
                 <returns>
-                    If <c><paramref name="abbrevLength" /></c> is below <c>1</c>, then an empty <c><see langword="string" /></c>. If <c><paramref name="abbrevLength" /></c> is above <c>0</c>, then <c><paramref name="abbrevLength" /></c> is clamped below <c><see cref="AbbrevLength" /></c> (inclusive), and &quot;<c> --abbrev=<paramref name="abbrevLength" /> --long</c>&quot; is used. Otherwise (if <c><paramref name="abbrevLength" /></c> is not a valid <c><see langword="int" /></c>), then &quot;<c> --long</c>&quot; is used.
+                    If <c><paramref name="abbrevLength" /></c> is below <c>1</c>, then an empty <c><see langword="string" /></c>. If <c><paramref name="abbrevLength" /></c> is above <c>0</c>, then <c><paramref name="abbrevLength" /></c> is clamped below <c><paramref name="abbrevLength" /></c> (inclusive), and &quot;<c> --abbrev=<paramref name="abbrevLength" /> --long</c>&quot; is used. Otherwise (if <c><paramref name="abbrevLength" /></c> is not a valid <c><see langword="int" /></c>), then &quot;<c> --long</c>&quot; is used.
                 </returns>
             </Method>
             <Method name="NormaliseIllegalSemanticVersionCharacters(System.String)">
