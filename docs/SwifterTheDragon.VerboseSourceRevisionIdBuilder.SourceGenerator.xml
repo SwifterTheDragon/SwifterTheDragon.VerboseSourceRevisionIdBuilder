@@ -924,8 +924,382 @@
         <Type name="VerboseSourceRevisionIdGenerator">
             <Description>
                 <summary>
+                    Generates a single file providing the current verbose source revision ID.
                 </summary>
             </Description>
+            <Property name="ConfigurationFileName">
+                <summary>
+                    Gets the configuration file name for this source generator.
+                </summary>
+                <value>
+                    The name of the configuration file for this source generator.
+                </value>
+            </Property>
+            <Method name="FilterConfigFile(Microsoft.CodeAnalysis.IncrementalValuesProvider{Microsoft.CodeAnalysis.AdditionalText}@)">
+                <summary>
+                    Filters <c><see cref="global::Microsoft.CodeAnalysis.AdditionalText" /></c> by if the file name is <c><see cref="ConfigurationFileName" /></c>.
+                </summary>
+                <param name="additionalTextsProvider">
+                    The unfiltered <c><see cref="global::Microsoft.CodeAnalysis.AdditionalText" /></c>s provider to filter.
+                </param>
+                <returns>
+                    A provider of all <c><see cref="global::Microsoft.CodeAnalysis.AdditionalText" /></c>s with a file name of <c><see cref="ConfigurationFileName" /></c>.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionPrefix(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the semantic version prefix from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.SemanticVersionPrefix" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.SemanticVersionPrefix" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionMajorVersion(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the semantic version major version label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.SemanticVersionMajorVersionLabel" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.SemanticVersionMajorVersion" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionMinorVersion(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)">
+                <summary>
+                    Parses the semantic version minor version label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="semanticVersionMajorVersionLabel">
+                    The semantic version major version label.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.SemanticVersionMinorVersionLabel" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, &amp; <c><paramref name="semanticVersionMajorVersionLabel" /></c> is <c>0</c>, then <c>1</c> is returned. Otherwise, <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.SemanticVersionMinorVersion" /></c> is used.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionPatchVersion(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the semantic version patch version label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.SemanticVersionPatchVersionLabel" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.SemanticVersionPatchVersion" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseMainSemanticVersionLabels(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses major, minor, and patch semantic version labels from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <example>
+                    <c>1.2.3</c>
+                </example>
+                <returns>
+                    A combination of <c><see cref="ParseSemanticVersionMajorVersion(global::System.Collections.Generic.Dictionary{string, string})" /></c>, <c><see cref="ParseSemanticVersionMinorVersion(global::System.Collections.Generic.Dictionary{string, string}, int)" /></c>, &amp; <c><see cref="ParseSemanticVersionPatchVersion(global::System.Collections.Generic.Dictionary{string, string})" /></c>. Formatted as &quot;<c>MAJOR</c>.<c>MINOR</c>.<c>PATCH</c>&quot;
+                </returns>
+            </Method>
+            <Method name="ParseDetachedHeadLabel(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the detached <c>HEAD</c> label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.DetachedHeadLabel" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.DetachedHeadLabel" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseCurrentGitBranchName(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+                <summary>
+                    Parses the current Git branch name from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="configurationFilePath">
+                    The file path to this generator's configuration file.
+                </param>
+                <returns>
+                    The output of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitHelper.GetCurrentGitBranchName(string, string)" /></c>.
+                </returns>
+            </Method>
+            <Method name="ParseDefaultGitBranchName(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the default Git branch name from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.DefaultGitBranchName" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.DefaultGitBranchName" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionPreReleaseLabel(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+                <summary>
+                    Parses the semantic version pre-release label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="configurationFilePath">
+                    The file path to this generator's configuration file.
+                </param>
+                <example>
+                    &quot;<c>-beta</c>&quot;, if the default Git branch name is &quot;<c>main</c>&quot;, and the current Git branch name is &quot;<c>beta</c>&quot;.
+                </example>
+                <returns>
+                    An empty <c><see langword="string" /></c> if <c><see cref="ParseCurrentGitBranchName(global::System.Collections.Generic.Dictionary{string, string}, string)" /></c> matches <c><see cref="ParseDefaultGitBranchName(global::System.Collections.Generic.Dictionary{string, string})" /></c>. Otherwise, the output of <c><see cref="ParseCurrentGitBranchName(global::System.Collections.Generic.Dictionary{string, string},string)" /></c>, prefixed with &quot;<c>-</c>&quot;.
+                </returns>
+            </Method>
+            <Method name="ParseDirtyMark(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the dirty mark from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.DirtyMark" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.DirtyMark" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseBrokenMark(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the broken mark from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.BrokenMark" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.BrokenMark" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseInvalidHeadLabel(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the invalid <c>HEAD</c> label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.InvalidHeadLabel" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.InvalidHeadLabel" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseGitReferenceType(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitReferenceType" /></c> from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.GitReferenceType" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.GitReferenceType" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseCandidateAmount(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the candidate amount from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.CandidateAmount" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.CandidateAmount" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseAbbrevLength(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the abbreviation length from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.AbbrevLength" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.AbbrevLength" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseParentCommitType(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ParentCommitType" /></c> from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.ParentCommitType" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.ParentCommitType" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseMatchPatterns(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses match patterns from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.MatchPatterns" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.MatchPatterns" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseExcludePatterns(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses exclude patterns from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.ExcludePatterns" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.ExcludePatterns" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseGitTagState(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the <c>
+                        <see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitTagState" />
+                    </c> from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.GitTagState" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.GitTagState" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseGitRepositoryRootDirectoryPath(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+                <summary>
+                    Parses the Git repository root directory from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="configurationFilePath">
+                    The file path to this generator's configuration file.
+                </param>
+                <returns>
+                    An absolute file path to the Git repository's root directory.
+                </returns>
+            </Method>
+            <Method name="ParseVerboseGitDescribe(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+                <summary>
+                    Parses a verbose Git describe command based on configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="configurationFilePath">
+                    The file path to this generator's configuration file.
+                </param>
+                <returns>
+                    The output of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.GitHelper.GetVerboseGitDescribe(global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.VerboseGitDescribeConfiguration)" /></c>.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionBuildMetadataLabel(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+                <summary>
+                    Parses the semantic version build metadata label from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="configurationFilePath">
+                    The file path to this generator's configuration file.
+                </param>
+                <example>
+                    &quot;<c>+v1.2.3-4-ga1b2c3d4</c>&quot;.
+                </example>
+                <returns>
+                    The output of <c><see cref="ParseVerboseGitDescribe(global::System.Collections.Generic.Dictionary{string, string}, string)" /></c>, prefixed with &quot;<c>+</c>&quot;.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersionSuffix(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the semantic version suffix from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.SemanticVersionSuffix" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.SemanticVersionSuffix" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseSemanticVersion(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+                <summary>
+                    Parses the entire semantic version from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <param name="configurationFilePath">
+                    The file path to this generator's configuration file.
+                </param>
+                <example>
+                    &quot;<c>prefix-1.2.3-beta+v1.2.3-4-ga1b2c3d4-dirty-suffix</c>&quot;.
+                </example>
+                <returns>
+                    Combines <c><see cref="ParseSemanticVersionPrefix(global::System.Collections.Generic.Dictionary{string, string})" /></c>, <c><see cref="ParseMainSemanticVersionLabels(global::System.Collections.Generic.Dictionary{string, string})" /></c>, <c><see cref="ParseSemanticVersionPreReleaseLabel(global::System.Collections.Generic.Dictionary{string, string}, string)" /></c>, <c><see cref="ParseSemanticVersionBuildMetadataLabel(global::System.Collections.Generic.Dictionary{string, string}, string)" /></c>, and <c><see cref="ParseSemanticVersionSuffix(global::System.Collections.Generic.Dictionary{string, string})" /></c>, then escapes quotes for use in a verbatim <c><see langword="string" /></c> literal.
+                </returns>
+            </Method>
+            <Method name="ParseGeneratedFileName(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the generated file name from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.GeneratedFileName" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.GeneratedFileName" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseGeneratedNamespace(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the generated namespace from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.GeneratedNamespace" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.GeneratedNamespace" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseGeneratedTypeName(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the generated type name from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.GeneratedTypeName" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.GeneratedTypeName" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="ParseGeneratedFieldName(System.Collections.Generic.Dictionary{System.String,System.String})">
+                <summary>
+                    Parses the generated field name from configuration data.
+                </summary>
+                <param name="options">
+                    The configuration data to parse from.
+                </param>
+                <returns>
+                    The value at the key of <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationKeys.GeneratedFieldName" /></c> in <c><paramref name="options" /></c>, if it exists. If it does not exist, then <c><see cref="global::SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core.ConfigurationDefaults.GeneratedFieldName" /></c> is used instead.
+                </returns>
+            </Method>
+            <Method name="RegisterOutput(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,Microsoft.CodeAnalysis.IncrementalValuesProvider{System.ValueTuple{System.String,System.String,System.String,System.String,System.String}}@)">
+                <summary>
+                    Registers source code output to this generator's context, to provide a constant containing the current value of the verbose source revision ID.
+                </summary>
+                <param name="context">
+                    The context of this generator.
+                </param>
+                <param name="source">
+                    The configuration data provider.
+                </param>
+            </Method>
         </Type>
     </Namespace>
 </Assembly>

@@ -11,9 +11,9 @@ using System.Text;
 
 namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 {
-    /// <summary>
-    /// Generates a single file providing the current verbose source revision ID.
-    /// </summary>
+    /// <include
+    /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+    /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Description/*'/>
     [Generator]
     // This diagnostic only shows up in build output logs, for reasons unknown.
 #pragma warning disable CA1812 // Avoid uninstantiated internal classes
@@ -21,9 +21,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
 #pragma warning restore CA1812 // Avoid uninstantiated internal classes
     {
         #region Fields & Properties
-        /// <summary>
-        /// The name of the configuration file for this source generator.
-        /// </summary>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Property[@name="ConfigurationFileName"]/*'/>
         internal static string ConfigurationFileName
         {
             get
@@ -66,17 +66,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 context: context,
                 source: configurationProvider);
         }
-        /// <summary>
-        /// Filters additional texts by this generator's
-        /// configuration file name.
-        /// </summary>
-        /// <param name="additionalTextsProvider">
-        /// The unfiltered additional texts provider to run the filter on.
-        /// </param>
-        /// <returns>
-        /// A provider of all additional texts with a file name of
-        /// <c><see cref="ConfigurationFileName"/></c>.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="FilterConfigFile(Microsoft.CodeAnalysis.IncrementalValuesProvider{Microsoft.CodeAnalysis.AdditionalText}@)"]/*'/>
         private static IncrementalValuesProvider<AdditionalText> FilterConfigFile(
             in IncrementalValuesProvider<AdditionalText> additionalTextsProvider)
         {
@@ -90,20 +82,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                             comparisonType: System.StringComparison.Ordinal);
                 });
         }
-        /// <summary>
-        /// Parses the semantic version prefix from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionPrefix"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.SemanticVersionPrefix"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionPrefix(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseSemanticVersionPrefix(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -114,21 +95,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.SemanticVersionPrefix,
                 defaultValue: ConfigurationDefaults.SemanticVersionPrefix);
         }
-        /// <summary>
-        /// Parses the semantic version major version label from configuration
-        /// data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionMajorVersionLabel"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.SemanticVersionMajorVersion"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionMajorVersion(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static int ParseSemanticVersionMajorVersion(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -145,27 +114,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return parsedSemanticVersionMajorVersionLabel;
         }
-        /// <summary>
-        /// Parses the semantic version minor version label from configuration
-        /// data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="semanticVersionMajorVersionLabel">
-        /// The semantic version major version label.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionMinorVersionLabel"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist
-        /// &amp; <c><paramref name="semanticVersionMajorVersionLabel"/></c>
-        /// is <c>0</c>, then <c>1</c> is returned.
-        /// Otherwise,
-        /// <c><see cref="ConfigurationDefaults.SemanticVersionMinorVersion"/></c>
-        /// is used.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionMinorVersion(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)"]/*'/>
         private static int ParseSemanticVersionMinorVersion(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
@@ -187,21 +138,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return parsedSemanticVersionMinorVersionLabel;
         }
-        /// <summary>
-        /// Parses the semantic version patch version label from
-        /// configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionPatchVersionLabel"/></c>
-        /// in <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.SemanticVersionPatchVersion"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionPatchVersion(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static int ParseSemanticVersionPatchVersion(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -218,25 +157,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return parsedSemanticVersionPatchVersionLabel;
         }
-        /// <summary>
-        /// Parses major, minor, and patch semantic version labels from
-        /// configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <example>
-        /// <c>1.2.3</c>
-        /// </example>
-        /// <returns>
-        /// A combination of
-        /// <c><see cref="ParseSemanticVersionMajorVersion(Dictionary{string, string})"/></c>,
-        /// <c><see cref="ParseSemanticVersionMinorVersion(Dictionary{string, string}, int)"/></c>,
-        /// and
-        /// <c><see cref="ParseSemanticVersionPatchVersion(Dictionary{string, string})"/></c>,
-        /// formatted as
-        /// "<c>MAJOR</c>.<c>MINOR</c>.<c>PATCH</c>".
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseMainSemanticVersionLabels(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseMainSemanticVersionLabels(
             Dictionary<string, string> options)
         {
@@ -256,20 +179,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 + semanticVersionPatchVersionLabel.ToString(
                     provider: CultureInfo.InvariantCulture);
         }
-        /// <summary>
-        /// Parses the detached <c>HEAD</c> label from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.DetachedHeadLabel"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.DetachedHeadLabel"/></c> is
-        /// used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseDetachedHeadLabel(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseDetachedHeadLabel(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -280,19 +192,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.DetachedHeadLabel,
                 defaultValue: ConfigurationDefaults.DetachedHeadLabel);
         }
-        /// <summary>
-        /// Parses the current Git branch name.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="configurationFilePath">
-        /// The file path of this generator's configuration file.
-        /// </param>
-        /// <returns>
-        /// The output of
-        /// <c><see cref="GitHelper.GetCurrentGitBranchName(string, string)"/></c>.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseCurrentGitBranchName(System.Collections.Generic.Dictionary{System.String,System.String},System.String)"]/*'/>
         private static string ParseCurrentGitBranchName(
             Dictionary<string, string> options,
             string configurationFilePath)
@@ -306,20 +208,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 detachedHeadLabel: detachedHeadLabel,
                 repositoryRootDirectoryPath: gitRepositoryRootDirectory);
         }
-        /// <summary>
-        /// Parses the default Git branch name from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.DefaultGitBranchName"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.DefaultGitBranchName"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseDefaultGitBranchName(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseDefaultGitBranchName(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -330,29 +221,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.DefaultGitBranchName,
                 defaultValue: ConfigurationDefaults.DefaultGitBranchName);
         }
-        /// <summary>
-        /// Parses the semantic version pre-release label from
-        /// configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="configurationFilePath">
-        /// The file path of this generator's configuration file.
-        /// </param>
-        /// <example>
-        /// "<c>-beta</c>", if the default Git branch name is "<c>main</c>"
-        /// and the current Git branch name is "<c>beta</c>".
-        /// </example>
-        /// <returns>
-        /// An empty string if
-        /// <c><see cref="ParseCurrentGitBranchName(Dictionary{string, string}, string)"/></c>
-        /// matches
-        /// <c><see cref="ParseDefaultGitBranchName(Dictionary{string, string})"/></c>.
-        /// Otherwise,
-        /// <c><see cref="ParseCurrentGitBranchName(Dictionary{string, string}, string)"/></c>,
-        /// prefixed with <c>-</c>.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionPreReleaseLabel(System.Collections.Generic.Dictionary{System.String,System.String},System.String)"]/*'/>
         private static string ParseSemanticVersionPreReleaseLabel(
             Dictionary<string, string> options,
             string configurationFilePath)
@@ -372,20 +243,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return semanticVersionPreReleaseLabel;
         }
-        /// <summary>
-        /// Parses the dirty mark from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.DirtyMark"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.DirtyMark"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseDirtyMark(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseDirtyMark(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -396,20 +256,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.DirtyMark,
                 defaultValue: ConfigurationDefaults.DirtyMark);
         }
-        /// <summary>
-        /// Parses the broken mark from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.BrokenMark"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.BrokenMark"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseBrokenMark(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseBrokenMark(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -420,20 +269,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.BrokenMark,
                 defaultValue: ConfigurationDefaults.BrokenMark);
         }
-        /// <summary>
-        /// Parses the invalid <c>HEAD</c> label from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.InvalidHeadLabel"/></c> in
-        /// <paramref name="options"/>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.InvalidHeadLabel"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseInvalidHeadLabel(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseInvalidHeadLabel(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -444,20 +282,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.InvalidHeadLabel,
                 defaultValue: ConfigurationDefaults.InvalidHeadLabel);
         }
-        /// <summary>
-        /// Parses the <c><see cref="GitReferenceType"/></c> from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.GitReferenceType"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.GitReferenceType"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGitReferenceType(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static GitReferenceType ParseGitReferenceType(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -468,20 +295,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.GitReferenceType,
                 defaultValue: ConfigurationDefaults.GitReferenceType);
         }
-        /// <summary>
-        /// Parses the candidate amount from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.CandidateAmount"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.CandidateAmount"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseCandidateAmount(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static int ParseCandidateAmount(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -498,20 +314,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return parsedCandidateAmount;
         }
-        /// <summary>
-        /// Parses the abbrev length from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.AbbrevLength"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.AbbrevLength"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseAbbrevLength(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseAbbrevLength(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -536,20 +341,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             }
             return defaultAbbrevLength;
         }
-        /// <summary>
-        /// Parses the <c><see cref="ParentCommitType"/></c> from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.ParentCommitType"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.ParentCommitType"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseParentCommitType(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static ParentCommitType ParseParentCommitType(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -560,20 +354,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.ParentCommitType,
                 defaultValue: ConfigurationDefaults.ParentCommitType);
         }
-        /// <summary>
-        /// Parses match patterns from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.MatchPatterns"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.MatchPatterns"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseMatchPatterns(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static ReadOnlyCollection<string> ParseMatchPatterns(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -584,20 +367,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.MatchPatterns,
                 defaultValue: ConfigurationDefaults.MatchPatterns);
         }
-        /// <summary>
-        /// Parses exclude patterns from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.ExcludePatterns"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.ExcludePatterns"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseExcludePatterns(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static ReadOnlyCollection<string> ParseExcludePatterns(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -608,20 +380,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.ExcludePatterns,
                 defaultValue: ConfigurationDefaults.ExcludePatterns);
         }
-        /// <summary>
-        /// Parses the <c><see cref="GitTagState"/></c> from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.GitTagState"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.GitTagState"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGitTagState(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static GitTagState ParseGitTagState(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -632,19 +393,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.GitTagState,
                 defaultValue: ConfigurationDefaults.GitTagState);
         }
-        /// <summary>
-        /// Parses the Git repository root directory path from
-        /// configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="configurationFilePath">
-        /// The file path to this generator's configuration file.
-        /// </param>
-        /// <returns>
-        /// An absolute file path to the Git repository's root directory.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGitRepositoryRootDirectoryPath(System.Collections.Generic.Dictionary{System.String,System.String},System.String)"]/*'/>
         private static string ParseGitRepositoryRootDirectoryPath(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options,
@@ -660,20 +411,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     path1: configurationFilePath,
                     path2: gitRepositoryRootRelativeToConfigurationFilePath));
         }
-        /// <summary>
-        /// Parses a verbose git describe command based on configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="configurationFilePath">
-        /// The file path to this generator's configuration file.
-        /// </param>
-        /// <returns>
-        /// The output of
-        /// <c><see cref="GitHelper.GetVerboseGitDescribe(VerboseGitDescribeConfiguration)"/></c>,
-        /// with '<c>/</c>' replaced with '<c>-</c>'.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseVerboseGitDescribe(System.Collections.Generic.Dictionary{System.String,System.String},System.String)"]/*'/>
         private static string ParseVerboseGitDescribe(
             Dictionary<string, string> options,
             string configurationFilePath)
@@ -718,24 +458,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
             return GitHelper.GetVerboseGitDescribe(
                 configuration: configuration);
         }
-        /// <summary>
-        /// Parses the semantic version build metadata label from
-        /// configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="configurationFilePath">
-        /// The file path to this generator's configuration file.
-        /// </param>
-        /// <example>
-        /// "<c>+v1.2.3-4-ga1b2c3d4</c>".
-        /// </example>
-        /// <returns>
-        /// The output of
-        /// <c><see cref="ParseVerboseGitDescribe(Dictionary{string, string}, string)"/></c>,
-        /// prefixed with <c>+</c>.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionBuildMetadataLabel(System.Collections.Generic.Dictionary{System.String,System.String},System.String)"]/*'/>
         private static string ParseSemanticVersionBuildMetadataLabel(
             Dictionary<string, string> options,
             string configurationFilePath)
@@ -745,20 +470,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                     options: options,
                     configurationFilePath: configurationFilePath);
         }
-        /// <summary>
-        /// Parses the semantic version suffix from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.SemanticVersionSuffix"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.SemanticVersionSuffix"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersionSuffix(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseSemanticVersionSuffix(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -769,28 +483,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.SemanticVersionSuffix,
                 defaultValue: ConfigurationDefaults.SemanticVersionSuffix);
         }
-        /// <summary>
-        /// Parses the entire semantic version from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <param name="configurationFilePath">
-        /// The file path to this generator's configuration file.
-        /// </param>
-        /// <example>
-        /// "<c>prefix-1.2.3-beta+v1.2.3-beta-4-ga1b2c3d4-dirty-suffix</c>".
-        /// </example>
-        /// <returns>
-        /// Combines
-        /// <c><see cref="ParseSemanticVersionPrefix(Dictionary{string, string})"/></c>,
-        /// <c><see cref="ParseMainSemanticVersionLabels(Dictionary{string, string})"/></c>,
-        /// <c><see cref="ParseSemanticVersionPreReleaseLabel(Dictionary{string, string}, string)"/></c>,
-        /// <c><see cref="ParseSemanticVersionBuildMetadataLabel(Dictionary{string, string}, string)"/></c>,
-        /// and
-        /// <c><see cref="ParseSemanticVersionSuffix(Dictionary{string, string})"/></c>,
-        /// then escapes quotes for use in a verbatim string literal.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseSemanticVersion(System.Collections.Generic.Dictionary{System.String,System.String},System.String)"]/*'/>
         private static string ParseSemanticVersion(
             Dictionary<string, string> options,
             string configurationFilePath)
@@ -813,20 +508,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 oldValue: "\"",
                 newValue: "\"\"");
         }
-        /// <summary>
-        /// Parses the generated file name from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.GeneratedFileName"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.GeneratedFileName"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGeneratedFileName(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseGeneratedFileName(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -837,20 +521,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.GeneratedFileName,
                 defaultValue: ConfigurationDefaults.GeneratedFileName);
         }
-        /// <summary>
-        /// Parses the generated namespace from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.GeneratedNamespace"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.GeneratedNamespace"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGeneratedNamespace(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseGeneratedNamespace(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -861,20 +534,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.GeneratedNamespace,
                 defaultValue: ConfigurationDefaults.GeneratedNamespace);
         }
-        /// <summary>
-        /// Parses the generated type name from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.GeneratedTypeName"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.GeneratedTypeName"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGeneratedTypeName(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseGeneratedTypeName(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -885,20 +547,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.GeneratedTypeName,
                 defaultValue: ConfigurationDefaults.GeneratedTypeName);
         }
-        /// <summary>
-        /// Parses the generated field name from configuration data.
-        /// </summary>
-        /// <param name="options">
-        /// The configuration data to parse from.
-        /// </param>
-        /// <returns>
-        /// The value at the key of
-        /// <c><see cref="ConfigurationKeys.GeneratedFieldName"/></c> in
-        /// <c><paramref name="options"/></c>, if it exists.
-        /// If it does not exist, then
-        /// <c><see cref="ConfigurationDefaults.GeneratedFieldName"/></c>
-        /// is used instead.
-        /// </returns>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="ParseGeneratedFieldName(System.Collections.Generic.Dictionary{System.String,System.String})"]/*'/>
         private static string ParseGeneratedFieldName(
 #pragma warning disable S3242 // Method parameters should be declared with base types
             Dictionary<string, string> options)
@@ -909,17 +560,9 @@ namespace SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.Core
                 key: ConfigurationKeys.GeneratedFieldName,
                 defaultValue: ConfigurationDefaults.GeneratedFieldName);
         }
-        /// <summary>
-        /// Registers source code output to this generator's context,
-        /// to provide a constant field containing the current value of the
-        /// verbose source revision ID.
-        /// </summary>
-        /// <param name="context">
-        /// The context of this generator.
-        /// </param>
-        /// <param name="source">
-        /// The configuration data provider.
-        /// </param>
+        /// <include
+        /// file='../../docs/SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator.xml'
+        /// path='Assembly[@name="SwifterTheDragon.VerboseSourceRevisionIdBuilder.SourceGenerator"]/Namespace[@name="Core"]/Type[@name="VerboseSourceRevisionIdGenerator"]/Method[@name="RegisterOutput(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,Microsoft.CodeAnalysis.IncrementalValuesProvider{System.ValueTuple{System.String,System.String,System.String,System.String,System.String}}@)"]/*'/>
         private static void RegisterOutput(
             in IncrementalGeneratorInitializationContext context,
             in IncrementalValuesProvider<(
